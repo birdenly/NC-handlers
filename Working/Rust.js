@@ -217,6 +217,21 @@ Game.Play = function() {
   ];
   Context.ReplaceLinesInTextFile(txtPath, dict);
 
+  var filePath = Context.filePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\RustClient_Data\\Plugins\\x86_64\\steam_settings";
+	System.IO.Directory.CreateDirectory(filePath);	
+
+        var autoExec = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\RustClient_Data\\Plugins\\x86_64\\steam_settings\\DLC.txt";
+        var lines = [
+        "1670430=	Rust Voice Props Pack",
+        "1374000=Rust Secretlab Chair",
+        "1353060=Rust Sunburn Pack",
+        "1174370=Instrument Pack ",
+        "494560=Rust - Early Access Ident"
+		
+        ];
+
+        Context.WriteTextFile(autoExec, lines);
+
   var MAP = Context.Options["map"];
   var SIZE = Context.Options["size"];
   var NEW = Context.Options["new"];

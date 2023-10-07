@@ -1,0 +1,9 @@
+{
+  "exe": "DOOMEternalx64vk.exe",
+  "arguments": "",
+  "sendToken": false,
+  "photonIntegration": false,
+  "serverAddress": "",
+  "relyingProvider": "http://test-services.bethesda.net/",
+  "credentials": ""
+}

@@ -14,7 +14,8 @@ var answers2 = [
   "Alpha Valley",
   "Destruction",
   "Monolith",
-  "Paintball Arena"
+  "Paintball Arena",
+
   
 ];
 Game.AddOption(
@@ -73,7 +74,7 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.BlockRawInput = false;
 Game.Description =
-  "If you will play unturned 1.0 read the notes under the 'choose what version you will play' in the next section(if you play unturned 1.0 and want to change to latest steam version, or vice versa, you will need to delete the nucleus content folder, doing so will delete your save for that version.), read here if you are playing the latest steam version.\n\nIMPORTANT: You must have unturned and unturned dedicated server downloaded, copy the folder 'U3DS' (name of the dedicated server folder of unturned) and place the folder inside your unturned main folder.\n\nTo join the server go into Play > Servers > LAN/Internet. To keep the progress of the server, all players need to return to the main menu than you can ctrl+Q, to close nucleus. \n\nYou can use Rewasd or xpadder to play with controllers (or other similar apps). After all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+  'If you will play unturned 1.0 read the notes under the "choose what version you will play" in the next section(if you play unturned 1.0 and want to change to latest steam version, or vice versa, you will need to delete the nucleus content folder, doing so will delete your save for that version.), read here if you are playing the latest steam version.\n\nIMPORTANT: You must have unturned and unturned dedicated server downloaded, copy the folder "U3DS" (name of the dedicated server folder of unturned) and place the folder inside your unturned main folder.\n\nTo join the server go into Play > Servers > LAN/Internet. To keep the progress of the server, all players need to return to the main menu than you can ctrl+Q, to close nucleus. \n\nYou can use Rewasd or xpadder to play with controllers (or other similar apps). After all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.\n\nFOR WORKSHOP MAPS: run Unturned with nucleus once, copy the map folder (the one with the numbers), right click the game in nucleus and press "Open Content folder",In instace0 go into U3DS > Servers > Nucleus coop > Workshop > Maps and paste the map folder.\n\n(The part below can be done before even playing with nucleus, so it applies to all automatically, just follow it like its your main game) Open the workshop map folder you just pasted and copy the folder with the map name, go into Instace0 (will need to be done to Instace1, Instace2 and others if you have them) > Maps and paste the folder. At last just copy the name of the folder you just pasted right click the game in nucleus and press "Open game handler", inside the [] where there are other maps add your map with the name you just copied for exemple: "Rio de Janeiro"';
 Game.KeepSymLinkOnExit = true;
 Game.PauseBetweenStarts = 20;
 
@@ -192,7 +193,8 @@ Game.Play = function() {
       var DIF = Context.Options["dif"];
       var CH = Context.Options["cheat"];
 
-
+    if (Context.PlayerID == 0) {
+    
       if(!System.IO.Directory.Exists(Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\U3DS\\Servers")){
 
         var filePath = Context.filePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\U3DS\\Servers";
@@ -251,6 +253,7 @@ Game.Play = function() {
         Context.WriteTextFile(serverBat, linesBat);
 
       }
+    }
 
       Context.RunAdditionalFiles(["1|" + Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\U3DS\\Unturned_server.bat"], false, "", 0, false, false, false, false);
     }

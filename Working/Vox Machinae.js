@@ -18,8 +18,8 @@ Game.ExecutableName = "vm.exe";
 Game.SteamID = "334540";
 Game.GUID = "Vox Machinae";
 Game.GameName = "Vox Machinae";
-Game.MaxPlayers = 32;
-Game.MaxPlayersOneMonitor = 32;
+Game.MaxPlayers = 12;
+Game.MaxPlayersOneMonitor = 12;
 Game.LauncherTitle = "";
 Game.HideTaskbar = false;
 Game.Hook.ForceFocus = false;
@@ -30,7 +30,7 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "";
+  "Go into Multiplayer > Create Game > Local Network to create a game, now just join with the other players";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 20;
 

@@ -22,7 +22,7 @@ Game.XInputPlusOldDll = true;
 Game.XInputPlusDll = ["xinput1_3.dll","dinput8.dll"];
 Game.Hook.CustomDllEnabled = false;
 Game.StartArguments = ""; 
-Game.Description = "IMPORTANT: Get in game and change any graphics once before playing with nucleus.\n\nWait until the screen gets to the main menu and click it, you should hear a bleep sound, now in the process picker prompt select arma3_x64 and hit ok.\n\nFOR MODS: right click arma 3 in nucleus,click 'open game handler', in line 181 Put -mod=@modname;@modname2; in the parameters. Steam scenarios wont work, follow Gunters youtube video on how to extract there PBO.\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+Game.Description = "IMPORTANT: Get in game and change any graphics once before playing with nucleus.\n\nWait until the screen gets to the main menu and click it, you should hear a bleep sound, now in the process picker prompt select arma3_x64 and hit ok.\n\nFOR MODS: right click arma 3 in nucleus,click 'open game handler', in line 149 Put -mod=@modname;@modname2; in the parameters. Steam scenarios wont work, follow Gunters youtube video on how to extract there PBO.\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenProcessGrab = 20;
 Game.PauseBetweenStarts = 30;
 
@@ -130,7 +130,7 @@ Game.ProtoInput.OnInputUnlocked = function() {
     ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetRawInputDataHookID);
     ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.RegisterRawInputHookID);
     ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.MessageFilterHookID);
-
+    
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.RawInputFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseMoveFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseActivateFilterID);
@@ -139,7 +139,7 @@ Game.ProtoInput.OnInputUnlocked = function() {
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseWheelFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseButtonFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.KeyboardButtonFilterID);
-
+    
     ProtoInput.SetDrawFakeCursor(player.ProtoInputInstanceHandle, false);
   }
 };
@@ -169,6 +169,7 @@ if(System.IO.File.Exists(config)){
 
   var txtPath = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\Arma3.cfg";
   var dict = [
+    Context.FindLineNumberInTextFile(txtPath, "forcedAdapterId", Nucleus.SearchType.StartsWith) + '|forcedAdapterId=-1;',
     Context.FindLineNumberInTextFile(txtPath, "displayMode", Nucleus.SearchType.StartsWith) + '|displayMode=0;',
     Context.FindLineNumberInTextFile(txtPath, "winWidth", Nucleus.SearchType.StartsWith) + '|winWidth=' + Context.Width + ';',
     Context.FindLineNumberInTextFile(txtPath, "winHeight", Nucleus.SearchType.StartsWith) + '|winHeight=' + Context.Height + ';',
@@ -212,7 +213,7 @@ if(System.IO.File.Exists(config)){
 			
 
   if (Context.IsKeyboardPlayer) {
-    Game.ProtoInput.FreezeExternalInputWhenInputNotLocked = true;
+Game.ProtoInput.FreezeExternalInputWhenInputNotLocked = true;
     Game.ProtoInput.RegisterRawInputHook =  false;
     Game.ProtoInput.GetRawInputDataHook = false;
     Game.ProtoInput.MessageFilterHook = true;
@@ -239,9 +240,7 @@ if(System.IO.File.Exists(config)){
     Game.ProtoInput.SendMouseButtonMessages = true;
     Game.ProtoInput.SendMouseMovementMessages = true;
     Game.ProtoInput.SendKeyboardButtonMessages = true;
-    // Game.ProtoInput.GetKeyStateHook = true;
-    // Game.ProtoInput.GetAsyncKeyStateHook = true;
-    // Game.ProtoInput.GetKeyboardStateHook = true;
+
 
     var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\XInputPlus.ini";
     Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
@@ -251,9 +250,7 @@ if(System.IO.File.Exists(config)){
       new Nucleus.IniSaveInfo("ControllerNumber", "Controller4", "")
     ]);
   } else {
-    // Game.ProtoInput.FreezeExternalInputWhenInputNotLocked = false; 
-    // Game.ProtoInput.RegisterRawInputHook = false;
-    // Game.ProtoInput.ClipCursorHook = false;
+
 
     var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\XInputPlus.ini";
     Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
@@ -271,24 +268,4 @@ if(System.IO.File.Exists(config)){
     ]);
     
 }
-
-var numPlayers = 0;
-
-for (var i = 0; i < PlayerList.Count; i++) {
-var player = PlayerList[i];
-
-if (player.IsXInput && player.ScreenIndex !== -1) {
-  numPlayers++;
-}
-player.ProtoController1 = Context.GamepadId;
-player.ProtoController2 = Context.GamepadId;
-player.ProtoController3 = Context.GamepadId;
-player.ProtoController4 = Context.GamepadId;
-player.ProtoController5 = Context.GamepadId;
-player.ProtoController6 = Context.GamepadId;
-player.ProtoController7 = Context.GamepadId;
-player.ProtoController8 = Context.GamepadId;
-player.ProtoController9 = Context.GamepadId;
-}
-
 };
