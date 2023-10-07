@@ -1,4 +1,3 @@
-
 Game.ExecutableContext = [ 
     "SuperliminalSteam_Data"
 ];
@@ -8,7 +7,7 @@ Game.FileSymlinkCopyInstead = [
 
 ];
 
-Game.CreateSteamAppIdByExe = true; 
+Game.UseGoldberg = true;
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
@@ -30,11 +29,17 @@ Game.Hook.XInputEnabled = false;
 Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
-Game.Description = "Start a multiplayer lobby in the first instance and join in with others with the lobby code.";
+Game.Description = "IMPORTANT: handler needs internect connection.\n\nControllers only.\n\nStart a multiplayer lobby in the first instance and join in with others with the lobby code. To type the lobby code just alt + tab to the screen.";
 
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 20;
 
+Game.UseNucleusEnvironment = true; 
+Game.UserProfileSavePath = "AppData\\LocalLow\\PillowCastle\\SuperliminalSteam";
+
+Game.FakeFocus = true; 
+Game.FakeFocusInterval = 10000;
+Game.SendFakeFocusMsg = true;
 
 Game.ProtoInput.InjectStartup = false;
 Game.ProtoInput.InjectRuntime_RemoteLoadMethod = false;
@@ -57,19 +62,10 @@ Game.ProtoInput.DinputDeviceHook = false;
 Game.ProtoInput.DinputHookAlsoHooksGetDeviceState = false;
 Game.ProtoInput.MultipleProtoControllers = true;
 
-Game.ProtoInput.EnableFocusMessageLoop = true; 
-Game.ProtoInput.FocusLoopIntervalMilliseconds = 5000;
-Game.ProtoInput.FocusLoop_WM_ACTIVATE = true;
-Game.ProtoInput.FocusLoop_WM_ACTIVATEAPP = false;
-Game.ProtoInput.FocusLoop_WM_NCACTIVATE = false;
-Game.ProtoInput.FocusLoop_WM_SETFOCUS = false;
-Game.ProtoInput.FocusLoop_WM_MOUSEACTIVATE = false;
-Game.ProtoInput.BlockedMessages = [0x0008, 0x02A3, 0x02A1]; // Blocks WM_KILLFOCUS, WM_MOUSEHOVER and WM_MOUSELEAVE 
-
  
 Game.Play = function() {
 
-    var Args = (Context.Args = " -screen-fullscreen 0 -popupwindow " + " -screen-width " + Context.Width + " -screen-height " + Context.Height);
+  var Args = (Context.Args = " -screen-fullscreen 0 -popupwindow " + " -screen-width " + Context.Width + " -screen-height " + Context.Height);
 
   Context.StartArguments = Args;
   
