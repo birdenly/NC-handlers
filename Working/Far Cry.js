@@ -137,13 +137,13 @@ Game.ProtoInput.EnableFocusMessageLoop = false;
 Game.ProtoInput.BlockedMessages = [0x0008]; // Blocks WM_KILLFOCUS
 
 Game.Play = function() {
-  var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\system.cfg";
+  var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\system.cfg";
   var dict = [
-    Context.FindLineNumberInTextFile(txtPath, "r_Fullscreen", Nucleus.SearchType.StartsWith) + '|r_Fullscreen = "0"',
-    Context.FindLineNumberInTextFile(txtPath, "r_Width =", Nucleus.SearchType.StartsWith) + '|r_Width = "' + Context.Width + '"',
-    Context.FindLineNumberInTextFile(txtPath, "r_Height =", Nucleus.SearchType.StartsWith) + '|r_Height = "' + Context.Height + '"'
+    Context.FindLineNumberInTextFile(cfgpath, "r_Fullscreen", Nucleus.SearchType.StartsWith) + '|r_Fullscreen = "0"',
+    Context.FindLineNumberInTextFile(cfgpath, "r_Width =", Nucleus.SearchType.StartsWith) + '|r_Width = "' + Context.Width + '"',
+    Context.FindLineNumberInTextFile(cfgpath, "r_Height =", Nucleus.SearchType.StartsWith) + '|r_Height = "' + Context.Height + '"'
   ];
-  Context.ReplaceLinesInTextFile(txtPath, dict);
+  Context.ReplaceLinesInTextFile(cfgpath, dict);
 
   Context.HideTaskBar();
 

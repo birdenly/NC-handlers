@@ -10,7 +10,7 @@ Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
 Game.SymlinkFolders = false;
-Game.KeepSymLinkOnExit = false;
+Game.KeepSymLinkOnExit = true;
 Game.ExecutableName = "ConflictDeniedOps.exe";
 Game.SteamID = "8100";
 Game.GUID = "Conflict Denied Ops";
@@ -22,8 +22,8 @@ Game.LauncherTitle = "";
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "Conflict : Denied Ops";
 Game.Hook.DInputEnabled = false;
-Game.Hook.XInputEnabled = true;
-Game.XInputPlusDll = ["xinput1_3.dll","dinput8.dll"];
+Game.Hook.XInputEnabled = false;
+// Game.XInputPlusDll = ["xinput1_3.dll","dinput8.dll"];
 Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.Description =
@@ -32,12 +32,16 @@ Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 25;
 Game.HideTaskbar = true;
 
+Game.UseNucleusEnvironment = true;
+Game.UserProfileSavePath = "Documents\\Eidos\\ConflictDeniedOps";
+
 Game.UseSteamless = true; 
 Game.SteamlessArgs = "--quiet --keepbind";     
 Game.FakeFocus = true; 
 Game.SupportsKeyboard = true; 
+Game.GamePlayBeforeGameSetup = true;
 
-//Game.LaunchAsDifferentUsers = true; //can be used to connect with gamespy, even tho you get disconnected after 2s
+// Game.LaunchAsDifferentUsers = true; //can be used to connect with gamespy, even tho you get disconnected after 2s
 //Game.UseForceBindIP = true;  
 
 
@@ -116,9 +120,11 @@ Game.LockInputToggleKey = 0x23;
 // Game.ProtoInput.UseDinputRedirection = false;
 // Game.ProtoInput.DinputDeviceHook = false;
 // Game.ProtoInput.DinputHookAlsoHooksGetDeviceState = false;
+Game.ProtoInput.XinputHook = true;
+Game.ProtoInput.UseOpenXinput = true;
 
 Game.ProtoInput.EnableFocusMessageLoop = true;
-Game.ProtoInput.FocusLoopIntervalMilliseconds = 5000;
+Game.ProtoInput.FocusLoopIntervalMilliseconds = 10000;
 Game.ProtoInput.FocusLoop_WM_ACTIVATE = true;
 Game.ProtoInput.FocusLoop_WM_ACTIVATEAPP = false;
 Game.ProtoInput.FocusLoop_WM_NCACTIVATE = false;
@@ -145,6 +151,30 @@ Game.Play = function() {
     new Nucleus.IniSaveInfo("MAIN", "ForceWindowedMode", 1)
 
   ]);
+
+  // if (Context.PlayerID == 0) {
+  // } else {
+    var id = Context.PlayerID;
+
+    var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\dinput8.dll");
+    var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "dinput8.dll");
+    System.IO.File.Copy(savePkgOrigin, savePath, true);
+
+    var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\port_rebinder.dll");
+    var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "port_rebinder.dll");
+    System.IO.File.Copy(savePkgOrigin, savePath, true);
+
+    var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\socket.ini");
+    var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "socket.ini");
+    System.IO.File.Copy(savePkgOrigin, savePath, true);
+
+    var dlls = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\dlls.cfg";
+    var lines = ["port_rebinder.dll"];
+    Context.WriteTextFile(dlls, lines);
+
+    // var ipconfig = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\port.ini";
+    // Context.ModifySaveFile(ipconfig, ipconfig, Nucleus.SaveType.INI, [new Nucleus.IniSaveInfo("MYPORT", "PORT", "468" + id)]);
+  // }
 
 
 //     if (Context.IsKeyboardPlayer) {
