@@ -34,6 +34,7 @@ Game.SetWindowHook = true;
 // Game.NeedsSteamEmulation = true;
 Game.UseSteamless = true;   
 Game.SteamlessArgs = "--quiet --keepbind";    
+Game.NeedsSteamEmulation = true; 
 Game.GoldbergExperimentalSteamClient = true; 
 Game.UseGoldberg = true;
 
