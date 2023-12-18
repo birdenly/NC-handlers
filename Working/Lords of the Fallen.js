@@ -1,4 +1,4 @@
-Hub.Handler.Version = 1; // Released at https://hub.splitscreen.me/ on Sun Oct 29 2023 04:22:47 GMT+0000 (Coordinated Universal Time).
+Hub.Handler.Version = 3; // Released at https://hub.splitscreen.me/ on Mon Nov 13 2023 06:05:20 GMT+0000 (Coordinated Universal Time).
 Hub.Handler.Id = "3gzf2wh9zhw7bgnGH";
 Hub.Maintainer.Name = "birden";
 Hub.Maintainer.Id = "rRycxSn253ZCjQy5C";
@@ -10,22 +10,14 @@ Game.AddOption("Select the FPS cap.", "0 is for unlimited FPS", "fps", answers1)
 
 Game.ExecutableContext = ["OpenImageDenoise.dll"];
 
-Game.FileSymlinkExclusions = [
-  "steam_api64.dll",
-  "steam_appid.txt",
-  "Custom.dll",
-  "dlllist.txt",
-  "OnlineFix.ini",
-  "OnlineFix64.dll",
-  "StubDRM64.dll",
-  "winmm.dll"
-];
+Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt", "Custom.dll", "dlllist.txt", "OnlineFix.ini", "OnlineFix64.dll", "StubDRM64.dll", "winmm.dll"];
 Game.DirSymlinkExclusions = ["Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv153\\Win64", "LOTF2\\Binaries\\Win64\\RedpointEOS", "LOTF2\\Binaries\\Win64"];
 
 Game.HandlerInterval = 500;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
 Game.SymlinkFolders = true;
+Game.KeepSymLinkOnExit = true;
 Game.ExecutableName = "LOTF2-Win64-Shipping.exe";
 // Game.LauncherExe = "LOTF2.exe";
 // Game.LauncherExeIgnoreFileCheck = true;
@@ -46,7 +38,7 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "IMPORTANT: The handler uses online-fix and requires internet connection also FULLY CLOSE STEAM BEFORE USING THE HANDLER\n\nReduce your graphics in the main game before using the handler, also recommend muting the music of the second instance.\n\nTo join each other finish the tutorial section and reach the altar, interact with it and go into multiplayer and invite the other player\n\nIf you want your main save file in split screen right click the game in nucleus and click 'open userProfile save path', now just copy paste your main save file into there\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+  "IMPORTANT: The handler uses online-fix and requires internet connection also FULLY CLOSE STEAM BEFORE USING THE HANDLER, the online-fix site should pop up only on the first start.\n\nReduce your graphics in the main game before using the handler, also recommend muting the music of the second instance.\n\nTo join each other finish the tutorial section and reach the altar, interact with it and go into multiplayer and invite the other player\n\nIf you want your main save file in split screen right click the game in nucleus and click 'open userProfile save path', now just copy paste your main save file into there\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 30;
 
@@ -216,7 +208,9 @@ Game.Play = function() {
 
   Context.StartArguments = Args;
 
-  Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
+  if (!System.IO.File.Exists(Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\LOTF2\\Binaries\\Win64\\OnlineFix64.dll")) {
+    Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
+  }
 
   var filePath = (Context.filePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv153\\Win64\\steam_settings");
   System.IO.Directory.CreateDirectory(filePath);
