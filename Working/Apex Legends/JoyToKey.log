@@ -1,0 +1,26 @@
+2023/12/29 23:08:55.666 Info   Starting JoyToKey v6.9.1
+2023/12/29 23:08:55.667 Info   ExeFile = E:\jogos\nucleuscoop\NucleusCo-op\handlers\Apex Legends\JoyToKey.exe
+2023/12/29 23:08:55.667 Info   Args = E:\jogos\nucleuscoop\NucleusCo-op\handlers\Apex Legends\JoyToKey.exe
+2023/12/29 23:08:55.667 Info   DataDirectory = E:\jogos\nucleuscoop\NucleusCo-op\handlers\Apex Legends\
+2023/12/29 23:08:55.667 Info   Profile = 
+2023/12/29 23:08:55.667 Info   IniFile = E:\jogos\nucleuscoop\NucleusCo-op\handlers\Apex Legends\JoyToKey.ini
+2023/12/29 23:08:55.667 Info   Loading ini file: E:\jogos\nucleuscoop\NucleusCo-op\handlers\Apex Legends\JoyToKey.ini (AppInfo.cpp#259)
+2023/12/29 23:08:55.667 Info   LicenseKey "" is not valid
+2023/12/29 23:08:55.759 Info   Loading XInput1_3.dll (Joystick.cpp#158)
+2023/12/29 23:08:55.760 Info   Initialized XInput (Joystick.cpp#180)
+2023/12/29 23:08:55.775 Info   Initialized DirectInput (Joystick.cpp#193)
+2023/12/29 23:08:55.776 Info   Loading hid.dll (JoystickHID.h#58)
+2023/12/29 23:08:55.776 Info   Initialized HID (Joystick.cpp#202)
+2023/12/29 23:08:55.776 Info   ConfigDir=E:\jogos\nucleuscoop\NucleusCo-op\handlers\Apex Legends\*.cfg (ConfigFileManager.cpp#43)
+2023/12/29 23:08:55.777 Info   Failed to find AppLink.dat (AppLink\AppLinkManager.cpp#32)
+2023/12/29 23:08:55.814 Info   TimerInit: Initializing timer with x1 speed mode (interval = 16 msec)
+2023/12/29 23:08:55.863 Info   Starting in a minimized mode (JoyToKey.cpp#37)
+2023/12/29 23:08:55.863 Info   Not showing (hiding) the main window (JoyToKey.cpp#39)
+2023/12/29 23:08:55.894 Info   Detected a XI joystick: XInput-0
+2023/12/29 23:08:55.894 Info   Detected a XI joystick: XInput-1
+2023/12/29 23:08:55.894 Info   DetectJoysticks: Detected 2 XI joystick(s)
+2023/12/29 23:08:56.093 Info   Detected a DI joystick: Controller (Inno GamePad..), Controller (Inno GamePad..), 028E045E, {5B445DD0-64FE-11EB-8001-444553540000}
+2023/12/29 23:08:56.114 Info   Detected a DI joystick: Controller (Inno GamePad..), Controller (Inno GamePad..), 028E045E, {14BF0100-9200-11EC-8001-444553540000}
+2023/12/29 23:08:56.114 Info   Joystick #1: XInput Device #1
+2023/12/29 23:08:56.114 Info   Joystick #2: XInput Device #2
+2023/12/29 23:08:56.114 Info   2 joystick(s) are detected (Joystick.cpp#281)

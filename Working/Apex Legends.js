@@ -113,6 +113,8 @@ Game.DirSymlinkCopyInstead = ["platform\\cfg"];
 
 Game.DirSymlinkExclusions = ["cfg", "bin", "platform"];
 
+Game.KillProcessesOnClose = ["F2 connect", "Names", 'cmd', 'JoyToKey']; 
+
 Game.DirSymlinkCopyInsteadIncludeSubFolders = true;
 
 Game.HandlerInterval = 100;
@@ -123,8 +125,8 @@ Game.ExecutableName = "r5apex.exe";
 Game.SteamID = "1172470";
 Game.GUID = "R5Reloaded";
 Game.GameName = "Apex Legends";
-Game.MaxPlayersOneMonitor = 60;
-Game.MaxPlayers = 60;
+Game.MaxPlayersOneMonitor = 8;
+Game.MaxPlayers = 8;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "Apex Legends";
 Game.Hook.DInputEnabled = false;
@@ -136,11 +138,11 @@ Game.PauseBetweenStarts = 15;
 Game.Description =
   "You need Apex R5Reloaded (https://r5reloaded.com/) installed and working, run it through the launcher.exe once before using the handler. You NEED to have the origin/EA app running in the background, and have Apex in your library, make a second account to use just in case.\n\nAt the start of the handler the connection command will automatically be copied into your clipboard to paste later.In case you lose it this is the command:\n" +
   'connect 127.0.0.1:37015;net_setkey "rHWboeNIOa+UzGJHEHOdaA=="' +
-  "\n\nIf you have a keyboard/mouse instance you can only interact with the console/F10 menus while input is unlocked, after you get in game or wont do anything with those menus press 'END' to lock the keyboard/mouse to their instance.\n\nINSTRUCTIONS FOR THE FIRST INSTANCE: After the game starts press 'F10', go to the hosting tab and uncheck 'Load global banned list', set the server visibility to 'offline' and select the mode/map you want, now press 'start server'(or stop server than start server, if the server is already running).\n\nINSTRUCTIONS FOR THE OTHER INSTANCES: Get to the menu (where your character is shown), now press ' (key above TAB) and paste the connection command thats in your clipboard into the console.\n\nTo change character and alot of other stuff press 'esc' and go into the dev menu.\n\nFor vertical splitscreen or non 16:9 instance(if the screen has a black border when started): when the screen opens wait for it to resize into place than get to the main menu and press 'alt+enter' to go fullscreen than press 'alt+enter' again to go back to normal, now the screen should have no borders and the console/server browser should work. I dont recommend using resolutions like this as it will break some stuff in the menus.";
+  "\n\nIf you have a keyboard/mouse instance you can only interact with the console/F10 menus while input is unlocked, after you get in game or wont do anything with those menus press 'END' to lock the keyboard/mouse to their instance.\n\nINSTRUCTIONS FOR THE FIRST INSTANCE: After the game starts press 'F10', go to the hosting tab and uncheck 'Load global banned list', set the server visibility to 'offline' and select the mode/map you want, now press 'start server'(or stop server than start server, if the server is already running).\n\nINSTRUCTIONS FOR THE OTHER INSTANCES: Get to the menu (where your character is shown), now press ' (key above TAB) and paste the connection command thats in your clipboard into the console. Or open the console and move it until you can see the place to type, erase anything thats in the typing space and close it with the X top right of the console, now you can either press 'F2' or hold the start button for all instances to connect automatically.THESE SHORTCUTS WILL ONLY WORK WHILE INPUT IS UNLOCKED.\n\nTo change character and alot of other stuff press 'esc' and go into the dev menu.\n\nFor vertical splitscreen or non 16:9 instance(if the screen has a black border when started): when the screen opens wait for it to resize into place than get to the main menu and press 'alt+enter' to go fullscreen than press 'alt+enter' again to go back to normal, now the screen should have no borders and the console/server browser should work. I dont recommend using resolutions like this as it will break some stuff in the menus.";
 Game.PauseBetweenProcessGrab = 5;
 
+Game.HideTaskbar = true;
 Game.SetWindowHookStart = true;
-// Game.SetTopMostAtEnd = true;
 
 //USS deprecated options:
 
@@ -267,6 +269,12 @@ Game.ProtoInput.OnInputUnlocked = function() {
 };
 
 Game.Play = function() {
+
+      
+  Context.RunAdditionalFiles([Context.ScriptFolder + "\\names.exe"], false, 10);
+  Context.RunAdditionalFiles([Context.ScriptFolder + "\\JoyToKey.exe"], false, 10);
+  Context.RunAdditionalFiles([Context.ScriptFolder + "\\F2 connect.exe"], false, 10);
+
   var FPS = Context.Options["fps"];
 
   var Args = (Context.Args =
@@ -342,7 +350,8 @@ Game.Play = function() {
     var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\platform\\cfg\\bind.cfg";
     var dict = [Context.FindLineNumberInTextFile(txtPath, "//// UTILITY          ////", Nucleus.SearchType.StartsWith) + '|net_setkey "rHWboeNIOa+UzGJHEHOdaA=="'];
     Context.ReplaceLinesInTextFile(txtPath, dict);
-  } else {
+  }else{
+
     var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\platform\\cfg\\game.cfg";
     var dict = [Context.FindLineNumberInTextFile(txtPath, "//////////////////////////", Nucleus.SearchType.StartsWith) + "|platform_user_id " + 1000 + Context.PlayerID];
     Context.ReplaceLinesInTextFile(txtPath, dict);
@@ -350,8 +359,9 @@ Game.Play = function() {
     var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\platform\\cfg\\bind.cfg";
     var dict = [Context.FindLineNumberInTextFile(txtPath, "//// UTILITY          ////", Nucleus.SearchType.StartsWith) + "|platform_user_id " + 1000 + Context.PlayerID];
     Context.ReplaceLinesInTextFile(txtPath, dict);
-  }
 
+
+  }
   var server = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\CopyPaste.bat";
   var lines = ['echo|set /p=connect 127.0.0.1:37015;net_setkey "rHWboeNIOa+UzGJHEHOdaA=="|clip', "quit"];
 
