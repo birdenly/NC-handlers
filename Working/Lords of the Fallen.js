@@ -1,3 +1,8 @@
+Hub.Handler.Version = 3; // Released at https://hub.splitscreen.me/ on Mon Nov 13 2023 06:05:20 GMT+0000 (Coordinated Universal Time).
+Hub.Handler.Id = "3gzf2wh9zhw7bgnGH";
+Hub.Maintainer.Name = "birden";
+Hub.Maintainer.Id = "rRycxSn253ZCjQy5C";
+
 Game.KillMutex = ["UnrealEngine4"];
 
 var answers1 = ["30", "60", "90", "120", "144", "0"];
