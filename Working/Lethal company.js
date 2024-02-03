@@ -1,3 +1,8 @@
+Hub.Handler.Version = 2; // Released at https://hub.splitscreen.me/ on Fri Dec 29 2023 03:31:51 GMT+0000 (Coordinated Universal Time).
+Hub.Handler.Id = "NmdNMirLvXXzNkLfY";
+Hub.Maintainer.Name = "birden";
+Hub.Maintainer.Id = "rRycxSn253ZCjQy5C";
+
 Game.ExecutableContext = ["Lethal Company_Data"];
 Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt"];
 Game.FileSymlinkCopyInstead = ["nvngx_dlss.dll", "NVUnityPlugin.dll", "UnityCrashHandler64.exe", "UnityPlayer.dll"];
@@ -95,7 +100,6 @@ Game.ProtoInput.FocusLoop_WM_MOUSEACTIVATE = false;
 Game.ProtoInput.BlockedMessages = [0x0008, 0x02a3, 0x02a1]; // Blocks WM_KILLFOCUS, WM_MOUSEHOVER and WM_MOUSELEAVE
 
 Game.Play = function() {
-  
   var Args = (Context.Args = " -screen-fullscreen 0 -popupwindow " + " -screen-width " + Context.Width + " -screen-height " + Context.Height);
 
   Context.StartArguments = Args;
@@ -106,7 +110,6 @@ Game.Play = function() {
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\ZeekerssRBLX\\Lethal Company", "Screenmanager Resolution Use Native_h1405027254", 0, Nucleus.RegType.DWord);
 
   if (Context.IsKeyboardPlayer) {
-
     Game.ProtoInput.RegisterRawInputHook = true;
     Game.ProtoInput.GetRawInputDataHook = true;
     Game.ProtoInput.MessageFilterHook = true;
@@ -130,9 +133,7 @@ Game.Play = function() {
     Game.ProtoInput.MouseWheelFilter = true;
     Game.ProtoInput.MouseButtonFilter = true;
     Game.ProtoInput.KeyboardButtonFilter = true;
-
   }
-
 
   var dllPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\UnityPlayer.dll";
 
@@ -140,23 +141,23 @@ Game.Play = function() {
   var patchPattern = "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
 
   Context.PatchFileFindPattern(dllPath, dllPath, searchPattern, patchPattern, true);
-  
+
   var numPlayers = 0;
 
   for (var i = 0; i < PlayerList.Count; i++) {
-          var player = PlayerList[i];
+    var player = PlayerList[i];
 
-          if (player.IsXInput && player.ScreenIndex !== -1) {
-                  numPlayers++;
-          }
+    if (player.IsXInput && player.ScreenIndex !== -1) {
+      numPlayers++;
+    }
     player.ProtoController1 = Context.GamepadId;
-          player.ProtoController2 = Context.GamepadId;
-          player.ProtoController3 = Context.GamepadId;
-          player.ProtoController4 = Context.GamepadId;
-          player.ProtoController5 = Context.GamepadId;
-          player.ProtoController6 = Context.GamepadId;
-          player.ProtoController7 = Context.GamepadId;
-          player.ProtoController8 = Context.GamepadId;
-          player.ProtoController9 = Context.GamepadId;
+    player.ProtoController2 = Context.GamepadId;
+    player.ProtoController3 = Context.GamepadId;
+    player.ProtoController4 = Context.GamepadId;
+    player.ProtoController5 = Context.GamepadId;
+    player.ProtoController6 = Context.GamepadId;
+    player.ProtoController7 = Context.GamepadId;
+    player.ProtoController8 = Context.GamepadId;
+    player.ProtoController9 = Context.GamepadId;
   }
 };
