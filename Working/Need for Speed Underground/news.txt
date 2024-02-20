@@ -1,0 +1,7 @@
+Enjoy split screen :)
+Thanks to HarpyWar for the LAN server,
+Zolika1351 for ZPatchU1,
+thirteenag for widescreen fixes,
+CrabJounrnal for Extra Options+,
+xan1242 for XtendedInput.
+-birden

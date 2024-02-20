@@ -1,7 +1,22 @@
+var answers1 = ["80","85" ,"90","95", "100", "105", "110", "115","120","125","130"]
+Game.AddOption("Select your FOV.", "80 is the default.", "fov", answers1);
+
 Game.ExecutableContext = ["wxRes", "binkw32.dll"];
 Game.KillMutex = ["Guardian_UnrealEngine3_1"];
 Game.DirSymlinkExclusions = ["Binaries", "WarGame\\Config"];
-Game.FileSymlinkCopyInstead = ["profile.bin", "steam_appid.txt", "WarCamera.ini", "WarEngine.ini", "WarEngineUserSettings.ini","WarEditor.ini","DefaultEngineUserSettings.ini","WarGame.ini","WarInput.ini","WarUI.ini"];
+Game.FileSymlinkCopyInstead = [
+  "profile.bin",
+  "steam_appid.txt",
+  "WarCamera.ini",
+  "WarEngine.ini",
+  "WarEngineUserSettings.ini",
+  "WarEditor.ini",
+  "DefaultEngineUserSettings.ini",
+  "WarGame.ini",
+  "WarInput.ini",
+  "WarUI.ini",
+  "WarCamera.ini"
+];
 Game.NeedsSteamEmulation = true;
 Game.HandlerInterval = 100;
 Game.SymlinkGame = true;
@@ -18,7 +33,7 @@ Game.HideTaskbar = true;
 Game.StartArguments = "-windowed -AlwaysFocus -nosplash -nomoviestartup";
 Game.LauncherTitle = "";
 Game.Hook.ForceFocus = true;
-Game.Hook.ForceFocusWindowName = "Gears of War: New Hope (32-bit, DX9)";
+Game.Hook.ForceFocusWindowName = "Gears of War (32-bit, DX9)";
 Game.ResetWindows = true;
 Game.Hook.DInputEnabled = false;
 Game.Hook.XInputEnabled = false;
@@ -27,8 +42,8 @@ Game.XInputPlusDll = [];
 Game.Hook.CustomDllEnabled = false;
 Game.Description =
   "IMPORTANT: This handler is made for the Gears of War game files of this standalone mod: https://www.moddb.com/mods/ai-bot-support/downloads/gow-ai-bot-support, just download and extract then add the game to Nucleus.\n\nIf you get a prompt about a file thats outdated, just press 'Yes to all'. Create a LAN multiplayer game in one instance and join in the others. If you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
-Game.PauseBetweenContextAndLaunch = 8;
-Game.PauseBetweenStarts = 30;
+// Game.PauseBetweenContextAndLaunch = 8;
+Game.PauseBetweenStarts = 10;
 
 //USS deprecated options:
 
@@ -115,6 +130,7 @@ Game.ProtoInput.EnableFocusMessageLoop = false;
 Game.ProtoInput.BlockedMessages = [0x0008]; // Blocks WM_KILLFOCUS
 
 Game.Play = function() {
+
   var videoconfig = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\WarGame\\Config\\WarEngineUserSettings.ini");
   Context.ModifySaveFile(videoconfig, videoconfig, Nucleus.SaveType.INI, [
     new Nucleus.IniSaveInfo("WinDrv.WindowsClient", "StartupFullscreen", "False"),
@@ -125,7 +141,14 @@ Game.Play = function() {
   var videoconfig = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\WarGame\\Config\\WarEngine.ini");
   Context.ModifySaveFile(videoconfig, videoconfig, Nucleus.SaveType.INI, [new Nucleus.IniSaveInfo("OnlineSubsystemPC.OnlineSubsystemPC", "PlayerName", Context.Nickname)]);
 
-  if (Context.IsKeyboardPlayer) {
+  var FOV = Context.Options["fov"];
+
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\WarGame\\Config\\WarCamera.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+    new Nucleus.IniSaveInfo("WarfareGame.WarCameraMode_Default", "FOVAngle", FOV)
+  ]);
+
+if (Context.IsKeyboardPlayer) {
     Game.ProtoInput.RawInputFilter = true;
     Game.ProtoInput.MouseMoveFilter = false;
     Game.ProtoInput.MouseActivateFilter = true;
@@ -144,5 +167,4 @@ Game.Play = function() {
     Game.ProtoInput.MouseButtonFilter = false;
     Game.ProtoInput.KeyboardButtonFilter = false;
   }
-  
 };
