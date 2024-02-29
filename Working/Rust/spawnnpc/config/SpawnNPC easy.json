@@ -1,0 +1,1215 @@
+{
+  "Turrets by outpost sentries don't attack NPC": false,
+  "Preset for the NPC": [
+    {
+      "Preset name": "murderer_machete_monument",
+      "How many seconds until the respawns": 400,
+      "Use random appearance on the map, after the destruction of the NPC": false,
+      "NPC Type (Scientist = true | Scarecrow = false)": false,
+      "Display name": "Murderer",
+      "Health": 50.0,
+      "At what distance does the NPC see the enemy": 30.0,
+      "At what distance does the NPC attack the enemy": 0.0,
+      "Roam range, (affects the Scientist only)": 30.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": true,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 300.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "gloweyes",
+          "SkinID Item": [
+            0
+          ]
+        },
+        {
+          "Short Name Item": "burlap.headwrap",
+          "SkinID Item": [
+            811534810
+          ]
+        },
+        {
+          "Short Name Item": "burlap.trousers",
+          "SkinID Item": [
+            1177788927
+          ]
+        },
+        {
+          "Short Name Item": "burlap.shirt",
+          "SkinID Item": [
+            1177719024
+          ]
+        },
+        {
+          "Short Name Item": "shoes.boots",
+          "SkinID Item": [
+            820952520
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "machete",
+          "SkinID Item": [
+            928142240
+          ]
+        },
+        {
+          "Amount Item": 10,
+          "Short Name Item": "grenade.beancan",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": false,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": true,
+        "Name crates loot": [
+          "radtown_loot_component_test"
+        ],
+        "Min Item": 3,
+        "Max Item": 6,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "scarecrow_sickle_biome",
+      "How many seconds until the respawns": 400,
+      "Use random appearance on the map, after the destruction of the NPC": true,
+      "NPC Type (Scientist = true | Scarecrow = false)": false,
+      "Display name": "Scarecrow",
+      "Health": 50.0,
+      "At what distance does the NPC see the enemy": 30.0,
+      "At what distance does the NPC attack the enemy": 0.0,
+      "Roam range, (affects the Scientist only)": 100.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": true,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 300.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "gloweyes",
+          "SkinID Item": [
+            0
+          ]
+        },
+        {
+          "Short Name Item": "scarecrow.suit",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "sickle",
+          "SkinID Item": [
+            0
+          ]
+        },
+        {
+          "Amount Item": 10,
+          "Short Name Item": "grenade.beancan",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": false,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": true,
+        "Name crates loot": [
+          "radtown_loot_component_test"
+        ],
+        "Min Item": 3,
+        "Max Item": 6,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "surgeon_butcher_biome",
+      "How many seconds until the respawns": 400,
+      "Use random appearance on the map, after the destruction of the NPC": true,
+      "NPC Type (Scientist = true | Scarecrow = false)": false,
+      "Display name": "Surgeon",
+      "Health": 50.0,
+      "At what distance does the NPC see the enemy": 30.0,
+      "At what distance does the NPC attack the enemy": 0.0,
+      "Roam range, (affects the Scientist only)": 100.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": true,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 300.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "gloweyes",
+          "SkinID Item": [
+            0
+          ]
+        },
+        {
+          "Short Name Item": "halloween.surgeonsuit",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "knife.butcher",
+          "SkinID Item": [
+            0
+          ]
+        },
+        {
+          "Amount Item": 10,
+          "Short Name Item": "grenade.beancan",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": false,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": true,
+        "Name crates loot": [
+          "radtown_loot_component_test"
+        ],
+        "Min Item": 3,
+        "Max Item": 6,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "mummy_pitchfork_biome",
+      "How many seconds until the respawns": 400,
+      "Use random appearance on the map, after the destruction of the NPC": true,
+      "NPC Type (Scientist = true | Scarecrow = false)": false,
+      "Display name": "Mummy",
+      "Health": 100.0,
+      "At what distance does the NPC see the enemy": 30.0,
+      "At what distance does the NPC attack the enemy": 0.0,
+      "Roam range, (affects the Scientist only)": 100.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": true,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 300.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "halloween.mummysuit",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "pitchfork",
+          "SkinID Item": [
+            0
+          ]
+        },
+        {
+          "Amount Item": 10,
+          "Short Name Item": "grenade.beancan",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": true,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": false,
+        "Name crates loot": [
+          "radtown_loot_component_test"
+        ],
+        "Min Item": 3,
+        "Max Item": 6,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "mummy_chainsaw_biome",
+      "How many seconds until the respawns": 400,
+      "Use random appearance on the map, after the destruction of the NPC": true,
+      "NPC Type (Scientist = true | Scarecrow = false)": false,
+      "Display name": "Mummy",
+      "Health": 100.0,
+      "At what distance does the NPC see the enemy": 30.0,
+      "At what distance does the NPC attack the enemy": 0.0,
+      "Roam range, (affects the Scientist only)": 100.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": true,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 300.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "halloween.mummysuit",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "chainsaw",
+          "SkinID Item": [
+            0
+          ]
+        },
+        {
+          "Amount Item": 10,
+          "Short Name Item": "grenade.beancan",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": true,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": false,
+        "Name crates loot": [
+          "radtown_loot_component_test"
+        ],
+        "Min Item": 3,
+        "Max Item": 6,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "butcher_revolver_monument",
+      "How many seconds until the respawns": 900,
+      "Use random appearance on the map, after the destruction of the NPC": true,
+      "NPC Type (Scientist = true | Scarecrow = false)": true,
+      "Display name": "Butcher",
+      "Health": 100.0,
+      "At what distance does the NPC see the enemy": 40.0,
+      "At what distance does the NPC attack the enemy": 30.0,
+      "Roam range, (affects the Scientist only)": 900.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": true,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 300.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "burlap.headwrap",
+          "SkinID Item": [
+            942098139,
+            1691834772,
+            896506958,
+            861551572,
+            1694253807,
+            868014709,
+            785890135,
+            822358002,
+            2359491836,
+            2628320731,
+            2546312064,
+            2255857422,
+            942098139,
+            868014709,
+            2627598726,
+            861551572,
+            785890135,
+            896506958,
+            2564348661,
+            822358002,
+            1691834772,
+            1694253807
+          ]
+        },
+        {
+          "Short Name Item": "burlap.shirt",
+          "SkinID Item": [
+            849866944,
+            1127407306,
+            809909900,
+            1438049725,
+            654502725,
+            899941622,
+            1755124648,
+            926478499,
+            1294811936,
+            1394039696,
+            1354670586,
+            1323654151,
+            1229561297,
+            882451685,
+            1294812700,
+            1145786859,
+            2039984110,
+            2547109183,
+            2556987808,
+            2365505183,
+            585386820,
+            2519100346,
+            2255869247
+          ]
+        },
+        {
+          "Short Name Item": "burlap.trousers",
+          "SkinID Item": [
+            1127409880,
+            1760352876,
+            2216144342,
+            1994622998,
+            921250017,
+            1438049211,
+            2519100909,
+            2365579502,
+            2255871111,
+            1380047706,
+            2556988996,
+            1323664071,
+            1394040054,
+            1145780081,
+            2039988322,
+            1354675665,
+            1755140135,
+            809968188
+          ]
+        },
+        {
+          "Short Name Item": "shoes.boots",
+          "SkinID Item": [
+            1100926907,
+            1441308562,
+            1432967312,
+            919261524,
+            1395755190,
+            1084392788,
+            920390242,
+            962503020,
+            961096730,
+            2410871443,
+            784559403,
+            493064563,
+            1106548545,
+            1406796292,
+            838205144,
+            899942107,
+            2075527039,
+            493534620,
+            826587881,
+            1915397286,
+            2199934989,
+            1196740980,
+            513629119,
+            869090082,
+            2304198263,
+            613481881,
+            944997041,
+            809586899,
+            882570089,
+            1111680681,
+            2537679237,
+            507940691
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "pistol.revolver",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": true,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": false,
+        "Name crates loot": [
+          "radtown_loot_component_test"
+        ],
+        "Min Item": 3,
+        "Max Item": 6,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "scientist_spacesuit_monument",
+      "How many seconds until the respawns": 1200,
+      "Use random appearance on the map, after the destruction of the NPC": false,
+      "NPC Type (Scientist = true | Scarecrow = false)": true,
+      "Display name": "Scientist spacesuit",
+      "Health": 350.0,
+      "At what distance does the NPC see the enemy": 80.0,
+      "At what distance does the NPC attack the enemy": 80.0,
+      "Roam range, (affects the Scientist only)": 600.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": false,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 150.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "hazmatsuit.spacesuit",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "lmg.m249",
+          "SkinID Item": [
+            1719536313
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": false,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": true,
+        "Name crates loot": [
+          "chinooklockedcrate"
+        ],
+        "Min Item": 3,
+        "Max Item": 6,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "scientis_heavy_l96_monument",
+      "How many seconds until the respawns": 1200,
+      "Use random appearance on the map, after the destruction of the NPC": false,
+      "NPC Type (Scientist = true | Scarecrow = false)": true,
+      "Display name": "Scientist heavy",
+      "Health": 250.0,
+      "At what distance does the NPC see the enemy": 80.0,
+      "At what distance does the NPC attack the enemy": 80.0,
+      "Roam range, (affects the Scientist only)": 800.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": false,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 150.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "scientistsuit_heavy",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "rifle.l96",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": false,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": true,
+        "Name crates loot": [
+          "radtown_crate_elite"
+        ],
+        "Min Item": 3,
+        "Max Item": 6,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "scientist_heavy_lr300_monument",
+      "How many seconds until the respawns": 1200,
+      "Use random appearance on the map, after the destruction of the NPC": false,
+      "NPC Type (Scientist = true | Scarecrow = false)": true,
+      "Display name": "Scientist heavy",
+      "Health": 250.0,
+      "At what distance does the NPC see the enemy": 80.0,
+      "At what distance does the NPC attack the enemy": 80.0,
+      "Roam range, (affects the Scientist only)": 800.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": false,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 150.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "scientistsuit_heavy",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "rifle.lr300",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": false,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": true,
+        "Name crates loot": [
+          "radtown_crate_elite"
+        ],
+        "Min Item": 3,
+        "Max Item": 6,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "scientist_lr300_monument",
+      "How many seconds until the respawns": 900,
+      "Use random appearance on the map, after the destruction of the NPC": false,
+      "NPC Type (Scientist = true | Scarecrow = false)": true,
+      "Display name": "Scientist",
+      "Health": 175.0,
+      "At what distance does the NPC see the enemy": 60.0,
+      "At what distance does the NPC attack the enemy": 60.0,
+      "Roam range, (affects the Scientist only)": 800.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": false,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 150.0,
+      "Use kit (clothing and Loot)": true,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "hazmatsuit_scientist",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "rifle.lr300",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": true,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": false,
+        "Name crates loot": [
+          "radtown_crate_normal_2_medical"
+        ],
+        "Min Item": 1,
+        "Max Item": 3,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "scientist_mp5_monument",
+      "How many seconds until the respawns": 900,
+      "Use random appearance on the map, after the destruction of the NPC": false,
+      "NPC Type (Scientist = true | Scarecrow = false)": true,
+      "Display name": "Scientist",
+      "Health": 175.0,
+      "At what distance does the NPC see the enemy": 60.0,
+      "At what distance does the NPC attack the enemy": 60.0,
+      "Roam range, (affects the Scientist only)": 800.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": false,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 300.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "hazmatsuit_scientist",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "smg.mp5",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": true,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": false,
+        "Name crates loot": [
+          "radtown_crate_normal_2_medical"
+        ],
+        "Min Item": 1,
+        "Max Item": 3,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "scientis_shotgun_monument",
+      "How many seconds until the respawns": 900,
+      "Use random appearance on the map, after the destruction of the NPC": false,
+      "NPC Type (Scientist = true | Scarecrow = false)": true,
+      "Display name": "Scientist",
+      "Health": 175.0,
+      "At what distance does the NPC see the enemy": 30.0,
+      "At what distance does the NPC attack the enemy": 30.0,
+      "Roam range, (affects the Scientist only)": 900.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": false,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 1200.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "hazmatsuit_scientist",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "shotgun.spas12",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": true,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": false,
+        "Name crates loot": [
+          "radtown_crate_normal_2_medical"
+        ],
+        "Min Item": 1,
+        "Max Item": 3,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    },
+    {
+      "Preset name": "scientis_m92_monument",
+      "How many seconds until the respawns": 900,
+      "Use random appearance on the map, after the destruction of the NPC": false,
+      "NPC Type (Scientist = true | Scarecrow = false)": true,
+      "Display name": "Scientist",
+      "Health": 175.0,
+      "At what distance does the NPC see the enemy": 60.0,
+      "At what distance does the NPC attack the enemy": 60.0,
+      "Roam range, (affects the Scientist only)": 800.0,
+      "Enable map marker NPC": false,
+      "Radio disabled": false,
+      "Enable weapon damage multiplier": true,
+      "Weapon damage multiplier": 150.0,
+      "Use kit (clothing and Loot)": false,
+      "Kit ID": "",
+      "Wear": [
+        {
+          "Short Name Item": "hazmatsuit_scientist",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Belt": [
+        {
+          "Amount Item": 1,
+          "Short Name Item": "pistol.m92",
+          "SkinID Item": [
+            0
+          ]
+        }
+      ],
+      "Loot": {
+        "Use loot Rust": true,
+        "Use loot Kit": false,
+        "Use Loot Extra": false,
+        "Use loot Crates": false,
+        "Name crates loot": [
+          "radtown_crate_normal_2_medical"
+        ],
+        "Min Item": 1,
+        "Max Item": 3,
+        "List exclude items": null,
+        "Extra loot definition": null
+      }
+    }
+  ],
+  "Rule Spawn NPC for Monument": [
+    {
+      "Name Monument": "powerplant_1",
+      "Name Preset Npc": "scientist_lr300_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 3,
+      "Max Amount Npc": 3
+    },
+    {
+      "Name Monument": "powerplant_1",
+      "Name Preset Npc": "scientist_mp5_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 3,
+      "Max Amount Npc": 3
+    },
+    {
+      "Name Monument": "powerplant_1",
+      "Name Preset Npc": "scientis_shotgun_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 3,
+      "Max Amount Npc": 3
+    },
+    {
+      "Name Monument": "military_tunnel_1",
+      "Name Preset Npc": "scientist_lr300_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 3,
+      "Max Amount Npc": 3
+    },
+    {
+      "Name Monument": "military_tunnel_1",
+      "Name Preset Npc": "scientist_mp5_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 3,
+      "Max Amount Npc": 3
+    },
+    {
+      "Name Monument": "military_tunnel_1",
+      "Name Preset Npc": "scientis_shotgun_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 3,
+      "Max Amount Npc": 3
+    },
+    {
+      "Name Monument": "airfield_1",
+      "Name Preset Npc": "scientist_lr300_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 3,
+      "Max Amount Npc": 3
+    },
+    {
+      "Name Monument": "airfield_1",
+      "Name Preset Npc": "scientist_mp5_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 3,
+      "Max Amount Npc": 3
+    },
+    {
+      "Name Monument": "airfield_1",
+      "Name Preset Npc": "scientis_shotgun_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 3,
+      "Max Amount Npc": 3
+    },
+    {
+      "Name Monument": "trainyard_1",
+      "Name Preset Npc": "scientist_lr300_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 3,
+      "Max Amount Npc": 3
+    },
+    {
+      "Name Monument": "trainyard_1",
+      "Name Preset Npc": "scientist_mp5_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 3,
+      "Max Amount Npc": 3
+    },
+    {
+      "Name Monument": "trainyard_1",
+      "Name Preset Npc": "scientis_shotgun_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "water_treatment_plant_1",
+      "Name Preset Npc": "scientist_lr300_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "water_treatment_plant_1",
+      "Name Preset Npc": "scientist_mp5_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "water_treatment_plant_1",
+      "Name Preset Npc": "scientis_shotgun_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "radtown_small_3",
+      "Name Preset Npc": "scientist_lr300_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "radtown_small_3",
+      "Name Preset Npc": "scientist_mp5_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "radtown_small_3",
+      "Name Preset Npc": "scientis_shotgun_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 60.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "launch_site_1",
+      "Name Preset Npc": "scientis_heavy_l96_monument",
+      "Min Radius Spawn Npc": 180.0,
+      "Max Radius Spawn Npc": 200.0,
+      "Min Amount Npc": 1,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "launch_site_1",
+      "Name Preset Npc": "scientist_heavy_lr300_monument",
+      "Min Radius Spawn Npc": 180.0,
+      "Max Radius Spawn Npc": 200.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "launch_site_1",
+      "Name Preset Npc": "scientist_spacesuit_monument",
+      "Min Radius Spawn Npc": 180.0,
+      "Max Radius Spawn Npc": 200.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "junkyard_1",
+      "Name Preset Npc": "scientist_lr300_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 100.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "junkyard_1",
+      "Name Preset Npc": "scientist_mp5_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 100.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "junkyard_1",
+      "Name Preset Npc": "scientis_shotgun_monument",
+      "Min Radius Spawn Npc": 50.0,
+      "Max Radius Spawn Npc": 100.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "satellite_dish",
+      "Name Preset Npc": "scientis_m92_monument",
+      "Min Radius Spawn Npc": 30.0,
+      "Max Radius Spawn Npc": 50.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "harbor_1",
+      "Name Preset Npc": "scientis_m92_monument",
+      "Min Radius Spawn Npc": 30.0,
+      "Max Radius Spawn Npc": 50.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "harbor_2",
+      "Name Preset Npc": "scientis_m92_monument",
+      "Min Radius Spawn Npc": 30.0,
+      "Max Radius Spawn Npc": 50.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "sphere_tank",
+      "Name Preset Npc": "butcher_revolver_monument",
+      "Min Radius Spawn Npc": 30.0,
+      "Max Radius Spawn Npc": 50.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "warehouse",
+      "Name Preset Npc": "murderer_machete_monument",
+      "Min Radius Spawn Npc": 10.0,
+      "Max Radius Spawn Npc": 40.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "gas_station_1",
+      "Name Preset Npc": "murderer_machete_monument",
+      "Min Radius Spawn Npc": 10.0,
+      "Max Radius Spawn Npc": 40.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Monument": "supermarket_1",
+      "Name Preset Npc": "murderer_machete_monument",
+      "Min Radius Spawn Npc": 10.0,
+      "Max Radius Spawn Npc": 40.0,
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    }
+  ],
+  "Rule Spawn NPC for Biome": [
+    {
+      "Name Biome": "Arctic",
+      "Name Preset Npc": "scientis_shotgun_monument",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Arctic",
+      "Name Preset Npc": "surgeon_butcher_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Arctic",
+      "Name Preset Npc": "butcher_revolver_monument",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Arctic",
+      "Name Preset Npc": "mummy_chainsaw_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Arid",
+      "Name Preset Npc": "scarecrow_sickle_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Arid",
+      "Name Preset Npc": "surgeon_butcher_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Arid",
+      "Name Preset Npc": "mummy_pitchfork_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Arid",
+      "Name Preset Npc": "mummy_chainsaw_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Temperate",
+      "Name Preset Npc": "scarecrow_sickle_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Temperate",
+      "Name Preset Npc": "surgeon_butcher_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Temperate",
+      "Name Preset Npc": "mummy_pitchfork_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Temperate",
+      "Name Preset Npc": "mummy_chainsaw_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Tundra",
+      "Name Preset Npc": "scarecrow_sickle_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Tundra",
+      "Name Preset Npc": "surgeon_butcher_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Tundra",
+      "Name Preset Npc": "mummy_pitchfork_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    },
+    {
+      "Name Biome": "Tundra",
+      "Name Preset Npc": "mummy_chainsaw_biome",
+      "Min Amount Npc": 2,
+      "Max Amount Npc": 2
+    }
+  ],
+  "Names for monument. Read-only!": [
+    "powerplant_1",
+    "military_tunnel_1",
+    "harbor_1",
+    "harbor_2",
+    "airfield_1",
+    "trainyard_1",
+    "water_treatment_plant_1",
+    "satellite_dish",
+    "sphere_tank",
+    "radtown_small_3",
+    "launch_site_1",
+    "excavator_1",
+    "junkyard_1",
+    "warehouse",
+    "gas_station_1",
+    "supermarket_1",
+    "mining_quarry_c",
+    "mining_quarry_a",
+    "mining_quarry_b",
+    "desert_military_base_a",
+    "arctic_research_base_a",
+    "Water Well A (x)",
+    "Water Well E (x)",
+    "MONUMENT Dome",
+    "Mining Quarry A2 ***",
+    "MONUMENT Junkyard *",
+    "MONUMENT Pumpjack Compound ***",
+    "MONUMENT Fishing Village South A **",
+    "MONUMENT Fishing Village East C **",
+    "MONUMENT Compound ***",
+    "Lighthouse",
+    "Lighthouse 2",
+    "MONUMENT Military Tunnels Underground (old)",
+    "MONUMENT Satellite Dish Island ***",
+    "Warehouse 2",
+    "Mining Quarry C2 ***",
+    "MONUMENT Water Treatment Plant ***",
+    "MONUMENT Waste Management ***",
+    "MONUMENT Launch Site ***",
+    "MONUMENT Stables A"
+  ],
+  "Names for biome. Read-only!": [
+    "Arctic",
+    "Arid",
+    "Temperate",
+    "Tundra"
+  ],
+  "Names for loot crate. Read-only!": [
+    "radtown_loot_component_test",
+    "radtown_crate_elite",
+    "radtown_bradley_crate",
+    "radtown_heli_crate",
+    "radtown_foodbox",
+    "radtown_crate_normal",
+    "radtown_crate_normal_2",
+    "radtown_crate_normal_2_medical",
+    "radtown_crate_basic",
+    "radtown_crate_tools",
+    "underwater_labs_crate_normal",
+    "underwater_labs_crate_normal_2",
+    "underwater_labs_crate_tools",
+    "underwater_labs_crate_food_2",
+    "underwater_labs_tech_parts_2",
+    "underwater_labs_crate_elite",
+    "radtown_crate_underwater_basic",
+    "radtown_crate_underwater_advanced",
+    "chinooklockedcrate",
+    "supply_drop",
+    "presentdrop"
+  ]
+}
