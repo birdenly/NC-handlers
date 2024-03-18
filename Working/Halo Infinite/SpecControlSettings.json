@@ -1,0 +1,670 @@
+{
+    "spec_control_windowed_display_resolution_x": {
+        "version": 0,
+        "value": 960
+    },
+    "spec_control_windowed_display_resolution_y": {
+        "version": 0,
+        "value": 1080
+    },
+    "spec_control_window_size": {
+        "version": 0,
+        "value": 56493496
+    },
+    "spec_control_resolution_scale": {
+        "version": 0,
+        "value": 143
+    },
+    "spec_control_ui_resolution_scale": {
+        "version": 0,
+        "value": 100
+    },
+    "spec_control_use_cached_window_position": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_window_position_x": {
+        "version": 0,
+        "value": 233
+    },
+    "spec_control_window_position_y": {
+        "version": 0,
+        "value": 104
+    },
+    "spec_control_window_mode": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_graphics_card": {
+        "version": 0,
+        "value": 8644
+    },
+    "spec_control_monitor": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_minimum_framerate": {
+        "version": 2,
+        "value": 55
+    },
+    "spec_control_target_framerate": {
+        "version": 1,
+        "value": 55
+    },
+    "spec_control_vsync": {
+        "version": 1,
+        "value": 1
+    },
+    "spec_control_hdr_wcg": {
+        "version": 1,
+        "value": 1
+    },
+    "spec_control_async_compute": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_master_volume": {
+        "version": 0,
+        "value": 10
+    },
+    "spec_control_music_volume": {
+        "version": 0,
+        "value": 8
+    },
+    "spec_control_dialog_volume": {
+        "version": 0,
+        "value": 8
+    },
+    "spec_control_sfx_volume": {
+        "version": 0,
+        "value": 10
+    },
+    "spec_control_hit_detection_volume": {
+        "version": 0,
+        "value": 8
+    },
+    "spec_control_menu_music_volume": {
+        "version": 0,
+        "value": 8
+    },
+    "spec_control_ambience_volume": {
+        "version": 0,
+        "value": 10
+    },
+    "spec_control_team_chatter_enabled": {
+        "version": 0,
+        "value": 1
+    },
+    "spec_control_ai_chatter_enabled": {
+        "version": 1,
+        "value": 1
+    },
+    "spec_control_dynamic_range": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_speaker_type": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_voice_chat_input_mode": {
+        "version": 1,
+        "value": 2
+    },
+    "spec_control_fire_team_voice_enabled": {
+        "version": 0,
+        "value": 1
+    },
+    "spec_control_match_voice_enabled": {
+        "version": 0,
+        "value": 1
+    },
+    "spec_control_voice_input_device_id_hash": {
+        "version": 0,
+        "value": -1
+    },
+    "spec_control_incoming_voice_chat_volume": {
+        "version": 0,
+        "value": 7
+    },
+    "mute_audio_on_loss_of_focus": {
+        "version": 0,
+        "value": 0
+    },
+    "cap_frame_rate_on_loss_of_focus": {
+        "version": 0,
+        "value": 0
+    },
+    "linear_navigation_enabled": {
+        "version": 0,
+        "value": 0
+    },
+    "narration_mode": {
+        "version": 0,
+        "value": 2
+    },
+    "narration_volume": {
+        "version": 0,
+        "value": 100
+    },
+    "narration_rate": {
+        "version": 0,
+        "value": 100
+    },
+    "text_to_speech_enabled": {
+        "version": 0,
+        "value": 0
+    },
+    "speech_to_text_enabled": {
+        "version": 0,
+        "value": 0
+    },
+    "disable_visual_distractions": {
+        "version": 0,
+        "value": 0
+    },
+    "subtitle_settings": {
+        "version": 0,
+        "value": 1
+    },
+    "subtitle_font_setting": {
+        "version": 0,
+        "value": 1
+    },
+    "subtitle_font_size_setting": {
+        "version": 0,
+        "value": 36
+    },
+    "subtitle_background_opacity": {
+        "version": 0,
+        "value": 70
+    },
+    "subtitle_color_mode": {
+        "version": 1,
+        "value": 0
+    },
+    "subtitle_highest_priority": {
+        "version": 0,
+        "value": 7
+    },
+    "text_size": {
+        "version": 0,
+        "value": 0
+    },
+    "text_scroll_speed": {
+        "version": 0,
+        "value": 45
+    },
+    "notification_display_time_seconds": {
+        "version": 0,
+        "value": 5
+    },
+    "matchmade_games_match_history_privacy": {
+        "version": 0,
+        "value": 1
+    },
+    "non_matchmade_games_match_history_privacy": {
+        "version": 0,
+        "value": 2
+    },
+    "reticle_outline_opacity": {
+        "version": 0,
+        "value": 60
+    },
+    "reticle_outline_thickness": {
+        "version": 0,
+        "value": 100
+    },
+    "forge_lock_on_camera_horizontal_inverted": {
+        "version": 0,
+        "value": 0
+    },
+    "forge_lock_on_camera_vertical_inverted": {
+        "version": 0,
+        "value": 0
+    },
+    "forge_magnets_enabled": {
+        "version": 0,
+        "value": 1
+    },
+    "forge_budget_meter_visibility": {
+        "version": 0,
+        "value": 1
+    },
+    "forge_controls_helper_visibility": {
+        "version": 0,
+        "value": 1
+    },
+    "forge_volume_rendering_behavior": {
+        "version": 0,
+        "value": 0
+    },
+    "forge_magnet_sensitivity": {
+        "version": 0,
+        "value": 1
+    },
+    "forge_translation_snap_definition_idx": {
+        "version": 0,
+        "value": 5
+    },
+    "forge_translation_frame": {
+        "version": 0,
+        "value": 0
+    },
+    "forge_rotation_snap_definition_idx": {
+        "version": 0,
+        "value": 6
+    },
+    "forge_rotation_frame": {
+        "version": 0,
+        "value": 2
+    },
+    "forge_scale_snap_definition_idx": {
+        "version": 0,
+        "value": 5
+    },
+    "forge_grab_point": {
+        "version": 0,
+        "value": 1
+    },
+    "forge_monitor_move_speed_idx": {
+        "version": 0,
+        "value": 1
+    },
+    "forge_cinematic_spec_override_player_count": {
+        "version": 0,
+        "value": -1
+    },
+    "forge_cinematic_spec_team": {
+        "version": 0,
+        "value": -1
+    },
+    "forge_cinematic_spec_cinematic_type": {
+        "version": 0,
+        "value": 0
+    },
+    "forge_cinematic_spec_game_type_cinematic_name": {
+        "version": 0,
+        "value": 0
+    },
+    "forge_log_window_visibility": {
+        "version": 0,
+        "value": 1
+    },
+    "forge_controller_scheme": {
+        "version": 0,
+        "value": 1
+    },
+    "forge_monitor_camera_precision_speed": {
+        "version": 0,
+        "value": 30
+    },
+    "forge_monitor_camera_normal_speed": {
+        "version": 0,
+        "value": 200
+    },
+    "forge_monitor_camera_boost_speed": {
+        "version": 0,
+        "value": 400
+    },
+    "forge_node_graph_cursor_speed": {
+        "version": 0,
+        "value": 100000
+    },
+    "forge_node_graph_zoom_speed": {
+        "version": 0,
+        "value": 10
+    },
+    "forge_node_graph_interactive_fields": {
+        "version": 0,
+        "value": 0
+    },
+    "forge_monitor_no_clip": {
+        "version": 0,
+        "value": 1
+    },
+    "horizontal_display_margin": {
+        "version": 0,
+        "value": 0
+    },
+    "vertical_display_margin": {
+        "version": 0,
+        "value": 0
+    },
+    "enemy_ui_color": {
+        "version": 0,
+        "value": 0
+    },
+    "friendly_ui_color": {
+        "version": 0,
+        "value": 0
+    },
+    "fireteam_ui_color": {
+        "version": 0,
+        "value": 0
+    },
+    "infected_ui_color": {
+        "version": 0,
+        "value": 0
+    },
+    "survivor_ui_color": {
+        "version": 0,
+        "value": 0
+    },
+    "show_hud": {
+        "version": 0,
+        "value": 1
+    },
+    "hud_opacity": {
+        "version": 0,
+        "value": 100
+    },
+    "fps_counter_enabled": {
+        "version": 0,
+        "value": 0
+    },
+    "network_statistics_enabled": {
+        "version": 0,
+        "value": 0
+    },
+    "text_chat_enabled": {
+        "version": 0,
+        "value": 1
+    },
+    "text_chat_filter_enabled": {
+        "version": 0,
+        "value": 1
+    },
+    "text_chat_background_opacity": {
+        "version": 0,
+        "value": 85
+    },
+    "tips_enabled": {
+        "version": 0,
+        "value": 1
+    },
+    "text_chat_display_time_seconds": {
+        "version": 0,
+        "value": 5
+    },
+    "chromatic_aberration_enabled": {
+        "version": 0,
+        "value": 1
+    },
+    "bloom_enabled": {
+        "version": 0,
+        "value": 1
+    },
+    "parallax_enabled": {
+        "version": 0,
+        "value": 1
+    },
+    "player_marker_display_mode": {
+        "version": 0,
+        "value": 0
+    },
+    "player_marker_show_enemy": {
+        "version": 0,
+        "value": 0
+    },
+    "player_marker_show_fireteam": {
+        "version": 0,
+        "value": 1
+    },
+    "player_marker_show_friendly": {
+        "version": 0,
+        "value": 1
+    },
+    "outline_opacity": {
+        "version": 0,
+        "value": 100
+    },
+    "outline_thickness": {
+        "version": 0,
+        "value": 100
+    },
+    "multiplayer_score_board_control_type": {
+        "version": 0,
+        "value": 0
+    },
+    "show_theater_event_timeline": {
+        "version": 0,
+        "value": 1
+    },
+    "show_theater_replay_controls": {
+        "version": 0,
+        "value": 1
+    },
+    "season_intro_number_viewed": {
+        "version": 0,
+        "value": 1
+    },
+    "search_region": {
+        "version": 0,
+        "value": 0
+    },
+    "observer_camera_type": {
+        "version": 0,
+        "value": 0
+    },
+    "observer_player_camera": {
+        "version": 0,
+        "value": 0
+    },
+    "observer_perspective": {
+        "version": 0,
+        "value": 1
+    },
+    "observer_team_statboards_visibility": {
+        "version": 0,
+        "value": 1
+    },
+    "observer_player_switcher_visibility": {
+        "version": 0,
+        "value": 1
+    },
+    "observer_outlines_visible": {
+        "version": 1,
+        "value": 1
+    },
+    "observer_outlines_occluded": {
+        "version": 1,
+        "value": 1
+    },
+    "observer_team_1_color": {
+        "version": 0,
+        "value": 7
+    },
+    "observer_team_2_color": {
+        "version": 0,
+        "value": 15
+    },
+    "observer_use_observer_team_names": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_motion_blur": {
+        "version": 0,
+        "value": 100
+    },
+    "spec_control_screen_shake": {
+        "version": 0,
+        "value": 100
+    },
+    "spec_control_exposure": {
+        "version": 0,
+        "value": 100
+    },
+    "spec_control_screen_effects": {
+        "version": 0,
+        "value": 100
+    },
+    "spec_control_speed_lines": {
+        "version": 0,
+        "value": 1
+    },
+    "spec_control_sharpening": {
+        "version": 0,
+        "value": 60
+    },
+    "spec_control_hdr_max_nits": {
+        "version": 0,
+        "value": 50
+    },
+    "spec_control_brightness": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_first_person_melee_weapon_offset": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_first_person_pistols_weapon_offset": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_first_person_rifles_weapon_offset": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_first_person_heavy_weapon_offset": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_basic": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_device_preset_version": {
+        "version": 0,
+        "value": 6
+    },
+    "spec_control_graphics_overrides_version": {
+        "version": 0,
+        "value": 2
+    },
+    "spec_control_recommended_drivers_version": {
+        "version": 0,
+        "value": 8
+    },
+    "spec_control_field_of_view": {
+        "version": 0,
+        "value": 78
+    },
+    "spec_control_aniso": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_dof": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_reflections": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_shadows": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_sky_quality": {
+        "version": 1,
+        "value": "Medium"
+    },
+    "spec_control_temporal_aa": {
+        "version": 0,
+        "value": "High"
+    },
+    "spec_control_ao": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_render_terrain": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_tesselation": {
+        "version": 0,
+        "value": 0
+    },
+    "spec_control_volumetric_fog": {
+        "version": 0,
+        "value": "Low"
+    },
+    "spec_control_lighting": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_decorators": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_asset_category_level": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_dynamic_wind": {
+        "version": 0,
+        "value": "Low"
+    },
+    "spec_control_interaction": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_hlod": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "visual_damage_spec_control": {
+        "version": 0,
+        "value": "Low"
+    },
+    "virtual_texturing_spec_control": {
+        "version": 0,
+        "value": "High"
+    },
+    "spec_control_effects": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_emblem_quality": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_texture_quality": {
+        "version": 0,
+        "value": "High"
+    },
+    "spec_control_chromatic_aberration_samples": {
+        "version": 0,
+        "value": "Off"
+    },
+    "spec_control_UI": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_decals": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_shader_quality": {
+        "version": 0,
+        "value": "Low"
+    },
+    "spec_control_raytraced_sun_shadows": {
+        "version": 0,
+        "value": "Off"
+    },
+    "spec_control_animation_quality": {
+        "version": 0,
+        "value": "Auto"
+    },
+    "spec_control_flocks": {
+        "version": 0,
+        "value": "Medium"
+    },
+    "spec_control_simulation_quality": {
+        "version": 0,
+        "value": "Medium"
+    }
+}
