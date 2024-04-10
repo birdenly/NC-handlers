@@ -1,0 +1,19 @@
+#NoTrayIcon
+Hotkeyset("{F3}", "_Continue")
+Dim $binFlag = False
+
+While $binFlag = False
+
+Do
+Sleep(50)
+Until $binFlag = True
+ControlSend("HOST", "", 101, "fast_restart")
+ControlSend("HOST", "", 101, "{ENTER}", 0)
+Sleep(50)
+Dim $binFlag = False
+
+WEnd
+
+Func _Continue()
+    $binFlag = Not $binFlag
+EndFunc
