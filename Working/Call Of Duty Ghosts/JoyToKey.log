@@ -1,38 +1,26 @@
-2024/03/24 02:24:42.190 Info   Starting JoyToKey v6.9.1
-2024/03/24 02:24:42.190 Info   ExeFile = E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\JoyToKey.exe
-2024/03/24 02:24:42.190 Info   Args = E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\JoyToKey.exe
-2024/03/24 02:24:42.190 Info   DataDirectory = E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\
-2024/03/24 02:24:42.190 Info   Profile = 
-2024/03/24 02:24:42.190 Info   IniFile = E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\JoyToKey.ini
-2024/03/24 02:24:42.190 Info   Loading ini file: E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\JoyToKey.ini (AppInfo.cpp#259)
-2024/03/24 02:24:42.190 Info   LicenseKey "" is not valid
-2024/03/24 02:24:42.243 Info   Loading XInput1_3.dll (Joystick.cpp#158)
-2024/03/24 02:24:42.244 Info   Initialized XInput (Joystick.cpp#180)
-2024/03/24 02:24:42.258 Info   Initialized DirectInput (Joystick.cpp#193)
-2024/03/24 02:24:42.258 Info   Loading hid.dll (JoystickHID.h#58)
-2024/03/24 02:24:42.258 Info   Initialized HID (Joystick.cpp#202)
-2024/03/24 02:24:42.258 Info   ConfigDir=E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\*.cfg (ConfigFileManager.cpp#43)
-2024/03/24 02:24:42.259 Info   Failed to find AppLink.dat (AppLink\AppLinkManager.cpp#32)
-2024/03/24 02:24:42.273 Info   TimerInit: Initializing timer with x1 speed mode (interval = 16 msec)
-2024/03/24 02:24:42.306 Info   Starting in a minimized mode (JoyToKey.cpp#37)
-2024/03/24 02:24:42.306 Info   Not showing (hiding) the main window (JoyToKey.cpp#39)
-2024/03/24 02:24:42.354 Info   Detected a XI joystick: XInput-0
-2024/03/24 02:24:42.354 Info   Detected a XI joystick: XInput-1
-2024/03/24 02:24:42.354 Info   DetectJoysticks: Detected 2 XI joystick(s)
-2024/03/24 02:24:42.543 Info   Detected a DI joystick: Controller (Inno GamePad..), Controller (Inno GamePad..), 028E045E, {5B445DD0-64FE-11EB-8001-444553540000}
-2024/03/24 02:24:42.585 Info   Detected a DI joystick: Controller (Inno GamePad..), Controller (Inno GamePad..), 028E045E, {14BF0100-9200-11EC-8001-444553540000}
-2024/03/24 02:24:42.585 Info   Joystick #1: XInput Device #1
-2024/03/24 02:24:42.585 Info   Joystick #2: XInput Device #2
-2024/03/24 02:24:42.585 Info   2 joystick(s) are detected (Joystick.cpp#281)
-2024/03/24 02:24:49.794 Error  Failed to obtain the target window handle (Utils\Utils.cpp#347)
-2024/03/24 02:24:49.794 Error  Acesso negado.
- (Utils\Utils.cpp#348)
-2024/03/24 02:24:55.345 Error  Failed to obtain the target window handle (Utils\Utils.cpp#347)
-2024/03/24 02:24:55.345 Error  Acesso negado.
- (Utils\Utils.cpp#348)
-2024/03/24 02:25:10.209 Error  Failed to obtain the target window handle (Utils\Utils.cpp#347)
-2024/03/24 02:25:10.209 Error  Acesso negado.
- (Utils\Utils.cpp#348)
-2024/03/24 02:25:17.137 Error  Failed to obtain the target window handle (Utils\Utils.cpp#347)
-2024/03/24 02:25:17.137 Error  Acesso negado.
- (Utils\Utils.cpp#348)
+2024/04/21 18:37:55.391 Info   Starting JoyToKey v6.9.1
+2024/04/21 18:37:55.391 Info   ExeFile = E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\JoyToKey.exe
+2024/04/21 18:37:55.391 Info   Args = E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\JoyToKey.exe
+2024/04/21 18:37:55.391 Info   DataDirectory = E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\
+2024/04/21 18:37:55.391 Info   Profile = 
+2024/04/21 18:37:55.391 Info   IniFile = E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\JoyToKey.ini
+2024/04/21 18:37:55.391 Info   Loading ini file: E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\JoyToKey.ini (AppInfo.cpp#259)
+2024/04/21 18:37:55.391 Info   LicenseKey "" is not valid
+2024/04/21 18:37:55.440 Info   Loading XInput1_3.dll (Joystick.cpp#158)
+2024/04/21 18:37:55.442 Info   Initialized XInput (Joystick.cpp#180)
+2024/04/21 18:37:55.455 Info   Initialized DirectInput (Joystick.cpp#193)
+2024/04/21 18:37:55.455 Info   Loading hid.dll (JoystickHID.h#58)
+2024/04/21 18:37:55.455 Info   Initialized HID (Joystick.cpp#202)
+2024/04/21 18:37:55.455 Info   ConfigDir=E:\jogos\nucleuscoop\handlers\Call Of Duty Ghosts\*.cfg (ConfigFileManager.cpp#43)
+2024/04/21 18:37:55.456 Info   Failed to find AppLink.dat (AppLink\AppLinkManager.cpp#32)
+2024/04/21 18:37:55.467 Info   TimerInit: Initializing timer with x1 speed mode (interval = 16 msec)
+2024/04/21 18:37:55.490 Info   Starting in a minimized mode (JoyToKey.cpp#37)
+2024/04/21 18:37:55.490 Info   Not showing (hiding) the main window (JoyToKey.cpp#39)
+2024/04/21 18:37:55.515 Info   Detected a XI joystick: XInput-0
+2024/04/21 18:37:55.515 Info   Detected a XI joystick: XInput-1
+2024/04/21 18:37:55.515 Info   DetectJoysticks: Detected 2 XI joystick(s)
+2024/04/21 18:37:55.682 Info   Detected a DI joystick: Controller (Inno GamePad..), Controller (Inno GamePad..), 028E045E, {5B445DD0-64FE-11EB-8001-444553540000}
+2024/04/21 18:37:55.684 Info   Detected a DI joystick: Controller (Inno GamePad..), Controller (Inno GamePad..), 028E045E, {14BF0100-9200-11EC-8001-444553540000}
+2024/04/21 18:37:55.707 Info   Joystick #1: XInput Device #1
+2024/04/21 18:37:55.707 Info   Joystick #2: XInput Device #2
+2024/04/21 18:37:55.707 Info   2 joystick(s) are detected (Joystick.cpp#281)

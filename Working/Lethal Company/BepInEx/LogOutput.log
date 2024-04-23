@@ -1,0 +1,32 @@
+[Message:   BepInEx] BepInEx 5.4.21.0 - Lethal Company (01/04/2024 17:28:34)
+[Info   :   BepInEx] Running under Unity v2022.3.9.15351836
+[Info   :   BepInEx] CLR runtime version: 4.0.30319.42000
+[Info   :   BepInEx] Supports SRE: True
+[Info   :   BepInEx] System platform: Bits64, Windows
+[Message:   BepInEx] Preloader started
+[Info   :   BepInEx] Loaded 1 patcher method from [BepInEx.Preloader 5.4.21.0]
+[Info   :   BepInEx] 1 patcher plugin loaded
+[Info   :   BepInEx] Patching [UnityEngine.CoreModule] with [BepInEx.Chainloader]
+[Message:   BepInEx] Preloader finished
+[Message:   BepInEx] Chainloader ready
+[Message:   BepInEx] Chainloader started
+[Info   :   BepInEx] 0 plugins to load
+[Message:   BepInEx] Chainloader startup complete
+[Info   : Unity Log] Saving changed settings
+[Info   : Unity Log] subcribing to steam callbacks
+[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+Stack trace:
+Netcode.Transports.Facepunch.FacepunchTransport.Awake () (at <4d8977a13dda46f8bd577daf0c430926>:0)
+
+[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+Stack trace:
+Steamworks.SteamClient.get_Name () (at <19bd4cc6a4004258bf538b05ac1133d6>:0)
+GameNetworkManager+<waitFrameBeforeFindingUsername>d__48.MoveNext () (at <7c1294fdd4e74b13968c5a3e316e621a>:0)
+UnityEngine.SetupCoroutine.InvokeMoveNext (System.Collections.IEnumerator enumerator, System.IntPtr returnValueAddress) (at <e27997765c1848b09d8073e5d642717a>:0)
+
+[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+Stack trace:
+Steamworks.SteamClient.get_IsLoggedOn () (at <19bd4cc6a4004258bf538b05ac1133d6>:0)
+MenuManager.Start () (at <7c1294fdd4e74b13968c5a3e316e621a>:0)
+
+[Info   : Unity Log] unsubscribing from steam callbacks
