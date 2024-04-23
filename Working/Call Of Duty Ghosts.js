@@ -4,11 +4,9 @@ var answers2 = ['No Change', 'Very Low', 'Low', 'Normal', 'High', 'Extra'];
 Game.AddOption('Image Quality', 'Reduce GPU power required by using lower settings.', 'img', answers2);
 var answers3 = ['No Change',"91","75","60", "50", "45", "40", "30", "0"];
 Game.AddOption("Select the FPS Cap the game will use", "", "fps", answers3);
-var answers4 = ["-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "123", "124", "125", "126", "127", "128", "129", "130", "131", "132", "133", "134", "135", "136", "137", "138", "139", "140", "141", "142", "143", "144", "145", "146", "147", "148", "149", "150", "151", "152", "153", "154", "155", "156", "157", "158", "159", "160", "161", "162", "163", "164", "165", "166", "167", "168", "169", "170", "171", "172", "173", "174", "175", "176", "177", "178", "179", "180", "181", "182", "183", "184", "185", "186", "187", "188", "189", "190", "191", "192", "193", "194", "195", "196", "197", "198", "199", "200"];
-Game.AddOption("For LAN and only for Guest PC, select the last digits of the host IP", "", "lan", answers4);
 
-Game.DirSymlinkExclusions = ['iw6x', 'iw6x\\recipes', 'players2', 'players2\\user'];
-Game.FileSymlinkExclusions = ['xinput1_3.dll', 'xinputplus.ini', 'iw6x.exe', 'cmr_history', 'mpdata', 'mpdataex', 'config_mp.cfg', 'settings_s.zip.iw6', 'config_mp.cfg', 'keys_mp.cfg', 'settings_c.zip.iw6', 'settings_m.zip.iw6', 'iw6_md202ef8d.bak_11000010000000c.stat', 'iw6_md202ef8d_0_0.bak_11000010000000c.stat', 'iw6_md202ef8d_0_0_11000010000000c.stat', 'iw6_md202ef8d_11000010000000c.stat', 'keys.cfg', 'settings_s.zip.iw6', 'server.cfg', 'start.bat', '__iw6x'];
+Game.DirSymlinkExclusions = ['iw6', 'iw6\\recipes', 'players2', 'players2\\user'];
+Game.FileSymlinkExclusions = ['xinput1_3.dll', 'xinputplus.ini', 'iw6-mod.exe', 'cmr_history', 'mpdata', 'mpdataex', 'config_mp.cfg', 'settings_s.zip.iw6', 'config_mp.cfg', 'keys_mp.cfg', 'settings_c.zip.iw6', 'settings_m.zip.iw6', 'iw6_md202ef8d.bak_11000010000000c.stat', 'iw6_md202ef8d_0_0.bak_11000010000000c.stat', 'iw6_md202ef8d_0_0_11000010000000c.stat', 'iw6_md202ef8d_11000010000000c.stat', 'keys.cfg', 'settings_s.zip.iw6', 'server.cfg', 'start.bat', '__iw6-mod'];
 Game.GameName = 'Call of Duty Ghosts';
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
@@ -17,7 +15,7 @@ Game.SymlinkFolders = true;
 Game.KeepSymLinkOnExit = true;
 Game.SupportsKeyboard = false;
 Game.ExecutableName = 'iw6mp64_ship.exe';
-Game.ExecutableToLaunch = "iw6x.exe";
+Game.ExecutableToLaunch = "iw6-mod.exe";
 Game.BinariesFolder = '';
 Game.SteamID = '209160';
 Game.GUID = 'Call of Duty Ghosts';
@@ -27,13 +25,13 @@ Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = 'Call of Duty® Ghosts Multiplayer';
 Game.HasDynamicWindowTitle = false;
 Game.SetForegroundWindowElsewhere = true;
-Game.StartArguments = '-multiplayer';
+Game.StartArguments = '-nosteam -multiplayer';
 Game.PauseBetweenStarts = 10;
 Game.PauseBetweenProcessGrab = 5;
 Game.ForceProcessSearch = true;
 Game.KillProcessesOnClose = ['start', 'connect', 'F2 Host','F2 Guest', 'F3 Restart','joytokey',"F4","F5", 'cmd'];
 Game.ResetWindows = true;
-Game.Description = "IMPORTANT: THIS IS MADE FOR LEGIT STEAM VERSION WITH ALL DLCS, ANY OTHER VERSION YOU WILL HAVE PROBLEMS --DONT ASK FOR HELP WITH THEM--\n\nIf you get squares when loading to a map than a crash, it means you dont have it installed (you dont have that DLC)\n\nYou might need to change your languange to english, some DLC's will only work in english\n\nAfter all screens are resized/positionedd correctly, click on them once to be able to move it, than click 'END' if you have a keyboard/mouse player.\n\nThe saves per instance are stored inside Nucleus Co-op content folder so if you delete Nucleus or the game content folder, your Nucleus saves for this game will be lost(not your main game save).\n\nGo into play online in all instances, in the first instance start a private match than press 'F2' for all the others to connect to the game or pressing and holding the START button on your player1 controller.\n\nOnce all the players have connected you can quickly restart the match by pressing F3 or by pressing and holding the SELECT button on your player1  controller.(THIS FEATURE WAS ADDED BACK BY ME, AS IT WAS REMOVED BY THE DEVS FOR A REASON, SO IT MIGHT GIVES ERRORS/CRASH)\n\nyou can go into third person by pressing F4.\n\nYou can press 'F5' to unlockall in all instances.\n\nF2,F3, F4 and F5 commands will only work while input is unlocked.\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+Game.Description = "IMPORTANT: THIS IS MADE FOR LEGIT STEAM VERSION WITH ALL DLCS, ANY OTHER VERSION YOU WILL HAVE PROBLEMS --DONT ASK FOR HELP WITH THEM--\n\nIf you get squares when loading to a map than a crash, it means you dont have it installed (you dont have that DLC)\n\nYou might need to change your languange to english, some DLC's will only work in english\n\nAfter all screens are resized/positionedd correctly, click on them once to be able to move it, than click 'END' if you have a keyboard/mouse player.\n\nThe saves per instance are stored inside Nucleus Co-op content folder so if you delete Nucleus or the game content folder, your Nucleus saves for this game will be lost(not your main game save).\n\nGo into play online in all instances, in the first instance start a private match than press 'F2' for all the others to connect to the game or pressing and holding the START button on your player1 controller.\n\nOnce all the players have connected you can quickly restart the match by pressing F3 or by pressing and holding the SELECT button on your player1 controller.(THIS FEATURE WAS ADDED BACK BY ME, AS IT WAS REMOVED BY THE DEVS FOR A REASON, SO IT MIGHT GIVE ERRORS/CRASH)\n\nyou can go into or out of third person by pressing F4.\n\nYou can press 'F5' to unlockall in all instances.\n\nF2,F3, F4 and F5 commands will only work while input is unlocked.\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 
 //USS deprecated options:
 
@@ -150,13 +148,13 @@ Game.ProtoInput.OnInputUnlocked = function() {
 //bad
 Game.Play = function() {
 
-    Game.ExecutableName = "iw6x.exe";
+    Game.ExecutableName = "iw6-mod.exe";
 
-    var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\iw6x.exe");
-    var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "iw6x.exe");
+    var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\iw6-mod.exe");
+    var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "iw6-mod.exe");
     System.IO.File.Copy(savePkgOrigin, savePath, true);
     
-    var filePath = Context.filePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\iw6x";
+    var filePath = Context.filePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\iw6";
     System.IO.Directory.CreateDirectory(filePath);	
         
     if (Context.AspectRatioDecimal > 1.8) {
@@ -172,6 +170,7 @@ Game.Play = function() {
     
 	Context.RunAdditionalFiles([Context.ScriptFolder + "\\start.exe"], false, 0);
 	Context.RunAdditionalFiles([Context.ScriptFolder + "\\JoyToKey.exe"], false, 10);
+    Context.RunAdditionalFiles([Context.ScriptFolder + "\\F2 Host.exe"], false, 10);
 	Context.RunAdditionalFiles([Context.ScriptFolder + "\\F3 Restart.exe"], false, 0);
     Context.RunAdditionalFiles([Context.ScriptFolder + "\\F4.exe"], false, 0);
     Context.RunAdditionalFiles([Context.ScriptFolder + "\\F5.exe"], false, 0);
@@ -207,20 +206,6 @@ Game.Play = function() {
     Context.ReplaceLinesInTextFile(cfgpath, dict);
     }
 
-    var lan = Context.Options["lan"];
-    if (lan == "-") {
-
-    Context.RunAdditionalFiles([Context.ScriptFolder + "\\F2 Host.exe"], false, 10);
-
-    }
-
-    if (lan >= 0) {
-    Context.RunAdditionalFiles([Context.ScriptFolder + "\\F2 Guest.exe"], false, 10);
-
-    var txtPath = Game.Folder + '\\Local IP.txt';
-    var dict = ['192.168.1.' + lan + '      ',];
-    Context.WriteTextFile(txtPath, dict); 
-    }
 
     var FPS = Context.Options["fps"];
     if(FPS =="No Change"){
