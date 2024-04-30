@@ -1,12 +1,12 @@
 Game.ExecutableContext = ["Content Warning_Data"];
-Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt","Custom.dll", "dlllist.txt", "winmm.dll",];
+Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt","Custom.dll", "dlllist.txt", "winmm.dll", "OnlineFix.ini",
+"OnlineFix64.dll",];
 Game.FileSymlinkCopyInstead = ["nvngx_dlss.dll", "NVUnityPlugin.dll", "UnityCrashHandler64.exe", "UnityPlayer.dll"];
 Game.UseGoldberg = true;
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
 Game.SymlinkFolders = false;
-Game.KeepSymLinkOnExit = true;
 Game.ExecutableName = "Content Warning.exe";
 Game.SteamID = "2881650";
 Game.GUID = "Content Warning";
@@ -29,6 +29,13 @@ Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 10;
 
 Game.SetWindowHookStart = true;
+
+Game.BackupFiles = ["Custom.dll",
+"dlllist.txt",
+"OnlineFix.ini",
+"OnlineFix64.dll",
+"winmm.dll",
+]
 
 //USS deprecated options:
 
