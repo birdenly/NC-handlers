@@ -7,4 +7,4 @@ All the handlers i have made for [Nucleus Co-op](https://nucleus-coop.github.io/
 
 **Youtube playlist showcasing/tutorial of most of the released handlers**
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/4d33wK-omUs/0.jpg)](https://www.youtube.com/watch?v=4d33wK-omUs)
+[![Playlist](https://img.youtube.com/vi/4d33wK-omUs/0.jpg)](https://www.youtube.com/watch?v=4d33wK-omUs)
