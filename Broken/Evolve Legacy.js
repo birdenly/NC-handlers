@@ -35,7 +35,7 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = ["xinput1_3.dll"];
 Game.Description =
-  "On first Nucleus launch select your custom resolution in the game graphics settings and disable fullscreen for all instances, use the process picker UI option to make this easier, select the ryse process in process picker after you finish setting up an instance. If you want the instances to resize correctly and avoid stretching you need to create custom resolutions in your AMD/Nvidia/Intel panel (For example: 960x1080, 960x540, 1920x540 etc.) so the game can see and use them. Create a gladiator custom match, select the map and choose match me, do the same in the other instance to connect. Reduce graphics settings per instance like shadows and textures to improve performance.";
+  "";
 Game.PauseBetweenStarts = 35;
 
 Game.Play = function() {
