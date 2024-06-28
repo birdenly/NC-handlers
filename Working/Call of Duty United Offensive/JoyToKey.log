@@ -1,26 +1,26 @@
-2024/05/06 03:53:18.921 Info   Starting JoyToKey v6.9.1
-2024/05/06 03:53:18.921 Info   ExeFile = E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\JoyToKey.exe
-2024/05/06 03:53:18.921 Info   Args = E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\JoyToKey.exe
-2024/05/06 03:53:18.921 Info   DataDirectory = E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\
-2024/05/06 03:53:18.921 Info   Profile = 
-2024/05/06 03:53:18.921 Info   IniFile = E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\JoyToKey.ini
-2024/05/06 03:53:18.921 Info   Loading ini file: E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\JoyToKey.ini (AppInfo.cpp#259)
-2024/05/06 03:53:18.921 Info   LicenseKey "" is not valid
-2024/05/06 03:53:18.986 Info   Loading XInput1_3.dll (Joystick.cpp#158)
-2024/05/06 03:53:18.987 Info   Initialized XInput (Joystick.cpp#180)
-2024/05/06 03:53:18.999 Info   Initialized DirectInput (Joystick.cpp#193)
-2024/05/06 03:53:18.999 Info   Loading hid.dll (JoystickHID.h#58)
-2024/05/06 03:53:18.999 Info   Initialized HID (Joystick.cpp#202)
-2024/05/06 03:53:18.999 Info   ConfigDir=E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\*.cfg (ConfigFileManager.cpp#43)
-2024/05/06 03:53:19.000 Info   Failed to find AppLink.dat (AppLink\AppLinkManager.cpp#32)
-2024/05/06 03:53:19.012 Info   TimerInit: Initializing timer with x1 speed mode (interval = 16 msec)
-2024/05/06 03:53:19.038 Info   Starting in a minimized mode (JoyToKey.cpp#37)
-2024/05/06 03:53:19.038 Info   Not showing (hiding) the main window (JoyToKey.cpp#39)
-2024/05/06 03:53:19.077 Info   Detected a XI joystick: XInput-0
-2024/05/06 03:53:19.077 Info   Detected a XI joystick: XInput-1
-2024/05/06 03:53:19.077 Info   DetectJoysticks: Detected 2 XI joystick(s)
-2024/05/06 03:53:19.233 Info   Detected a DI joystick: Controller (Inno GamePad..), Controller (Inno GamePad..), 028E045E, {5B445DD0-64FE-11EB-8001-444553540000}
-2024/05/06 03:53:19.252 Info   Detected a DI joystick: Controller (Inno GamePad..), Controller (Inno GamePad..), 028E045E, {14BF0100-9200-11EC-8001-444553540000}
-2024/05/06 03:53:19.276 Info   Joystick #1: XInput Device #1
-2024/05/06 03:53:19.277 Info   Joystick #2: XInput Device #2
-2024/05/06 03:53:19.277 Info   2 joystick(s) are detected (Joystick.cpp#281)
+2024/06/20 16:50:46.632 Info   Starting JoyToKey v6.9.1
+2024/06/20 16:50:46.632 Info   ExeFile = E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\JoyToKey.exe
+2024/06/20 16:50:46.632 Info   Args = E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\JoyToKey.exe
+2024/06/20 16:50:46.632 Info   DataDirectory = E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\
+2024/06/20 16:50:46.632 Info   Profile = 
+2024/06/20 16:50:46.632 Info   IniFile = E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\JoyToKey.ini
+2024/06/20 16:50:46.632 Info   Loading ini file: E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\JoyToKey.ini (AppInfo.cpp#259)
+2024/06/20 16:50:46.633 Info   LicenseKey "" is not valid
+2024/06/20 16:50:46.663 Info   Loading XInput1_3.dll (Joystick.cpp#158)
+2024/06/20 16:50:46.664 Info   Initialized XInput (Joystick.cpp#180)
+2024/06/20 16:50:46.675 Info   Initialized DirectInput (Joystick.cpp#193)
+2024/06/20 16:50:46.675 Info   Loading hid.dll (JoystickHID.h#58)
+2024/06/20 16:50:46.677 Info   Initialized HID (Joystick.cpp#202)
+2024/06/20 16:50:46.677 Info   ConfigDir=E:\jogos\nucleuscoop\handlers\Call of Duty United Offensive\*.cfg (ConfigFileManager.cpp#43)
+2024/06/20 16:50:46.677 Info   Failed to find AppLink.dat (AppLink\AppLinkManager.cpp#32)
+2024/06/20 16:50:46.691 Info   TimerInit: Initializing timer with x1 speed mode (interval = 16 msec)
+2024/06/20 16:50:46.714 Info   Starting in a minimized mode (JoyToKey.cpp#37)
+2024/06/20 16:50:46.714 Info   Not showing (hiding) the main window (JoyToKey.cpp#39)
+2024/06/20 16:50:46.755 Info   Detected a XI joystick: XInput-0
+2024/06/20 16:50:46.755 Info   Detected a XI joystick: XInput-1
+2024/06/20 16:50:46.755 Info   DetectJoysticks: Detected 2 XI joystick(s)
+2024/06/20 16:50:47.099 Info   Detected a DI joystick: Controller (Inno GamePad..), Controller (Inno GamePad..), 028E045E, {5B445DD0-64FE-11EB-8001-444553540000}
+2024/06/20 16:50:47.117 Info   Detected a DI joystick: Controller (Inno GamePad..), Controller (Inno GamePad..), 028E045E, {14BF0100-9200-11EC-8001-444553540000}
+2024/06/20 16:50:47.141 Info   Joystick #1: XInput Device #1
+2024/06/20 16:50:47.141 Info   Joystick #2: XInput Device #2
+2024/06/20 16:50:47.141 Info   2 joystick(s) are detected (Joystick.cpp#281)

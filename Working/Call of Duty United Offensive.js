@@ -80,7 +80,7 @@ Game.DirSymlinkExclusions = ["uo"];
 
 Game.DirExclusions = ["CoDUOMeatBots_RC2"];
 
-Game.KillProcessesOnClose = ["CoDUO.FoV.Changer","F4 next","F3 Restart","cmd","JoyToKey","names","F2 HOST"]; 
+Game.KillProcessesOnClose = ["F4 next","F3 Restart","cmd","JoyToKey","names","F2 HOST","safeMode"]; 
 Game.GameName = "Call of Duty United Offensive";
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
@@ -88,7 +88,7 @@ Game.SymlinkGame = true;
 Game.SymlinkFolders = true;
 Game.KeepSymLinkOnExit = true;
 Game.ExecutableName = "CoDUOMP.exe";
-Game.SteamID = "2620";
+Game.SteamID = "2640";
 Game.GUID = "Call of Duty United Offensive";
 Game.MaxPlayers = 8;
 Game.MaxPlayersOneMonitor = 8;
@@ -390,16 +390,6 @@ Game.Play = function () {
 
     var savePath =  Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\CoDUOMeatBots_RC2\\z_mbot_uo_svr_v02.pk3";
     var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "CoDUOMeatBots_RC2\\z_mbot_uo_svr_v02.pk3");
-    System.IO.File.Copy(savePkgOrigin, savePath, true);
-
-    var Path = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\CoDUOMeatBots_RC2\\Optional Extras";
-    System.IO.Directory.CreateDirectory(Path);
-
-    var Path = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\CoDUOMeatBots_RC2\\Optional Extras\\Knokploeg Sound Mod";
-    System.IO.Directory.CreateDirectory(Path);
-
-    var savePath =  Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\CoDUOMeatBots_RC2\\Optional Extras\\Knokploeg Sound Mod\\z_coduo_kp_sound.pk3";
-    var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "CoDUOMeatBots_RC2\\Optional Extras\\Knokploeg Sound Mod\\z_coduo_kp_sound.pk3");
     System.IO.File.Copy(savePkgOrigin, savePath, true);
 
     var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\CoDUOMeatBots_RC2\\server_listen.cfg";
