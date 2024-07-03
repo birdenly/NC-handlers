@@ -1,47 +1,42 @@
-Hub.Handler.Version = 2; // Released at https://hub.splitscreen.me/ on Fri Dec 29 2023 03:31:51 GMT+0000 (Coordinated Universal Time).
-Hub.Handler.Id = "NmdNMirLvXXzNkLfY";
-Hub.Maintainer.Name = "birden";
-Hub.Maintainer.Id = "rRycxSn253ZCjQy5C";
-
-var answers1 = ["1","1.25", "1.5", "1.75", "2"];
+var answers1 = ["1", "1.25", "1.5", "1.75", "2"];
 Game.AddOption("size of UI elements in-game", "1 is default", "size", answers1);
 
 Game.ExecutableContext = ["Lethal Company_Data"];
-Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt",
-"ui-assets",
-"en_US.json",
-"LethalCompanyInputUtils.dll",
-"LethalCompanyInputUtils.pdb",
-"LCUltrawide.dll",
-"MoreCompany.dll",
-"TerminalApi.dll",
-"TerminalGamepad.dll",
-"LCUltrawide.cfg",
-"doorstop_config.ini",
-"winhttp.dll",
-"chainloader_typeloader.dat",
-"harmony_interop_cache.dat",
-"BepInEx.cfg",
-"0Harmony.dll",
-"0Harmony.xml",
-"0Harmony20.dll",
-"BepInEx.dll",
-"BepInEx.Harmony.dll",
-"BepInEx.Harmony.xml",
-"BepInEx.Preloader.dll",
-"BepInEx.Preloader.xml",
-"BepInEx.xml",
-"HarmonyXInterop.dll",
-"Mono.Cecil.dll",
-"Mono.Cecil.Mdb.dll",
-"Mono.Cecil.Pdb.dll",
-"Mono.Cecil.Rocks.dll",
-"MonoMod.RuntimeDetour.dll",
-"MonoMod.RuntimeDetour.xml",
-"MonoMod.Utils.dll",
-"MonoMod.Utils.xml",
-
-
+Game.FileSymlinkExclusions = [
+  "steam_api64.dll",
+  "steam_appid.txt",
+  "ui-assets",
+  "en_US.json",
+  "LethalCompanyInputUtils.dll",
+  "LethalCompanyInputUtils.pdb",
+  "LCUltrawide.dll",
+  "MoreCompany.dll",
+  "TerminalApi.dll",
+  "TerminalGamepad.dll",
+  "LCUltrawide.cfg",
+  "doorstop_config.ini",
+  "winhttp.dll",
+  "chainloader_typeloader.dat",
+  "harmony_interop_cache.dat",
+  "BepInEx.cfg",
+  "0Harmony.dll",
+  "0Harmony.xml",
+  "0Harmony20.dll",
+  "BepInEx.dll",
+  "BepInEx.Harmony.dll",
+  "BepInEx.Harmony.xml",
+  "BepInEx.Preloader.dll",
+  "BepInEx.Preloader.xml",
+  "BepInEx.xml",
+  "HarmonyXInterop.dll",
+  "Mono.Cecil.dll",
+  "Mono.Cecil.Mdb.dll",
+  "Mono.Cecil.Pdb.dll",
+  "Mono.Cecil.Rocks.dll",
+  "MonoMod.RuntimeDetour.dll",
+  "MonoMod.RuntimeDetour.xml",
+  "MonoMod.Utils.dll",
+  "MonoMod.Utils.xml"
 ];
 Game.FileSymlinkCopyInstead = ["nvngx_dlss.dll", "NVUnityPlugin.dll", "UnityCrashHandler64.exe", "UnityPlayer.dll"];
 Game.NeedsSteamEmulation = false;
@@ -215,9 +210,7 @@ Game.ProtoInput.OnInputUnlocked = function() {
   }
 };
 
-
 Game.Play = function() {
-
   var Args = (Context.Args = " -screen-fullscreen 0 -popupwindow " + " -screen-width " + Context.Width + " -screen-height " + Context.Height);
 
   Context.StartArguments = Args;
@@ -231,10 +224,8 @@ Game.Play = function() {
   var SIZE = Context.Options["size"];
 
   var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\BepInEx\\config\\LCUltrawide.cfg";
-    var dict = [
-      Context.FindLineNumberInTextFile(cfgpath, 'Scale', Nucleus.SearchType.StartsWith) + '|Scale = ' + SIZE
-    ];
-    Context.ReplaceLinesInTextFile(cfgpath, dict);
+  var dict = [Context.FindLineNumberInTextFile(cfgpath, "Scale", Nucleus.SearchType.StartsWith) + "|Scale = " + SIZE];
+  Context.ReplaceLinesInTextFile(cfgpath, dict);
 
   var dllPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\UnityPlayer.dll";
 

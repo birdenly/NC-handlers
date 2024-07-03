@@ -14,7 +14,7 @@ Game.AddOption(
 );
 
 Game.FileSymlinkExclusions = [
-"Controller.cfg",
+"Controller.cfg","nzportable64.exe"
 ];
 
 Game.FileSymlinkCopyInstead = [
@@ -27,7 +27,8 @@ Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
 Game.SymlinkFolders = false;
-Game.ExecutableName = "nzportable64.exe";
+Game.ExecutableName = "nzportable-sdl64.exe";
+Game.ExecutableToLaunch = "nzportable64.exe";
 Game.SteamID = "";
 Game.GUID = "Nazi Zombies portable";
 Game.MaxPlayers = 4;
@@ -40,16 +41,24 @@ Game.Hook.XInputEnabled = true;
 Game.Hook.XInputReroute = false;
 Game.XInputPlusDll = ["Xinput1_3.dll"];
 Game.Hook.CustomDllEnabled= false;
-Game.Description = "Tested with the win64 version of the game downloaded from here: https://github.com/nzp-team/nzportable/releases/tag/nightly\n\nIn the first instance make a cooperative game and give a name to it. After that click the prompt to launch the rest of the instances.";
+Game.Description = "Tested with the win64 version of the game downloaded from here: https://github.com/nzp-team/nzportable/releases/tag/nightly\n\nIn the first instance make a cooperative game and give a name to it. After that click the prompt to launch the rest of the instances.\n\nAlt+tab to the keyboard/mouse screen if you have one, it will work properly when all screens do a soft restart.";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 5;
 
+Game.SupportsKeyboard = true; 
+Game.KeyboardPlayerSkipFakeFocus = true; 
 Game.HideTaskbar = true;
 Game.PromptAfterFirstInstance = true;
 Game.RefreshWindowAfterStart = true;
 Game.FakeFocus = true;
 
 Game.Play = function () {
+  var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\nzportable64.exe");
+  var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "nzportable64.exe");
+  System.IO.File.Copy(savePkgOrigin, savePath, true);
+
+  Game.ExecutableName = "nzportable64.exe";
+
   var FPS = Context.Options["fps"];
   var start = "";
 
@@ -64,50 +73,6 @@ Game.Play = function () {
     Context.FindLineNumberInTextFile(cfgpath, 'in_windowed_mouse "1"', Nucleus.SearchType.StartsWith) + '|in_windowed_mouse "1"',
     Context.FindLineNumberInTextFile(cfgpath, 'name', Nucleus.SearchType.StartsWith) + '|name "' + Context.Nickname + '"',
     Context.FindLineNumberInTextFile(cfgpath, 'seta vid_ultrawide_limiter', Nucleus.SearchType.StartsWith) + '|seta vid_ultrawide_limiter "0"',
-
-
-    Context.FindLineNumberInTextFile(cfgpath, 'bind a "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind d "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind e "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind g "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind r "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind s "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind v "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind w "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind LSHIFT "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind LALT "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind LCTRL "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind v "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind w "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind LSHIFT "', Nucleus.SearchType.StartsWith) + '|',
-
-    Context.FindLineNumberInTextFile(cfgpath, 'bind 1 "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind MWHEELUP "', Nucleus.SearchType.StartsWith) + '|',
-
-
-  ];
-  Context.ReplaceLinesInTextFile(cfgpath, dict);
-
-
-  var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\nzp\\default.cfg";
-  var dict = [
-
-    Context.FindLineNumberInTextFile(cfgpath, 'bind	a', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind	d', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind	w', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind	s', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind	MOUSE1', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind	MOUSE2', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind	SPACE', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind    CTRL', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind	r', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind	e', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind	g', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind	v', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind w "', Nucleus.SearchType.StartsWith) + '|',
-    Context.FindLineNumberInTextFile(cfgpath, 'bind LSHIFT "', Nucleus.SearchType.StartsWith) + '|',
-
-
   ];
   Context.ReplaceLinesInTextFile(cfgpath, dict);
   
@@ -117,6 +82,48 @@ Game.Play = function () {
     System.IO.File.Copy(savePkgOrigin, savePath, true);
 
     start += " +exec Controller.cfg"
+
+    var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\nzp\\fte.cfg";
+    var dict = [
+      Context.FindLineNumberInTextFile(cfgpath, 'bind a "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind d "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind e "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind g "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind r "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind s "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind v "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind w "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind LSHIFT "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind LALT "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind LCTRL "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind v "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind w "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind LSHIFT "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind 1 "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind MWHEELUP "', Nucleus.SearchType.StartsWith) + '|',
+  
+    ];
+    Context.ReplaceLinesInTextFile(cfgpath, dict);
+  
+  
+    var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\nzp\\default.cfg";
+    var dict = [
+      Context.FindLineNumberInTextFile(cfgpath, 'bind	a', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind	d', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind	w', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind	s', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind	MOUSE1', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind	MOUSE2', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind	SPACE', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind    CTRL', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind	r', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind	e', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind	g', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind	v', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind w "', Nucleus.SearchType.StartsWith) + '|',
+      Context.FindLineNumberInTextFile(cfgpath, 'bind LSHIFT "', Nucleus.SearchType.StartsWith) + '|',
+    ];
+    Context.ReplaceLinesInTextFile(cfgpath, dict);
   }
   
 
