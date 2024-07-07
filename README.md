@@ -1,5 +1,5 @@
 # <img src="nucleus.png" alt="drawing" width="25" height="25"/>  Nucleus Co-op handlers
-All the handlers i have made for [Nucleus Co-op](https://nucleus-coop.github.io/) for fun. Support me on [Ko-fi](https://ko-fi.com/birden_) if you liked anything i made.
+All the handlers i have made for [Nucleus Co-op](https://nucleus-coop.github.io/) for fun (or helped a decent amount). Support me on [Ko-fi](https://ko-fi.com/birden_) if you liked anything i made.
 
 **Broken handlers** either are broken because of server auth, broken input or the LAN of the game has problems that i couldnt fix.
 
