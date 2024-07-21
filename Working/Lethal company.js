@@ -1,3 +1,6 @@
+var answers1 = ["Yes","No"];
+Game.AddOption("Install BepInEx, TerminalGamepad by secrecthide and LCUltrawide by stefan750?", "LCUltrawide will remove the blackbars and TerminalGamepad so you can use terminal with controllers", "mods", answers2);
+
 var answers1 = ["1", "1.25", "1.5", "1.75", "2"];
 Game.AddOption("size of UI elements in-game", "1 is default", "size", answers1);
 
@@ -220,13 +223,17 @@ Game.Play = function() {
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\ZeekerssRBLX\\Lethal Company", "Screenmanager Resolution Width_h182942802", Context.Width, Nucleus.RegType.DWord);
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\ZeekerssRBLX\\Lethal Company", "Screenmanager Resolution Use Native_h1405027254", 0, Nucleus.RegType.DWord);
 
-  Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
-  var SIZE = Context.Options["size"];
-
-  var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\BepInEx\\config\\LCUltrawide.cfg";
-  var dict = [Context.FindLineNumberInTextFile(cfgpath, "Scale", Nucleus.SearchType.StartsWith) + "|Scale = " + SIZE];
-  Context.ReplaceLinesInTextFile(cfgpath, dict);
-
+  var mod = Context.Options["mods"];
+  if(mod=="Yes"){
+    Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
+    Context.Wait(3000);
+    var SIZE = Context.Options["size"];
+  
+    var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\BepInEx\\config\\LCUltrawide.cfg";
+    var dict = [Context.FindLineNumberInTextFile(cfgpath, "Scale", Nucleus.SearchType.StartsWith) + "|Scale = " + SIZE];
+    Context.ReplaceLinesInTextFile(cfgpath, dict);
+  
+  }
   var dllPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\UnityPlayer.dll";
 
   var searchPattern = "57 00 69 00 6E 00 64 00 6F 00 77 00 73 00 2E 00 47 00 61 00 6D 00 69 00 6E 00 67 00 2E 00 49 00 6E 00 70 00 75 00 74 00 2E 00 47 00 61 00 6D 00 65 00 70 00 61 00 64";
