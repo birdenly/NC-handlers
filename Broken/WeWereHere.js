@@ -6,12 +6,13 @@ Game.FileSymlinkExclusions = [
     "steam_api64.dll",
     "steam_appid.txt"
 ];
-Game.NeedsSteamEmulation = false;
-//Game.UseGoldberg = true;
+
+Game.DirExclusions = ["Saves"];
+Game.FileSymlinkCopyInstead = ["UnityPlayer.dll"];
+Game.UseGoldberg = true;
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
-Game.KeepSymLinkOnExit = true;
 Game.ExecutableName = "We Were Here.exe";
 Game.SteamID = "582500";
 Game.GUID = "We Were Here";
@@ -20,15 +21,17 @@ Game.MaxPlayers = 2;
 Game.MaxPlayersOneMonitor = 2;
 Game.LauncherTitle = "";
 Game.Hook.ForceFocusWindowName = "We Were Here";
-Game.FakeFocus = true;
+// Game.FakeFocus = true;
 Game.ResetWindows = true;
 Game.Hook.DInputEnabled = false;
-Game.Hook.XInputEnabled = true;
+Game.Hook.XInputEnabled = false;
 Game.Hook.XInputReroute = false;
-Game.XInputPlusDll = ["xinput1_3.dll","xinput9_1_0.dll","dinput8.dll"];
+Game.XInputPlusDll = [];
 Game.Hook.CustomDllEnabled = false;
-Game.Description = "IMPORTANT: Start the game once before and disable fullscreen in the settings. You can only play with 1 controller. Start a lobby in one screen and join in with the other. If you use keyboards and mice after all the instances open press the END key to lock the input for all instances to have their own cursor. Press the END key again to unlock the input. You can also use CTRL+Q to close Nucleus and all its instances.";
-Game.PauseBetweenStarts = 42;
+Game.Description = "IMPORTANT: Start the game once before and disable fullscreen in the settings. Start a lobby in one screen and join in with the other. If you use keyboards and mice after all the instances open press the END key to lock the input for all instances to have their own cursor. Press the END key again to unlock the input. You can also use CTRL+Q to close Nucleus and all its instances.";
+Game.PauseBetweenStarts = 5;
+Game.PauseBetweenProcessGrab = 5;
+Game.SetWindowHookStart = true;
 
 //USS deprecated options:
 
@@ -64,27 +67,26 @@ Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = false;
 
 Game.LockInputAtStart = false;
 Game.LockInputSuspendsExplorer = true;
-Game.ProtoInput.FreezeExternalInputWhenInputNotLocked = false;
+Game.ProtoInput.FreezeExternalInputWhenInputNotLocked = true;
 Game.LockInputToggleKey = 0x23;
 
 Game.ProtoInput.RenameHandlesHook = false;
 Game.ProtoInput.RenameHandles = [];
 Game.ProtoInput.RenameNamedPipes = [];
 
-Game.ProtoInput.RegisterRawInputHook = true;
-Game.ProtoInput.GetRawInputDataHook = true;
-Game.ProtoInput.MessageFilterHook = true;
-Game.ProtoInput.GetCursorPosHook = true;
-Game.ProtoInput.SetCursorPosHook = true;
-Game.ProtoInput.GetKeyStateHook = true;
-Game.ProtoInput.GetAsyncKeyStateHook = true;
-Game.ProtoInput.GetKeyboardStateHook = true;
-Game.ProtoInput.CursorVisibilityHook = true;
+Game.ProtoInput.RegisterRawInputHook = false;
+Game.ProtoInput.GetRawInputDataHook = false;
+Game.ProtoInput.MessageFilterHook = false;
+Game.ProtoInput.GetCursorPosHook = false;
+Game.ProtoInput.SetCursorPosHook = false;
+Game.ProtoInput.GetKeyStateHook = false;
+Game.ProtoInput.GetAsyncKeyStateHook = false;
+Game.ProtoInput.GetKeyboardStateHook = false;
+Game.ProtoInput.CursorVisibilityHook = false;
 Game.ProtoInput.ClipCursorHook = true;
-Game.ProtoInput.FocusHooks = false;
-Game.ProtoInput.DrawFakeCursor = true;
+Game.ProtoInput.FocusHooks = true;
+Game.ProtoInput.DrawFakeCursor = false;
 Game.ProtoInput.ClipCursorHookCreatesFakeClip = true;
-Game.ProtoInput.EnableToggleFakeCursorVisibilityShortcut = false;
 Game.ProtoInput.DontShowCursorWhenImageUpdated = true;
 
 Game.ProtoInput.RawInputFilter = false;
@@ -100,75 +102,111 @@ Game.ProtoInput.SendMouseWheelMessages = true;
 Game.ProtoInput.SendMouseButtonMessages = true;
 Game.ProtoInput.SendMouseMovementMessages = true;
 Game.ProtoInput.SendKeyboardButtonMessages = true;
+Game.ProtoInput.XinputHook = true;
+Game.ProtoInput.UseOpenXinput = true;
+Game.ProtoInput.UseDinputRedirection = false;
+Game.ProtoInput.DinputDeviceHook = false;
+Game.ProtoInput.DinputHookAlsoHooksGetDeviceState = false;
+Game.ProtoInput.MultipleProtoControllers = false;
 
-
-Game.ProtoInput.EnableFocusMessageLoop = false;
-//Game.ProtoInput.FocusLoopIntervalMilliseconds = 5;
-//Game.ProtoInput.FocusLoop_WM_ACTIVATE = true;
-//Game.ProtoInput.FocusLoop_WM_ACTIVATEAPP = true;
-//Game.ProtoInput.FocusLoop_WM_NCACTIVATE = true;
-//Game.ProtoInput.FocusLoop_WM_SETFOCUS = true;
-//Game.ProtoInput.FocusLoop_WM_MOUSEACTIVATE = true;
+Game.ProtoInput.EnableFocusMessageLoop = true;
+Game.ProtoInput.FocusLoopIntervalMilliseconds = 5000;
+Game.ProtoInput.FocusLoop_WM_ACTIVATE = true;
+Game.ProtoInput.FocusLoop_WM_ACTIVATEAPP = false;
+Game.ProtoInput.FocusLoop_WM_NCACTIVATE = false;
+Game.ProtoInput.FocusLoop_WM_SETFOCUS = false;
+Game.ProtoInput.FocusLoop_WM_MOUSEACTIVATE = false;
 Game.ProtoInput.BlockedMessages = [0x0008, 0x02a3, 0x02a1]; // Blocks WM_KILLFOCUS, WM_MOUSEHOVER and WM_MOUSELEAVE
+
+Game.ProtoInput.OnInputLocked = function() {
+  for (var i = 0; i < PlayerList.Count; i++) {
+    var player = PlayerList[i];
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetCursorPosHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.SetCursorPosHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetKeyStateHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetAsyncKeyStateHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetKeyboardStateHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.CursorVisibilityStateHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetRawInputDataHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.RegisterRawInputHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.MessageFilterHookID);
+
+    //Avoid the mouse move filter unless absolutely necessary as it can massively affect performance if the game gets primary input from mouse move messages
+    //ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseMoveFilterID);
+
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.RawInputFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseActivateFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.WindowActivateFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.WindowActivateAppFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseWheelFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseButtonFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.KeyboardButtonFilterID);
+
+    ProtoInput.SetDrawFakeCursor(player.ProtoInputInstanceHandle, true);
+  }
+};
+
+Game.ProtoInput.OnInputUnlocked = function() {
+  for (var i = 0; i < PlayerList.Count; i++) {
+    var player = PlayerList[i];
+
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetCursorPosHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.SetCursorPosHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetKeyStateHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetAsyncKeyStateHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetKeyboardStateHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.CursorVisibilityStateHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetRawInputDataHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.RegisterRawInputHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.MessageFilterHookID);
+
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.RawInputFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseMoveFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseActivateFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.WindowActivateFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.WindowActivateAppFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseWheelFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseButtonFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.KeyboardButtonFilterID);
+
+    ProtoInput.SetDrawFakeCursor(player.ProtoInputInstanceHandle, false);
+  }
+};
 
 Game.Play = function () {
 
-        var Args = Context.Args = " -screen-fullscreen 0 -popupwindow " + " -screen-width " + (Context.Width) + " -screen-height " + (Context.Height);
+  var Args = Context.Args = " -screen-fullscreen 0 " + " -screen-width " + (Context.Width) + " -screen-height " + (Context.Height);
 
-        Context.StartArguments = Args;
+  Context.StartArguments = Args;
 
-        Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Total Mayhem Games\\We Were Here", "Screenmanager Fullscreen mode_h3630240806", 3, Nucleus.RegType.DWord); 
-        Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Total Mayhem Games\\We Were Here", "Screenmanager Resolution Height_h2627697771", Context.Height, Nucleus.RegType.DWord);
-        Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Total Mayhem Games\\We Were Here", "Screenmanager Resolution Width_h182942802", Context.Width, Nucleus.RegType.DWord); 
-        Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Total Mayhem Games\\We Were Here", "Screenmanager Resolution Use Native_h1405027254", 0, Nucleus.RegType.DWord);
-        
-        if (Context.IsKeyboardPlayer) {
-            Game.ProtoInput.RawInputFilter = true;
-            Game.ProtoInput.MouseMoveFilter = false;
-            Game.ProtoInput.MouseActivateFilter = true;
-            Game.ProtoInput.WindowActivateFilter = true;
-            Game.ProtoInput.WindowActvateAppFilter = true;
-            Game.ProtoInput.MouseWheelFilter = true;
-            Game.ProtoInput.MouseButtonFilter = true;
-            Game.ProtoInput.KeyboardButtonFilter = true;
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Total Mayhem Games\\We Were Here", "Screenmanager Fullscreen mode_h3630240806", 3, Nucleus.RegType.DWord); 
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Total Mayhem Games\\We Were Here", "Screenmanager Resolution Height_h2627697771", Context.Height, Nucleus.RegType.DWord);
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Total Mayhem Games\\We Were Here", "Screenmanager Resolution Width_h182942802", Context.Width, Nucleus.RegType.DWord); 
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Total Mayhem Games\\We Were Here", "Screenmanager Resolution Use Native_h1405027254", 0, Nucleus.RegType.DWord); 
+  
+  var dllPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\UnityPlayer.dll";
 
-            Game.ProtoInput.CursorVisibilityHook = true;
-            Game.ProtoInput.DontShowCursorWhenImageUpdated = true;
-            Game.ProtoInput.DrawFakeCursor = true;
+  var searchPattern = "57 00 69 00 6E 00 64 00 6F 00 77 00 73 00 2E 00 47 00 61 00 6D 00 69 00 6E 00 67 00 2E 00 49 00 6E 00 70 00 75 00 74 00 2E 00 47 00 61 00 6D 00 65 00 70 00 61 00 64";
+  var patchPattern = "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
 
-            // var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\XInputPlus.ini";
-            // Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
-            // new Nucleus.IniSaveInfo("ControllerNumber", "Controller1", ""),
-            // new Nucleus.IniSaveInfo("ControllerNumber", "Controller2", ""),
-            //  new Nucleus.IniSaveInfo("ControllerNumber", "Controller3", ""),
-            //  new Nucleus.IniSaveInfo("ControllerNumber", "Controller4", ""),
-            //  ]);
+  Context.PatchFileFindPattern(dllPath, dllPath, searchPattern, patchPattern, true);
 
-          } else {
-            Game.ProtoInput.RawInputFilter = false;
-            Game.ProtoInput.MouseMoveFilter = false;
-            Game.ProtoInput.MouseActivateFilter = false;
-            Game.ProtoInput.WindowActivateFilter = false;
-            Game.ProtoInput.WindowActvateAppFilter = false;
-            Game.ProtoInput.MouseWheelFilter = false;
-            Game.ProtoInput.MouseButtonFilter = false;
-            Game.ProtoInput.KeyboardButtonFilter = false;
+  var numPlayers = 0;
 
-            Game.ProtoInput.CursorVisibilityHook = false;
-            Game.ProtoInput.DontShowCursorWhenImageUpdated = false;
-            Game.ProtoInput.DrawFakeCursor = false;
-            Game.ProtoInput.GetCursorPosHook = false;
-            Game.ProtoInput.SetCursorPosHook = false;
+  for (var i = 0; i < PlayerList.Count; i++) {
+    var player = PlayerList[i];
 
-            var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\XInputPlus.ini";
-            Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
-            new Nucleus.IniSaveInfo("ControllerNumber", "Controller1", Context.GamepadId),
-            new Nucleus.IniSaveInfo("ControllerNumber", "Controller2", Context.GamepadId),
-            new Nucleus.IniSaveInfo("ControllerNumber", "Controller3", Context.GamepadId),
-            new Nucleus.IniSaveInfo("ControllerNumber", "Controller4", Context.GamepadId),
-            ]);
-        
-          }	
-
-        
+    if (player.IsXInput && player.ScreenIndex !== -1) {
+      numPlayers++;
+    }
+    player.ProtoController1 = Context.GamepadId;
+    player.ProtoController2 = Context.GamepadId;
+    player.ProtoController3 = Context.GamepadId;
+    player.ProtoController4 = Context.GamepadId;
+    player.ProtoController5 = Context.GamepadId;
+    player.ProtoController6 = Context.GamepadId;
+    player.ProtoController7 = Context.GamepadId;
+    player.ProtoController8 = Context.GamepadId;
+    player.ProtoController9 = Context.GamepadId;
+  }
 }
