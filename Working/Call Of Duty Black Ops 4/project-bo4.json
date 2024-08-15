@@ -1,0 +1,37 @@
+{
+    "gsc": {
+        "hashes": true,
+        "dev_funcs": false,
+        "error_stack_dump": false
+    },
+    "dvars": {
+        "aim_autoaim_enabled": 1,
+        "aim_lockon_enabled": 1,
+        "aim_slowdown_enabled": 1,
+        "aim_target_closest_first": 0
+    },
+    "demonware": {
+        "ipv4": "127.0.0.1"
+    },
+    "lua": {
+        "info": false,
+        "error": false,
+        "allow_unsafe_function": false
+    },
+    "identity": {
+        "xuid": 1,
+        "name": "birden"
+    },
+    "unlock": {
+        "all": false,
+        "attachments": false,
+        "attachmentslot": false,
+        "backgrounds": false,
+        "challenges": false,
+        "classes": false,
+        "emblems": false,
+        "itemoptions": false,
+        "items": false,
+        "zm_loot": false
+    }
+}
