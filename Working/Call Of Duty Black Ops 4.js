@@ -5,9 +5,9 @@ Game.AddOption("Enable music only in the first instance?", "Select 'No' to use t
 var answers2 = ["No", "Yes"];
 Game.AddOption("Unlock all classes and weapons/skins", "", "unlock", answers2);
 var answers3 = ["-","30", "40", "45", "50", "60", "70", "80", "90", "100", "110", "120"];
-Game.AddOption("Select the FPS Cap the game will use", "Select '-' to retain default or previously selected settings", "FPS", answers3);
+Game.AddOption("Select the FPS Cap the game will use", "Select '-' to use the previous or default settings.", "FPS", answers3);
 var answers4 = ["-", "Low", "Medium", "High","Extra"];
-Game.AddOption("Select your preferred graphic settings", "Select '-' to retain default or previously selected settings", "img", answers4)  
+Game.AddOption("Select your preferred graphic settings", "Select '-' to use the previous or default settings.", "img", answers4)  
 var answers6 = ["-","60", "65","70","75","80","85", "90","95","100","105","110","115","120"];
 Game.AddOption("Select the FOV.", "Select '-' to use the previous or default settings.", "fov", answers6);
 
@@ -51,8 +51,8 @@ Game.FileSymlinkCopyInstead = [
 ];
 Game.DirSymlinkExclusions = ["players","project-bo4","project-bo4\\mods"];
 Game.DirExclusions = ["project-bo4\\internals","players\\000000008a7c30be","players\\0000000068d9e76d","players\\0000000068d9e76e","players\\0000000068d9e76f","players\\000000008a7c30c0","players\\000000008a7c30c2","players\\000000008a7c30c3","players\\000000008a7c30c4","players\\000000008a7c30c5"];
-
-Game.DirSymlinkCopyInstead = ["LPC","Language","Data\\indices","Data\\config"];
+// Game.DirSymlinkCopyInstead = ["Language","Data\\indices","Data\\config"];
+Game.DirExclusions = ["LPC"];
 Game.KillProcessesOnClose = ["mini","server"]; 
 Game.StartArguments = "";
 Game.SymlinkExe = false;
@@ -139,9 +139,12 @@ Game.Play = function() {
   if (!System.IO.Directory.Exists(project)) {
       System.IO.Directory.CreateDirectory(project);
   }
-
+  
+  Context.Wait(2000);
   Context.CopyFolder(Context.ScriptFolder + "\\project-bo4", project);
+  Context.Wait(2000);
   Context.CopyFolder(Context.ScriptFolder + "\\LPC", LPC);
+  Context.Wait(2000);
 
   var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\d3d11.dll");
   var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "d3d11.dll");
