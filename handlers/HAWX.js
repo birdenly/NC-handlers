@@ -1,6 +1,6 @@
 ﻿Game.FileSymlinkCopyInstead = [
  
-        "binkw32.dll", 
+    "binkw32.dll", 
 		"eax.dll",  
 		"setting.lua", 
 		"FirewallInstallHelper.dll", 
@@ -13,10 +13,10 @@
       
 ]; 
 Game.FileSymlinkExclusions = [ 
-    "d3d9.dll",
-    "d3d9.ini",
-    "xinput1_3.dll",
-    "Clancyman_720p.bik",' d_geoeye.bik', 'disclaimers.bik', 'logo_wide.bik','rating.bik', 'teaser_logo.bik', 'UBIPresents.bik'
+  "d3d9.dll",
+  "d3d9.ini",
+  "xinput1_3.dll",
+  "Clancyman_720p.bik",' d_geoeye.bik', 'disclaimers.bik', 'logo_wide.bik','rating.bik', 'teaser_logo.bik', 'UBIPresents.bik'
 
 ]; 
 
@@ -46,50 +46,38 @@ Game.Hook.XInputEnabled = true;
 Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled= false;
 Game.XInputPlusDll = ["xinput1_3.dll","xinput1_4.dll","dinput8.dll"];
-Game.FakeFocus= true;	
-Game.HookFocus = true;
 Game.UserProfileConfigPath = "Saved Games\\Tom Clancy's H.A.W.X\\Profiles";
-Game.Description = "my attempt on pizzos handler. Go into settings and choose the right resolution. Create a server in both instances (same settings). Close the lobby in one instance and you will be able to join in the other player server"; 
+Game.Description = "Create a server in all instances (same settings). Close the lobby in all instancecs besides the last one, now you will be able to join in the last player lobby\n\nThe consistent freezing is a game problem: https://www.pcgamingwiki.com/wiki/Tom_Clancy%27s_H.A.W.X#Consistent_freezing"; 
 Game.PauseBetweenStarts = 10;
 Game.SetWindowHook = true;
-Game.ResetWindows = true;
-
 
 Game.Play = function () {
 
-    var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\d3d9.dll");
-    var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "d3d9.dll");
-    System.IO.File.Copy(savePkgOrigin, savePath, true);
+  var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\d3d9.dll");
+  var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "d3d9.dll");
+  System.IO.File.Copy(savePkgOrigin, savePath, true);
 
-    var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\d3d9.ini");
-    var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "d3d9.ini");
-    System.IO.File.Copy(savePkgOrigin, savePath, true);
+  var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\d3d9.ini");
+  var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "d3d9.ini");
+  System.IO.File.Copy(savePkgOrigin, savePath, true);
 
-    var cfgpath = Context.NucleusUserRoot +"\\" +Context.UserProfileConfigPath + "\\_settings_0.1.525.ini"; 
-    var dict = [
-      Context.FindLineNumberInTextFile(cfgpath, 'mode', Nucleus.SearchType.StartsWith) + '|mode = -1',
-      Context.FindLineNumberInTextFile(cfgpath, 'windowed', Nucleus.SearchType.StartsWith) + '|windowed = true',
-      Context.FindLineNumberInTextFile(cfgpath, 'width', Nucleus.SearchType.StartsWith) + '|width = '+Context.Width,
-      Context.FindLineNumberInTextFile(cfgpath, 'height', Nucleus.SearchType.StartsWith) + '|height = '+Context.Height,
-    ];
-    Context.ReplaceLinesInTextFile(cfgpath, dict);
+  var cfgpath = Context.NucleusUserRoot +"\\" +Context.UserProfileConfigPath + "\\_settings_0.1.525.ini"; 
+  var dict = [
+    Context.FindLineNumberInTextFile(cfgpath, 'mode', Nucleus.SearchType.StartsWith) + '|mode = -1',
+    Context.FindLineNumberInTextFile(cfgpath, 'windowed', Nucleus.SearchType.StartsWith) + '|windowed = true',
+    Context.FindLineNumberInTextFile(cfgpath, 'width', Nucleus.SearchType.StartsWith) + '|width = '+Context.Width,
+    Context.FindLineNumberInTextFile(cfgpath, 'height', Nucleus.SearchType.StartsWith) + '|height = '+Context.Height,
+  ];
+  Context.ReplaceLinesInTextFile(cfgpath, dict);
 
-    var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Data\\Settings\\settings.ini";
-    var dict = [
-      Context.FindLineNumberInTextFile(cfgpath, 'mode', Nucleus.SearchType.StartsWith) + '|mode = -1',
-      Context.FindLineNumberInTextFile(cfgpath, 'windowed', Nucleus.SearchType.StartsWith) + '|windowed = true',
-      Context.FindLineNumberInTextFile(cfgpath, 'width', Nucleus.SearchType.StartsWith) + '|width = '+Context.Width,
-      Context.FindLineNumberInTextFile(cfgpath, 'height', Nucleus.SearchType.StartsWith) + '|height = '+Context.Height,
-    ];
-    Context.ReplaceLinesInTextFile(cfgpath, dict);
-
-    var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\d3d9.ini";
-    Context.ReplaceLinesInTextFile(
-    txtPath,
-    [
-    Context.FindLineNumberInTextFile(txtPath, "OverrideRes=", Nucleus.SearchType.StartsWith) + "|OverrideRes=" + Context.Width + "x" + Context.Height,
-    
-    ]);
+  var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Data\\Settings\\settings.ini";
+  var dict = [
+    Context.FindLineNumberInTextFile(cfgpath, 'mode', Nucleus.SearchType.StartsWith) + '|mode = -1',
+    Context.FindLineNumberInTextFile(cfgpath, 'windowed', Nucleus.SearchType.StartsWith) + '|windowed = true',
+    Context.FindLineNumberInTextFile(cfgpath, 'width', Nucleus.SearchType.StartsWith) + '|width = '+Context.Width,
+    Context.FindLineNumberInTextFile(cfgpath, 'height', Nucleus.SearchType.StartsWith) + '|height = '+Context.Height,
+  ];
+  Context.ReplaceLinesInTextFile(cfgpath, dict);
 
   if (Context.IsKeyboardPlayer) {
     var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\XInputPlus.ini";
@@ -109,8 +97,7 @@ Game.Play = function () {
     ]);
   }
 
-    //enable music only on first instance
-    if (Context.PlayerID == 0) {
+  if (Context.PlayerID == 0) {
     var savePath = Context.NucleusUserRoot +"\\"+ Context.UserProfileConfigPath + "\\_settings_0.1.525.ini";  
     Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [ 
         new Nucleus.IniSaveInfo("Sound", "musicvolume", " 1.000000"),  
@@ -119,8 +106,8 @@ Game.Play = function () {
     Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [ 
             new Nucleus.IniSaveInfo("Sound", "musicvolume", "1.000000"),   
     ]); 
-    } 
-    else {
+  } 
+  else {
     var savePath = Context.NucleusUserRoot +"\\"+ Context.UserProfileConfigPath + "\\_settings_0.1.525.ini";  
     Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [ 
         new Nucleus.IniSaveInfo("Sound", "musicvolume", " 0.000000"),  
@@ -129,6 +116,38 @@ Game.Play = function () {
     Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [ 
             new Nucleus.IniSaveInfo("Sound", "musicvolume", "0.000000"),   
     ]); 
-    }
- 
+  }
+////////////////////////////////////////
+  Context.PatchFileFindPattern( //X prepare
+    System.IO.Path.Combine(Context.RootFolder, "HAWX.exe"),
+    System.IO.Path.Combine(Context.RootFolder, "HAWX.exe"),
+    "7D 08 83 65 F0 00 83 65 FC 00 0F B6 45 0B A3 3C BF DE",
+    "90 90 90 90 90 90 0F B6 45 0B A3 3C BF DE 00 B8" + "99 99",
+    true
+  );
+  Context.Wait(300); //Y prepare
+  Context.PatchFileFindPattern(
+    System.IO.Path.Combine(Context.RootFolder, "HAWX.exe"),
+    System.IO.Path.Combine(Context.RootFolder, "HAWX.exe"),
+    "8B 45 EC A3 1C BF DE 00 8B 45 E8",
+    "00 A3 1C BF DE 00 B8" + "88 88" + "00 00",
+    true
+  );
+  Context.PatchFileFindPattern( //X apply
+    System.IO.Path.Combine(Context.RootFolder, "HAWX.exe"),
+    System.IO.Path.Combine(Context.RootFolder, "HAWX.exe"),
+      "0B A3 3C BF DE 00 B8 99 99",
+      Context.Width,
+      8,
+      true
+  );
+  Context.PatchFileFindPattern( //Y apply
+    System.IO.Path.Combine(Context.RootFolder, "HAWX.exe"),
+    System.IO.Path.Combine(Context.RootFolder, "HAWX.exe"),
+      "00 A3 1C BF DE 00 B8 88 88 00 00",
+      Context.Height,
+      8,
+      true
+  );
+  Context.Wait(300);
 }
