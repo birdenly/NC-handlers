@@ -1,6 +1,10 @@
 Game.KillMutex = ["DarkSector"];
 Game.FileSymlinkExclusions = [
-  "apyr720.avi"
+"apyr720.avi",
+"AutoRebind32.dll",
+"AutoRebindInjector32.exe",
+"EasyHook32.dll",
+"launch.bat"
 ];
 Game.FileSymlinkCopyInstead = ["DS.cfg", "Editor.cfg","defbind.cfg"];
 Game.NeedsSteamEmulation = false;
@@ -19,18 +23,18 @@ Game.BinariesFolder = "";
 Game.HideTaskbar = true;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "Dark Sector";
-Game.ResetWindows = true;
 Game.Hook.DInputEnabled = false;
 Game.Hook.XInputEnabled = false;
 Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "Start a LAN game in one instance and join in with others\n\nTo control the instances alt+tab to each of them and click with your mouse on them or you can also press END to give them focus (works sometimes)";
+  "Start a LAN game in one instance and join in with others\n\nTo control the instances alt+tab to each of them and click with your mouse on them or you can also press END to give them focus (works sometimes)\n\nThe game fails to run at any resolution wider than 2048 pixels";
 Game.PauseBetweenProcessGrab = 8;
-Game.PauseBetweenStarts = 10;
-Game.SetWindowHook = true;
+Game.PauseBetweenStarts = 8;
 
+Game.SetWindowHook = true;
+Game.LaunchAsDifferentUsers = true;
 Game.UseNucleusEnvironment = true;
 Game.UserProfileConfigPath = "AppData\\Roaming\\Dark Sector";
 
@@ -47,6 +51,8 @@ Game.ProtoInput.XinputHook = true;
 Game.ProtoInput.UseOpenXinput = true;
 
 Game.Play = function() {
+
+  Context.Wait(5000);
 
   Context.CopyFolder(Context.ScriptFolder, Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
 
@@ -70,12 +76,6 @@ Game.Play = function() {
   ]);
 
   if (Context.AspectRatioDecimal > 2.2) {
-    Context.PatchFile(
-    System.IO.Path.Combine(Context.RootFolder, "DS.exe"),
-    System.IO.Path.Combine(Context.RootFolder, "DS.exe"),
-    [0x00, 0x08, 0x00, 0x00, 0x89, 0x07],
-    [0x00, 0x10, 0x00, 0x00, 0x89, 0x07]
-    );
 
     Context.PatchFile(
       System.IO.Path.Combine(Context.RootFolder, "DS.exe"),
@@ -90,12 +90,12 @@ Game.Play = function() {
       [0x00, 0x00, 0x82, 0x42, 0x46],
       [0x00, 0x00, 0xD0, 0x42, 0x46]
     );
-
+    //32:9
     Context.PatchFile(
       System.IO.Path.Combine(Context.RootFolder, "DS.exe"),
       System.IO.Path.Combine(Context.RootFolder, "DS.exe"),
       [0x40, 0x00,0x00,0x00,0x00,0x00,0x00, 0xF0, 0x3F],
-      [0x40, 0x00,0x00,0x00,0x00,0x00,0x00, 0xF5, 0x3F]
+      [0x40, 0x00,0x00,0x00,0x00,0x9a,0x99, 0xf9, 0x3f]
     );
   }
 
