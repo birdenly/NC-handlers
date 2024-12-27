@@ -1,8 +1,3 @@
-Hub.Handler.Version = 1; // Released at https://hub.splitscreen.me/ on Tue Aug 22 2023 17:48:34 GMT+0000 (Coordinated Universal Time).
-Hub.Handler.Id = "LjCeEE5wCfryB7PvW";
-Hub.Maintainer.Name = "birden";
-Hub.Maintainer.Id = "rRycxSn253ZCjQy5C";
-
 var answers1 = ["30", "45", "60", "75", "90", "105", "120", "144", "165", "200"];
 Game.AddOption("Select the FPS cap.", "", "fps", answers1);
 
@@ -21,25 +16,25 @@ Game.GUID = "SCP5K";
 Game.GameName = "SCP: 5K";
 Game.MaxPlayers = 12;
 Game.MaxPlayersOneMonitor = 12;
-Game.BinariesFolder = "WindowsNoEditor\\Pandemic\\Binaries\\Win64";
+Game.BinariesFolder = "Pandemic\\Binaries\\Win64";
 Game.LauncherTitle = "";
 Game.HideTaskbar = true;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "SCP: 5K";
 Game.Hook.DInputEnabled = false;
-Game.Hook.XInputEnabled = true;
+Game.Hook.XInputEnabled = false;
 Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
-Game.XInputPlusDll = ["xinput1_3.dll"];
+Game.XInputPlusDll = [];
 Game.Description =
-  "IMPORTANT: You need to have started the game and changed any graphics settings once before using this handler.\n\nThe game menu doesnt really support controllers so use your mouse.\n\nGo into private match and start a match in one instance and with others go to server browser and connect with 'direct connect' and type '127.0.0.1', get everyone into the game lobby than press 'Ready' to start the match.\n\nIf you have a keyboard/mouse player: After all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked. Add custom resolutions in your AMD/Nvidia/Intel panel (For example for a 1920x1080 monitor add: 960x1080, 960x540, 1920x540 etc.) so the game can see them and use them.";
+  "IMPORTANT: You need to have started the game and changed any graphics settings once before using this handler.\n\nThe game menu doesnt really support controllers so use your mouse.\n\nGo into private match and start a match in one instance, when in-game open the menu > host game > make the lobby public > host game at the bottom > confirm. On all other players go into server browser > enable P2P at the bottom > join server\n\nIf you have a keyboard/mouse player: After all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked. Add custom resolutions in your AMD/Nvidia/Intel panel (For example for a 1920x1080 monitor add: 960x1080, 960x540, 1920x540 etc.) so the game can see them and use them.";
 Game.PauseBetweenProcessGrab = 5;
-Game.PauseBetweenStarts = 20;
+Game.PauseBetweenStarts = 10;
 
-Game.NeedsSteamEmulation = true;
+Game.UseGoldberg = true;
 
 Game.RefreshWindowAfterStart = true;
-Game.SetWindowHook = true;
+Game.SetWindowHookStart = true;
 Game.UseNucleusEnvironment = true;
 Game.UserProfileConfigPath = "AppData\\Local\\Pandemic";
 
@@ -70,10 +65,10 @@ Game.DrawFakeMouseCursor = false;
 
 Game.SupportsMultipleKeyboardsAndMice = true;
 
-Game.ProtoInput.InjectStartup = false;
+Game.ProtoInput.InjectStartup = true;
 Game.ProtoInput.InjectRuntime_RemoteLoadMethod = false;
-Game.ProtoInput.InjectRuntime_EasyHookMethod = true;
-Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = false;
+Game.ProtoInput.InjectRuntime_EasyHookMethod = false;
+Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = true;
 
 Game.LockInputAtStart = false;
 Game.LockInputSuspendsExplorer = true;
@@ -84,14 +79,37 @@ Game.ProtoInput.RenameHandlesHook = false;
 Game.ProtoInput.RenameHandles = [];
 Game.ProtoInput.RenameNamedPipes = [];
 
+Game.ProtoInput.RegisterRawInputHook = false;
+Game.ProtoInput.GetRawInputDataHook = false;
+Game.ProtoInput.MessageFilterHook = true;
+Game.ProtoInput.GetCursorPosHook = false;
+Game.ProtoInput.SetCursorPosHook = false;
+Game.ProtoInput.GetKeyStateHook = false;
+Game.ProtoInput.GetAsyncKeyStateHook = false;
+Game.ProtoInput.GetKeyboardStateHook = false;
+Game.ProtoInput.CursorVisibilityHook = true;
 Game.ProtoInput.FocusHooks = true;
+Game.ProtoInput.ClipCursorHook = true;
+Game.ProtoInput.DrawFakeCursor = false;
+Game.ProtoInput.ClipCursorHookCreatesFakeClip = true;
+Game.ProtoInput.SetWindowPosHook = true;
+Game.ProtoInput.SetWindowStyleHook = true;
+
+Game.ProtoInput.RawInputFilter = false;
+Game.ProtoInput.MouseMoveFilter = false;
+Game.ProtoInput.MouseActivateFilter = false;
+Game.ProtoInput.WindowActivateFilter = false;
+Game.ProtoInput.WindowActvateAppFilter = false;
+Game.ProtoInput.MouseWheelFilter = false;
+Game.ProtoInput.MouseButtonFilter = false;
+Game.ProtoInput.KeyboardButtonFilter = false;
 
 Game.ProtoInput.SendMouseWheelMessages = true;
 Game.ProtoInput.SendMouseButtonMessages = true;
 Game.ProtoInput.SendMouseMovementMessages = true;
 Game.ProtoInput.SendKeyboardButtonMessages = true;
-Game.ProtoInput.XinputHook = false;
-Game.ProtoInput.UseOpenXinput = false;
+Game.ProtoInput.XinputHook = true;
+Game.ProtoInput.UseOpenXinput = true;
 Game.ProtoInput.UseDinputRedirection = false;
 Game.ProtoInput.DinputDeviceHook = false;
 Game.ProtoInput.DinputHookAlsoHooksGetDeviceState = false;
@@ -106,8 +124,66 @@ Game.ProtoInput.FocusLoop_WM_ACTIVATE = true;
 // Game.ProtoInput.FocusLoop_WM_MOUSEACTIVATE = false;
 Game.ProtoInput.BlockedMessages = [0x0008]; // Blocks WM_KILLFOCUS, WM_MOUSEHOVER and WM_MOUSELEAVE
 
+Game.ProtoInput.OnInputLocked = function() {
+  for (var i = 0; i < PlayerList.Count; i++) {
+    var player = PlayerList[i];
+
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetCursorPosHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.SetCursorPosHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetKeyStateHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetAsyncKeyStateHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetKeyboardStateHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.CursorVisibilityStateHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetRawInputDataHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.RegisterRawInputHookID);
+    ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.MessageFilterHookID);
+
+    //Avoid the mouse move filter unless absolutely necessary as it can massively affect performance if the game gets primary input from mouse move messages
+    //ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseMoveFilterID);
+
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.RawInputFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseActivateFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.WindowActivateFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.WindowActivateAppFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseWheelFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseButtonFilterID);
+    ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.KeyboardButtonFilterID);
+
+    ProtoInput.SetDrawFakeCursor(player.ProtoInputInstanceHandle, true);
+
+    //ProtoInput.StartFocusMessageLoop(player.ProtoInputInstanceHandle, 5000, true, true, true, true, true);
+  }
+};
+
+Game.ProtoInput.OnInputUnlocked = function() {
+  for (var i = 0; i < PlayerList.Count; i++) {
+    var player = PlayerList[i];
+
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetCursorPosHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.SetCursorPosHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetKeyStateHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetAsyncKeyStateHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetKeyboardStateHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.CursorVisibilityStateHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetRawInputDataHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.RegisterRawInputHookID);
+    ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.MessageFilterHookID);
+
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.RawInputFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseMoveFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseActivateFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.WindowActivateFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.WindowActivateAppFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseWheelFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseButtonFilterID);
+    ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.KeyboardButtonFilterID);
+
+    ProtoInput.SetDrawFakeCursor(player.ProtoInputInstanceHandle, false);
+  }
+};
+
 Game.Play = function() {
-  var Args = (Context.Args = " -windowed " + " -AlwaysFocus " + " -ResX= " + Context.Width + " -ResY= " + Context.Height);
+  var Args = (Context.Args = " -windowed -AlwaysFocus -ResX= " + Context.Width + " -ResY= " + Context.Height);
 
   Context.StartArguments = Args;
 
@@ -115,53 +191,25 @@ Game.Play = function() {
 
   var savePath = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini";
   Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "ResolutionSizeX", Context.Width),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "ResolutionSizeY", Context.Height),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "LastUserConfirmedResolutionSizeX", Context.Width),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "LastUserConfirmedResolutionSizeY", Context.Height),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "WindowPosX", Context.PosX),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "WindowPosY", Context.PosY),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "FullscreenMode", 2),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "LastConfirmedFullscreenMode", 2),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "PreferredFullscreenMode", 2),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "FrameRateLimit", FPS + ".000000")
+    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "ResolutionSizeX", Context.Width),
+    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "ResolutionSizeY", Context.Height),
+    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "LastUserConfirmedResolutionSizeX", Context.Width),
+    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "LastUserConfirmedResolutionSizeY", Context.Height),
+    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "WindowPosX", Context.PosX),
+    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "WindowPosY", Context.PosY),
+    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "FullscreenMode", 2),
+    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "LastConfirmedFullscreenMode", 2),
+    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "PreferredFullscreenMode", 2),
+    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "FrameRateLimit", FPS + ".000000")
   ]);
 
-  if (Context.IsKeyboardPlayer) {
-    Game.ProtoInput.RegisterRawInputHook = true;
-    Game.ProtoInput.GetRawInputDataHook = true;
-    Game.ProtoInput.MessageFilterHook = true;
-    Game.ProtoInput.GetCursorPosHook = true;
-    Game.ProtoInput.SetCursorPosHook = true;
-    Game.ProtoInput.GetKeyStateHook = true;
-    Game.ProtoInput.GetAsyncKeyStateHook = true;
-    Game.ProtoInput.GetKeyboardStateHook = true;
-    Game.ProtoInput.CursorVisibilityHook = true;
-    Game.ProtoInput.ClipCursorHook = true;
-    Game.ProtoInput.DrawFakeCursor = true;
-    Game.ProtoInput.CursorVisibilityHook = true;
-
-    Game.ProtoInput.RawInputFilter = true;
-    Game.ProtoInput.MouseMoveFilter = false;
-    Game.ProtoInput.MouseActivateFilter = true;
-    Game.ProtoInput.WindowActivateFilter = true;
-    Game.ProtoInput.WindowActvateAppFilter = true;
-    Game.ProtoInput.MouseWheelFilter = true;
-    Game.ProtoInput.MouseButtonFilter = true;
-    Game.ProtoInput.KeyboardButtonFilter = true;
-  } else {
-    Game.ProtoInput.RawInputFilter = false;
-    Game.ProtoInput.MouseMoveFilter = false;
-    Game.ProtoInput.MouseActivateFilter = false;
-    Game.ProtoInput.WindowActivateFilter = false;
-    Game.ProtoInput.WindowActvateAppFilter = false;
-    Game.ProtoInput.MouseWheelFilter = false;
-    Game.ProtoInput.MouseButtonFilter = false;
-    Game.ProtoInput.KeyboardButtonFilter = false;
-    Game.ProtoInput.DrawFakeCursor = false;
-    Game.ProtoInput.CursorVisibilityHook = true;
-    Game.ProtoInput.ClipCursorHook = true;
-    Game.ProtoInput.GetCursorPosHook = false;
-    Game.ProtoInput.SetCursorPosHook = false;
+  if (Context.PlayerID == 0) {
+    Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+      new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "MusicVolume", "1.000000")
+    ]);
+  }else{
+    Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+      new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "MusicVolume", "0.000000"),
+    ]);
   }
 };
