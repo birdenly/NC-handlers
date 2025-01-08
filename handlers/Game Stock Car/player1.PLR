@@ -1,0 +1,399 @@
+//[[gMa1.002f (c)2007    ]] [[            ]]
+//*****************************************************************
+//*                                                               *
+//*  Player File                                                  *
+//*                                                               *
+//*  Edit at your own risk!                                       *
+//*                                                               *
+//*  Copyright (c) 1999-2009 Image Space Incorporated             *
+//*  All rights reserved.                                         *
+//*                                                               *
+//*****************************************************************
+
+[ SCENE ]
+Scene File="GAMEDATA\LOCATIONS\Interlagos\InterlagosStockCar1\InterlagosStockCar1.SCN"
+Scene Description="InterlagosStockCar1"
+AI Database File="GAMEDATA\LOCATIONS\Interlagos\InterlagosStockCar1\InterlagosStockCar1.AIW"
+
+[ DRIVER ]
+RaceCast Email="" // The email you are registered with on racecast.rfactor.net
+RaceCast Password="" // Your password on racecast.rfactor.net
+Vehicle File="GAMEDATA\VEHICLES\STOCKV8\AMG MOTORSPORT\AABREU.VEH"
+Team="AMG Motorsport"
+Original Driver="Atila Abreu"
+Nationality=""
+Birth Date=""
+Location=""
+Game Description="reiza1.rfm" // The current mod file (*.RFM) to load
+Season="" // The current season within the given game
+Helmet=""
+Unique ID="6650" // Helps to uniquely identify in multiplayer (along with name) if leaving and coming back
+Starting Driver="0" // Zero-based index of starting driver (0=driver1, 1=driver2, 2=driver3, etc.)
+AI Controls Driver="2" // Bitfield defining which drivers the AI controls (0=none, 1=driver1, 2=driver2, 3=driver1+driver2, etc.)
+Driver Hotswap Delay="3.00000" // Delay in seconds between switching controls to AI or remote driver
+Save Game Description="reiza1.rfm" // Restore if changed during multiplayer
+Save Season="" // Restore if changed during multiplayer
+Save Vehicle File="" // Restore if changed during multiplayer
+
+[ CHAT ]
+Quick Chat #1="Slowing to pit"
+Quick Chat #2="Leaving pits"
+Quick Chat #3="Go Left"
+Quick Chat #4="Go Right"
+Quick Chat #5="Thank you"
+Quick Chat #6="Sorry"
+Quick Chat #7="Be careful at the first corner"
+Quick Chat #8="Good job"
+Quick Chat #9="Good race"
+Quick Chat #10="/vote yes"
+Quick Chat #11="/vote no"
+Quick Chat #12="/ping"
+
+[ DRIVING AIDS ]
+Steering Help="1" // Now 3 levels, although full level now comes with a weight penalty by default
+Throttle Control="3"
+Brake Help="1"
+Antilock Brakes="2"
+Spin Recovery="1"
+Invulnerability="1"
+Autopit="0"
+Opposite Lock="0"
+Stability Control="2"
+No AI Control="1" // AI never has control over car (except autopit)
+Pitcrew Push="1" // When out of fuel in pitlane, allows pitcrew to push car (use throttle and gear selection to direct)
+Auto Clutch="1"
+Auto Lift="1" // Whether to automatically lift with manual shifting but auto-clutch (non-semiautomatic trans only)
+Auto Blip="1" // Whether to automatically blip with manual shifting but auto-clutch (non-semiautomatic trans only)
+Shift Mode="3"
+Repeat Shifts="4" // 0 = no repeat shift detection, 1 = detect and eliminate accidental repeat shifts within 100ms, 2 = 150ms, 3 = 200ms, 4 = 250ms, 5 = prevent shifting again before previous shift is completed
+Manual Shift Override Time="0.60000" // How long after a manual shift until auto shifting resumes (if auto-shifting is enabled)
+Auto Shift Override Time="0.55000" // How long after an automatic shift before user is allowed to manually shift
+Hold Clutch On Start="1" // For auto-shifting only: whether to hold clutch for standing start (to allow revving without moving)
+Track Markers="1" // Extra track markers for turning and braking
+Data Acquisition Version="0" // Version of vehicle data to write out
+Data Acquisition Rate="8"
+Data Acquisition In Race="1"
+Data Acquisition EXE="DataAnalysis.exe"
+Data Acquisition File="userdata\vehicledata.spt"
+Alternate Collision="0" // Temporary variable as we develop new collision system.  NOT AVAILABLE IN THIS VERSION
+Display Boost Time="150" // Max countdown in seconds till next boost (-1 to disable)
+
+[ Mechanical Failures ]
+QUICK Failure Rate="1" // Mechanical failure rate (0-none, 1-normal, 2-timescaled, disabled: 3-season)
+MULTI Failure Rate="1"
+
+[ Race Conditions ]
+Run Practice1="1"
+Run Practice2="0"
+Run Practice3="0"
+Run Practice4="0"
+QUICK Num Qual Sessions="1" // range: 0-1
+MULTI Num Qual Sessions="1"
+Run Warmup="0"
+QUICK Num Race Sessions="1" // range: 1-4
+MULTI Num Race Sessions="1"
+Race Timer="3600" // Seconds between displaying time remaining in race other than 1/5/10/30 minutes (zero disables)
+Recon Pit Open="300" // Time that pits remain open for recon laps (real-life is 900 seconds)
+Recon Pit Closed="150" // Time that pits are closed before formation lap (real-life is 900 seconds)
+Recon Timer="1" // Whether timer is displayed in message box
+Double File Override="-1" // Whether restarts can be converted to double file (-1=use RFM default, 0=no, 1+=minimum laps left to restart double-file)
+Lucky Dog Override="-1" // Where lucky dog is applied (-1=use RFM default, 0=nowhere, 1=ovals, 2=road courses, 3=everywhere)
+QUICK Reconnaissance="0" // Reconnaissance laps
+MULTI Reconnaissance="0"
+QUICK Grid Walkthrough="1" // Cinematic walkthrough of vehicles before race
+MULTI Grid Walkthrough="0"
+QUICK Formation Lap="4" // 0=standing start, 1=formation lap & standing start, 2=lap behind safety car & rolling start, 3=use track default, 4=fast rolling start
+MULTI Formation Lap="4"
+Force Formation="0" // if Formation Lap is Use Track Default, add the following to force: 1=standing start formations on, 2=standing formations off, 4=rolling start formations on, 8=rolling formations off
+QUICK Unsportsmanlike Sensitivitity="1.50000" // 0.1 - 10.0: Higher number = less sensitive checking for unsportsmanlike driving
+MULTI Unsportsmanlike Sensitivitity="1.49765"
+QUICK Safety Car Collidable="1" // Whether safety car is collidable
+MULTI Safety Car Collidable="1"
+QUICK Safety Car Thresh="1.00000" // Threshold for bringing out safety car (lower numbers -> more full-course yellows), please note that there are now RFM multipliers for this value
+MULTI Safety Car Thresh="1.00000"
+Adjust Frozen Order="1.00000" // Moves vehicles down the frozen track order under the safety car if they are causing the yellow and being passed.  0.0=off, 0.1-0.9=apply liberally, 1.0+=apply conservatively
+QUICK Flag Rules="2" // Level of rule enforcement, 0=none, 1=penalties only, 2=penalties & full-course yellows
+MULTI Flag Rules="2"
+QUICK BlueFlags="7" // 0=none, 1=show but never penalize, 2=show and penalize if following within 0.3 seconds, 3=0.5s, 4=0.7s, 5=0.9s, 6=1.1s, 7=use RFM value "BlueFlags=<0-6>" (default is 3)
+MULTI BlueFlags="7"
+QUICK Weather="0" // Random/season/sunny/etc.
+MULTI Weather="0"
+QUICK TimeScaledWeather="1" // Whether weather time is scaled with session length
+MULTI TimeScaledWeather="1"
+Practice1StartingTime="-1" // -3=random, -2=random daytime, -1=default RFM, 0-1439=minutes after midnight
+QualifyingStartingTime="-1" // -3=random, -2=random daytime, -1=default RFM, 0-1439=minutes after midnight
+WarmupStartingTime="-1" // -3=random, -2=random daytime, -1=default RFM, 0-1439=minutes after midnight
+QUICK RaceStartingTime="-1" // -3=random, -2=random daytime, -1=default RFM, 0-1439=minutes after midnight to start race
+MULTI RaceStartingTime="-1"
+QUICK RaceTimeScale="-1" // -1 = use race distance percentage, 0 - 60 = multiply time by given factor
+MULTI RaceTimeScale="-1"
+QUICK PrivateQualifying="2" // 0=all cars qualify visibly on track together, 1=only one car is visible at a time, 2=use default from RFM, season, or track entry PrivateQualifying=<0 or 1>
+MULTI PrivateQualifying="2"
+QUICK ParcFerme="3" // 0=off, 1=no setup changes allowed between qual and race except for 'Free Settings'), 2=same unless rain, 3=use RFM default 'ParcFerme=<0-2>'
+MULTI ParcFerme="3"
+
+[ Sound Options ]
+Net Race Warning="Default\racestart.wav" // Signal that multiplayer game has moved to race session (empty this if you don't want the game to automatically take window focus)
+Maximum Effects="16" // Maximum sound effects playing simultaneously
+Music="1" // Music Toggle
+Track Load Commentary="1" // Whether or not the commentator should talk during track loading
+Realtime In Monitor="1" // Whether to play realtime sounds in monitor
+SoundFX Volume="1.00000" // 0.0-1.0
+Engine Volume="1.00000" // 0.0-1.0
+Traction Control="1.50000" // Volume multiplier
+Player Volume Ratio="1.00000" // Additional volume multiplier for player's vehicle
+Other Volume Ratio="1.00000" // Additional volume multiplier for other vehicles
+Music Volume="0.60000" // 0.0-1.0
+Pit Volume="0.50000" // 0.0-1.0, controls volume of pit sounds while you're at the monitor
+Spotter Volume="1.00000" // 0.0-1.0
+Camera Volume="1.00000" // 0.0-1.0
+Sound Detail="2"
+Speed Of Sound="290.00000" // 340m/s at sea level, but lower numbers help exaggerate the Doppler effect
+Crowd Range="75.00000" // Volume range parameter
+Crowd Shape="0.75000" // Shape of volume attenuation
+Crowd Ambient="2.50000" // Ambient range where volume is maximum
+Airhorn Range="75.00000"
+Airhorn Shape="0.75000"
+Airhorn Ambient="2.50000"
+Public Address Range="50.00000"
+Public Address Shape="0.75000"
+Public Address Ambient="2.50000"
+Pithorn Range="30.00000"
+Pithorn Shape="0.45000"
+Pithorn Ambient="1.50000"
+Helicopter Range="75.00000"
+Helicopter Shape="0.70000"
+Helicopter Ambient="2.50000"
+Vehicle Scrubbing VolMult="0.0000610352"
+Vehicle Scrubbing FreqGrip="-0.25000"
+Vehicle Scrubbing FreqSpeed="0.00195"
+Vehicle Skidding VolMult="0.0001220703"
+Vehicle Skidding FreqGrip="-0.25000"
+Vehicle Skidding FreqSpeed="0.00195"
+Vehicle Roadnoise VolSpeed="32.00000"
+Vehicle Roadnoise VolMult="0.0000050000"
+Vehicle Roadnoise FreqMin="0.80000"
+Vehicle Roadnoise FreqMult="0.00391"
+
+[ Graphic Options ]
+Broadcast Overlay="1"
+Texture Detail="2"
+Vertical FOV Angle="34" // 34=use default, otherwise is the FOV for attached cameras (horiz is calculated based on aspect ratio)
+Rearview="1" // 0=Off, 1=Center and Side, 2=Center only, 3=Side only (virtual mirrors only, in-car mirrors are on/off)
+Allow Rearview In Swingman="0"
+Virtual Rearview In Cockpit="0"
+Rearview Width="60.00000"
+Rearview Height="15.00000"
+Rearview Cull="1" // Whether to cull objects in the rearview based on visgroups in the SCN file
+Seat Adjustment Aft="0.00000"
+Seat Adjustment Up="0.00000"
+Mirror Adjustment Horizontal="0.00000"
+Mirror Adjustment Vertical="0.00000"
+Cockpit Vibration Mult1="0.20000" // Primary vibration multiplier affects eyepoint position (base magnitude is in VEH or cockpit file)
+Cockpit Vibration Freq1="42.00000" // Primary rate of vibration affects eyepoint position (higher framerates allow higher rates)
+Cockpit Vibration Mult2="0.28000" // Secondary vibration multiplier affects eyepoint orientation (base magnitude is in VEH or cockpit file)
+Cockpit Vibration Freq2="56.00000" // Secondary rate of vibration affects eyepoint orientation
+Moving Rearview="1" // Whether mirrors respond to head movement in cockpit (0=none, 1=position-only, 2=FOV-only, 3=both) - add 4 if you want to IGNORE head-tracking movement
+Rearview_Front_Clip="0.00000" // Front plane distance for mirror (0.0 = use default for scene)
+Rearview_Back_Clip="0.00000" // Back plane distance for mirror (0.0 = use default for scene)
+Rearview Particles="1"
+Self In TV Rearview="0" // add values for any that should be visible (0=none): 1=rear wing & wheels, 2=body & susp, 4=cockpit, 8=steering wheel (15=all)
+Self In Cockpit Rearview="15" // add values for any that should be visible (0=none): 1=rear wing & wheels, 2=body & susp, 4=cockpit, 8=steering wheel (15=all)
+Backfire Anim Speed="60.00000"
+Warning Light Anim Speed="4.00000" // Safety car light animation
+Steering Wheel="0" // 0=moving steering wheel, 1=non-moving steering wheel, 2=no steering wheel (in cockpit only while player-controlled)
+Box Outline="16711680" // whether to draw box on ground around pitstall and grid location when necessary; -1=off, 0-16777215=RGB color
+Allow Letterboxing="0" // whether we allow letterboxing (during replays, for example)
+Logo Seconds="0" // puts up logo at corner of screen for first X seconds of each session
+HUD="4"
+HUD Race Stats="0"
+HUD Tachometer="1"
+HUD MFD="2"
+Any Camera HUD="1" // whether to show the HUD from any camera (in particular, tracksides)
+LCD Display Modes="31" // Add the modes to allow them: 1=status 2=aids 4=engine/brake temps 8=race info 16=standings
+Automap="3" // 0=off 1=race-only 2=non-race-only 3=all sessions
+Display Vehicle Labels="0" // 0=never 1=single-player 2=multi-player 3=always
+Player Detail="3"
+Player Texture Override="-1" // For player's vehicle textures: -1=use Player Detail, 0-3=override value
+Opponent Detail="2"
+Opponent Texture Override="-1" // For opponents' vehicle textures: -1=use Opponent Detail, 0-3=override value
+Load Opponent Cockpits="1" // Whether to load gauges and LCD for opponents, don't turn off if you're planning on hot-swapping vehicles in multiplayer
+Garage Detail="0.50000" // LOD multiplier when vehicle is in garage (0.01-1.00)
+Shadows="3"
+Shadow Blur="1"
+Shadow Cache="1"
+Pitcrew Detail="2"
+Special FX="4"
+Lightning Probability="1.00000" // Probability of seeing lightning (0.0-1.5)
+Thunder Probability="1.50000" // Probability of hearing thunder (0.0-1.5)
+Cloud Scroll="0.00000" // Maximum cloud scrolling rate (0.000-0.010)
+Cloud Blend="0" // Whether to roll the rainy cloud map in across sky (only works with overhead not cylinder skies)
+Skybox Positioning="1.00000" // Numbers less than 1.0 cause the skybox to get closer as you drive towards it
+Shadow Updates="8" // Static shadow updates per frame (Shadow Updates * Sky Update Frames should exceed number of static shadows on track)
+Sky Update Frames="150" // Frames between sky and light updates
+Vehicle Flow Radius="4.00000" // Vehicle sphere radius for smoke/flames/dust/spray
+Vehicle Flow Offset="3.10000" // Offset below vehicle where sphere center is located
+Engine Emitter Flow="1" // Whether engine smoke/flames flow over emitting vehicle
+Tire Emitter Flow="1" // Whether tire smoke/dust flow over emitting vehicle
+Smoke Flow="1" // Whether all smoke/flames/dust flow over non-emitting vehicles
+Raindrop Flow="0" // Add to enable: 1=flow over current 2=flow over other vehicles
+Rainspray Flow="0" // Add to enable: 1=flow over current 2=flow over other vehicles
+Spark Flow="1" // Add to enable: 1=flow over current 2=flow over other vehicles
+Glance Rate="18.08000" // Rate to follow controller for glancing
+Look Up/Down Angle="0.40000" // Angle to look up/down (pitch) w/ controller in radians (= degrees / 57)
+Leanahead Angle="0.00000" // Angle to lean head (roll) w/ steering in radians (= degrees / 57)
+Look Roll Angle="0.75000" // Angle to lean head (roll) w/ controller in radians (= degrees / 57)
+Glance Angle="0.75000" // Angle to look left/right (yaw) w/ controller in radians (= degrees / 57)
+Lookahead Angle="0.00000" // Angle to lookahead (yaw) w/ steering in radians (= degrees / 57)
+Head Physics="0.75000" // Fraction of head physics movement applied to cockpit view (position AND rotation)
+Head Rotation="1.00000" // Additional head physics multiplier affecting rotation only
+Exaggerate Yaw="0.0000000119" // Visually exaggerates the heading angle of the vehicle by rotating the head (which may improve "feel")
+Overlay Height="0.04000" // Distance from geometry to help sort drawing skids and grooves
+Overlay Z Bias="1" // Draw-sorting bias for skids and grooves (0 = none)
+Track Detail="3"
+Groove="1"
+MIP Mapping="1"
+Compressed Textures="1"
+Max Visible Vehicles="20"
+Extra Visible Vehicles="105" // Extra vehicles shown in non-driving situations
+Shadows In TV Cockpit="1"
+Wheels Visible In Cockpit="1" // Suggestion: add FrontWheelsInCockpit=? to the individual VEH files instead
+In Car Dash="2"
+Starting View="1"
+Player Livery="AAbreu.dds" // Overrides default paint job for track
+Mipmap LOD Speed="100.00000" // Speed (MPH) at which maximum mipmap bias is used
+Mipmap LOD Bias="0.00000"
+Allow HUD in cockpit="1"
+Allow Swingman in Pitlane="1"
+Display Icons="2" // Icons displayed if HUD is off: 0 = none, 1 = flags only, 2 = all
+Auto Detail Framerate="0" // Details and visible vehicles will be automatically reduced (by up to half) if framerate is under this threshold (0 to disable)
+Max Framerate="0" // 0 to disable, for regular exe only, see multiplayer.ini for dedicated server framerate, new: use negative values for alternate timing
+Delay Video Swap="0" // Whether to delay video swap if card is busy - this should only be used if framerate clearly improves - otherwise it is only delaying response time
+Always Rebuild HAT="0" // Build HAT database everytime tracks are loaded (for development purposes)
+UI Background Animation="1"
+Low Detail UI="0"
+Widescreen Overlays="1"
+Texture Filter="2" // Texture Filtering level: 0 = bilinear, 1 = trilinear, 2 = X2 AF, 3 = X4 AF, 4 = X8 AF, 5 = X16 AF
+Max Headlights="256" // Max headlights visible relative to your car.
+Headlights On Cars="1" // Headlights illuminate other cars.
+Screenshot File Type="0" // 0=default (jpg), 1=bmp, 2=jpg, 3=png, 4=dds
+
+[ Game Options ]
+Championship Basic Rules="1"
+Basic Rules="0"
+Basic Display="0"
+Basic Audio="0"
+QUICK Damage Multiplier="50" // 100 should approximate real life
+MULTI Damage Multiplier="50"
+Record Replays="1" // whether to record replays or not
+Save All Replay Sessions="1" // whether to save the replay from each session
+Record To Memory="0" // record replays to memory rather than disk (may possibly reduce stuttering, but at your own risk because memory usage will be significant for long races)
+Compress Replay="1" // whether to compress VCR file (uses less disk space but takes more time to write)
+Replay Wraparound="0" // whether replays wraparound in the fridge
+Auto Monitor Replay="1" // whether to automatically start a replay when returning to monitor
+Record Hotlaps="1" // whether to record hotlaps or not (must have replay recording on)
+Instant Replay Length="80"
+Replay Fidelity="4"
+Super Player Replay="1" // record player at higher frequency
+Number Track Replays="5" // how many replays to store for each track (using default naming convention only!)
+Number Race Results="100" // how many results files to store (using default naming convention only!)
+Multi-session Results="0" // whether to store all sessions at a track in a single results file, new default is one session per file
+Disconnected Results="1" // show results for clients disconnected at end of prac/qual/warmup
+Private Test Day="1"
+Starting Pos="0" // Only used if no qualifying session in single-player
+Difficulty="0"
+QUICK AI Driver Strength="95" // 100 should approximate real life
+MULTI AI Driver Strength="95"
+AI Power Calibration="7" // Adjustments with AI strength (0=none, or add the following: 1=power, 2=gearing, 4=fuel)
+AI Fuel Mult="0.99000" // Additional fuel multiplier for AIs because of their driving style
+AI Tire Model="0.40000" // 0.0 = use AI peak slip, 1.0 = use player's dynamic slip, or a blend between the two (can be overrode in TBC with AITireModel)
+AI Brake_Power Usage="0.99800" // Fraction of theoretical brake power that AI attempt to use (can be overrode in HDV)
+AI Brake_Grip Usage="0.99000" // Fraction of theoretical brake grip that AI attempt to use (can be overrode in HDV)
+AI Corner_Grip Usage="0.99000" // Fraction of theoretical cornering grip that AI attempt to use (can be overrode in HDV)
+AI Max Load="40000.00000" // Maximum total load to set up theoretical performance tables (can be overrode in HDV)
+AI Min Radius="20.00000" // Minimum radius turn to set up theoretical performance tables (can be overrode in HDV)
+AI to AI Collision Rate="40" // Detection rate per second (1-40) for AI-to-AI collisions
+Auto Line Smooth="0" // 1 = fastest line, 2 = inside/outside, 3 = fastest and inside/outside
+Message Center Detail="3"
+Spotter Detail="3"
+Spotter Laptimes="2" // Report laptimes: 0=never 1=non-race 2=always
+Spotter Behind="10.00000" // Range behind at which spotter may comment on vehicles around you (range ahead is 40% of this value because those vehicles are easier to see)
+Play Movies="1"
+Race Stint Offset="0" // Offset each scheduled pitstop in case you want to carry extra fuel
+Relative Fuel Strategy="1" // Show how much fuel to ADD, rather than how much TOTAL fuel to fill the tank up to (note: new default is true)
+Smart Pitcrew="1" // Pitcrew does things even if you mistakenly forgot to ask (one example is changing a damaged tire)
+Automatic Pit Menu="4" // brings up pit menu automatically: 0=disabled, 1=upon pit ENTRY, change cockpit menu but do not bring up HUD, 2=pit ENTRY->cockpit & HUD, 3=pit REQUEST->cockpit menu only, 4=pit REQUEST->cockpit & HUD
+Miscellaneous="0"
+Autocalibrate AI Mode="0" // When in a test day with 1 AI, AI will attempt to perfect his driving line, and save his knowledge for future use
+Find Default Setup="1" // If 1, attempts to ensure player has default setup ... only works well if only one vehicle class in RFM
+Ghost AI="0" // If 1, AI car will ignore others and be uncollidable.  disabled for standard builds
+Relevant Setups Only="1" // 0 = show all setups in folder, 1 = only show setups for your current vehicle
+Keep Received Setups="1" // 0=do not accept, 1=keep until next track, 2=keep until exit, 3=keep forever
+QUICK FreeSettings="-1" // -1=use RFM/season/GDB default, or add to allow minor changes with fixed/parc ferme setups: 1=steering lock, 2=brake pressure, 4=starting fuel, 8=fuel strategy 16=tire compound, 32=brake bias, 64=front wing, 128=engine settings
+MULTI FreeSettings="-1"
+Fixed Setups="0" // use fixed setups specified in UserData\<plr>\FavoriteAndFixedSetups.gal (based on track and vehicle class)
+Fixed AI Setups="0" // whether AI use the fixed setups, only applicable if "Fixed Setups" is also enabled (and can be used in single player to have the AIs use your favorite setup)
+Fixed Upgrades="0" // whether multiplayer vehicles use the closest standard upgrade class package
+Disable NetComm="0" // If 1, network features are disabled
+AI Limiter="0.00000" // Range: 0.0 (no limiting) - 1.0 (limiting used to make racing closer but also make more driver differences on flat-out tracks)
+AI Mistakes="0.25000" // a range of (intentional) AI mistakes from 0.0 (none) to 1.0 (sometimes).  Anything above 1.0 multiplies the frequency
+AI Realism="0.24830"
+Display Driver Stats="0"
+Display Track Stats="0"
+Settings Type="5"
+Exit Confirmation="1" // 0=none, 1=race only, 2=always
+Monitor AI Postfix="" // what is displayed after AI driver names in monitor (multiplayer only)
+Monitor Admin Postfix="*" // what is displayed after multiplayer administrator driver names in monitor
+Realtime Splits="1" // 0=show race splits at sectors only, 1=realtime splits (can be toggled while driving with pit decrement key
+Standings Func="1" // standings scroll with pit up/down keys: 0=no wraparound, 1=wraparound, 2=auto-scroll (can be changed while driving with pit increment key)
+Show Extra Lap="1" // 0 = show laps completed, 1 = show lap you are on
+One Lap To Go Warning="1" // Race only: 0=none, 1=message, 2=white flag, 3=both, Race+Qual: add 4.  Feature not implemented for timed races or lapped vehicles.
+Pitstop Description="1" // Gives extra info about what's taking time in pitstop
+Measurement Units="0" // Units for everything EXCEPT speed (0 = metric, 1 = english/imperial)
+Speed Units="1" // 0 = MPH, 1 = KPH
+Damper Units="0" // Display dampers (shocks) in garage as: 0 = setting (e.g. 1-20), 1 = rate (e.g. 1000-9000 N/m/s)
+Horizontal Tire Temps="1" // In garage options
+QUICK Race Finish Criteria="2" // 0=percentage,1=laps, 2=time, 3=laps&time
+MULTI Race Finish Criteria="2"
+QUICK Race Laps="5"
+MULTI Race Laps="5"
+QUICK Race Time="50" // minutes
+MULTI Race Time="50"
+QUICK Race Length="0.10000"
+MULTI Race Length="0.10000"
+QUICK Speed Compensation="0" // 0 (none) - 10 (max)
+MULTI Speed Compensation="0"
+Speed Comp Dist="500.00000" // <= 2.0: fraction of track length, > 2.0: actual distance in meters for max speed comp
+QUICK Opponents="9"
+MULTI Opponents="0"
+Vehicle Removal="30.00000" // Seconds until stationary vehicle is removed from track
+Debris Removal="30.00000" // Seconds until stationary debris is removed from track
+Parts Duration="1000.00000" // Seconds after parts break off before disappearing
+QUICK CrashRecovery="3" // 0=none, 1=artificially keep cars on track, 2=flip cars upright, 3=both
+MULTI CrashRecovery="3"
+QUICK Fuel Consumption Multiplier="1"
+MULTI Fuel Consumption Multiplier="1"
+QUICK Tire Wear Multiplier="1"
+MULTI Tire Wear Multiplier="1"
+Auto-change Opponent List="1" // whether to change the single-player allowed vehicle filter when player changes vehicles
+CURNT Allowed Vehicles="|StockV8"
+PRACT Allowed Vehicles="|StockV8"
+QUICK Allowed Vehicles="|StockV8"
+GPRIX Allowed Vehicles="|StockV8"
+CHAMP Allowed Vehicles="|StockV8"
+MULTI Allowed Vehicles="|StockV8"
+RPLAY Allowed Vehicles="|StockV8"
+Inactive Sleep Time="25" // Number of milliseconds to sleep each message loop if the game is not the active application (-1 to disable).  will give more CPU to other apps when minimized, etc.
+Active Sleep Time="-1" // ms to sleep each loop if the game is the active app (-1 to disable).  Consider setting to 1 or more if you are running a dedicated server on the same machine.
+
+[ Miscellaneous ]
+PlayerFilesReadOnly="0"
+Key Repeat Rate="1"
+AVI export width="800"
+AVI export height="600"
+AVI export framerate="30.00000"
+AVI export quality="95.00000"
+AVI compressor fourcc="cvid" // Changes compression algorithm
+
+[ Controls ]
+Current Control File="Controller"

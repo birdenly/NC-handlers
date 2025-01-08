@@ -1,0 +1,147 @@
+VehicleClassSetting="StockV8"
+UpgradeSetting=(0,0)
+//VEH=GAMEDATA\VEHICLES\STOCKV8\AMG MOTORSPORT\AABREU.VEH
+//UpgradeClass=
+//Note: settings commented out if using the default
+
+[GENERAL]
+Notes=""
+Symmetric=1
+//CGRightSetting=10//50.0:50.0
+//CGRearSetting=10//49.0:51.0
+//WedgeSetting=0//0.00 turns
+//FrontTireCompoundSetting=0//GoodYear V8
+//RearTireCompoundSetting=0//GoodYear V8
+//FuelSetting=29//30L (8laps)
+//NumPitstopsSetting=2//2
+//Pitstop1Setting=60//+60L (16laps)
+//Pitstop2Setting=60//+60L (16laps)
+//Pitstop3Setting=0//N/A
+
+[LEFTFENDER]
+//FenderFlareSetting=0//1
+
+[RIGHTFENDER]
+//FenderFlareSetting=0//1
+
+[FRONTWING]
+//FWSetting=0//1
+
+[REARWING]
+//RWSetting=6//6 deg
+
+[BODYAERO]
+//RadiatorSetting=0//1
+//BrakeDuctSetting=0//1
+
+[SUSPENSION]
+//FrontAntiSwaySetting=3//140 N/mm
+//RearAntiSwaySetting=1//20 N/mm
+//FrontToeInSetting=1//-0.20 deg
+//RearToeInSetting=1//0.05 deg
+//LeftCasterSetting=16//5.6 deg
+//RightCasterSetting=16//5.6 deg
+//LeftTrackBarSetting=0//0.0 cm
+//RightTrackBarSetting=0//0.0 cm
+//Front3rdPackerSetting=0//0.0 cm
+//Front3rdSpringSetting=0//Detached
+//Front3rdSlowBumpSetting=0//1
+//Front3rdFastBumpSetting=0//1
+//Front3rdSlowReboundSetting=0//1
+//Front3rdFastReboundSetting=0//1
+//Rear3rdPackerSetting=0//0.0 cm
+//Rear3rdSpringSetting=0//Detached
+//Rear3rdSlowBumpSetting=0//1
+//Rear3rdFastBumpSetting=0//1
+//Rear3rdSlowReboundSetting=0//1
+//Rear3rdFastReboundSetting=0//1
+
+[CONTROLS]
+//SteerLockSetting=4//14.0 deg
+//RearBrakeSetting=12//68.0:32.0
+//BrakePressureSetting=5//95%
+//HandbrakePressSetting=0//100%
+
+[ENGINE]
+//RevLimitSetting=0//6,350
+//EngineBoostSetting=1//2
+//EngineBrakingMapSetting=0//0
+
+[DRIVELINE]
+//FinalDriveSetting=0//14/36 (bevel 10/10)
+//ReverseSetting=0//14/40 (7.347)
+Gear1Setting=0//14/40 (7.347)
+Gear2Setting=1//16/36 (5.786)
+Gear3Setting=2//16/29 (4.661)
+Gear4Setting=3//20/30 (3.857)
+Gear5Setting=4//23/29 (3.242)
+Gear6Setting=5//21/23 (2.816)
+//DiffPumpSetting=0//0%
+//DiffPowerSetting=7//22%
+//DiffCoastSetting=12//40%
+//DiffPreloadSetting=20//21
+//RearSplitSetting=0// 0.0:100.0
+
+[FRONTLEFT]
+//CamberSetting=15//-3.0 deg
+//PressureSetting=35//150 kPa
+//PackerSetting=4//0.4 cm
+//SpringSetting=6//200 N/mm
+//SpringRubberSetting=0//Detached
+//RideHeightSetting=14//3.4 cm
+//SlowBumpSetting=9//10
+//FastBumpSetting=9//10
+//SlowReboundSetting=9//10
+//FastReboundSetting=9//10
+//BrakeDiscSetting=0//3.0 cm
+//BrakePadSetting=0//1
+
+[FRONTRIGHT]
+//CamberSetting=15//-3.0 deg
+//PressureSetting=35//150 kPa
+//PackerSetting=4//0.4 cm
+//SpringSetting=6//200 N/mm
+//SpringRubberSetting=0//Detached
+//RideHeightSetting=14//3.4 cm
+//SlowBumpSetting=9//10
+//FastBumpSetting=9//10
+//SlowReboundSetting=9//10
+//FastReboundSetting=9//10
+//BrakeDiscSetting=0//3.0 cm
+//BrakePadSetting=0//1
+
+[REARLEFT]
+//CamberSetting=11//-2.4 deg
+//PressureSetting=35//150 kPa
+//PackerSetting=6//0.6 cm
+//SpringSetting=6//185 N/mm
+//SpringRubberSetting=0//Detached
+//RideHeightSetting=13//4.8 cm
+//SlowBumpSetting=8//9
+//FastBumpSetting=8//9
+//SlowReboundSetting=8//9
+//FastReboundSetting=8//9
+//BrakeDiscSetting=0//3.0 cm
+//BrakePadSetting=0//1
+
+[REARRIGHT]
+//CamberSetting=11//-2.4 deg
+//PressureSetting=35//150 kPa
+//PackerSetting=6//0.6 cm
+//SpringSetting=6//185 N/mm
+//SpringRubberSetting=0//Detached
+//RideHeightSetting=13//4.8 cm
+//SlowBumpSetting=8//9
+//FastBumpSetting=8//9
+//SlowReboundSetting=8//9
+//FastReboundSetting=8//9
+//BrakeDiscSetting=0//3.0 cm
+//BrakePadSetting=0//1
+
+[BASIC]
+Downforce=0.500000
+Balance=0.500000
+Ride=0.500000
+Gearing=0.500000
+Custom=1
+
