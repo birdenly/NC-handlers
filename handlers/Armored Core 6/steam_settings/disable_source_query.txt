@@ -1,0 +1,1 @@
+Do not send server details for the server browser. Only works for game servers.
