@@ -1,10 +1,10 @@
 ﻿Game.KillMutex = ["Legendary_5"];
-Game.DirSymlinkExclusions = ["Binaries"];
+Game.FileSymlinkCopyInstead = ["DefaultEngine.ini", "BaseEngine.ini"];
 Game.GameName = "Legendary";
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
-Game.SymlinkFolders = true;
+Game.SymlinkFolders = false;
 Game.ExecutableName = "Legendary.exe";
 Game.SteamID = "16730";
 Game.GUID = "Legendary";
@@ -12,13 +12,8 @@ Game.MaxPlayers = 16;
 Game.MaxPlayersOneMonitor = 16;
 Game.BinariesFolder = "Binaries";
 Game.UseNucleusEnvironment = true;
-
-Game.NeedsSteamEmulation = true;//?
-Game.UseSteamless = true;//?
-
 Game.Hook.ForceFocus = true;
 Game.Hook.ForceFocusWindowName = "Legendary";
-Game.SetWindowHook = false;
 Game.Hook.DInputEnabled = false;
 Game.Hook.XInputEnabled = false;
 Game.Hook.XInputReroute = false;
@@ -26,11 +21,10 @@ Game.XInputPlusDll = [];
 Game.Hook.CustomDllEnabled = false;
 Game.UserProfileConfigPath = "Documents\\My Games\\Legendary\\PandoraGame\\Config";
 Game.UserProfileSavePath = "Documents\\My Games\\Legendary\\PandoraGame\\SaveData";
-Game.UserProfileSavePathNoCopy = true;
 Game.Description =
-  "Go into multiplayer > LAN > make a name > Create a match in one instance and join in with quick match.\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
-Game.PauseBetweenProcessGrab = 5;
-Game.PauseBetweenStarts = 5;
+  "Important: Start the main game once before trying split screen.\n\nGo into multiplayer > LAN > make a name > Create a match in one instance and join in with quick match.\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+Game.PauseBetweenProcessGrab = 8;
+Game.PauseBetweenStarts = 8;
 
 //USS deprecated options:
 
@@ -59,7 +53,7 @@ Game.DrawFakeMouseCursor = false;
 
 Game.SupportsMultipleKeyboardsAndMice = true;
 
-Game.ProtoInput.InjectStartup = false;
+Game.ProtoInput.InjectStartup = true;
 Game.ProtoInput.InjectRuntime_RemoteLoadMethod = false;
 Game.ProtoInput.InjectRuntime_EasyHookMethod = true;
 Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = false;
@@ -85,6 +79,8 @@ Game.ProtoInput.CursorVisibilityHook = false;
 Game.ProtoInput.ClipCursorHook = true;
 Game.ProtoInput.FocusHooks = true;
 Game.ProtoInput.ClipCursorHookCreatesFakeClip = true;
+Game.ProtoInput.SetWindowPosHook = true;
+Game.ProtoInput.SetWindowStyleHook = true;
 
 Game.ProtoInput.RawInputFilter = false;
 Game.ProtoInput.MouseMoveFilter = false;
@@ -175,8 +171,33 @@ Game.ProtoInput.OnInputUnlocked = function() {
 
 Game.Play = function() {
   if (Context.IsKeyboardPlayer) {
-    Context.StartArguments = "-windowed -AlwaysFocus -nosplash -nostartupmovies -NoController" + " -ResX= " + Context.Width + " -ResY= " + Context.Height;
+    Context.StartArguments = "-windowed -AlwaysFocus -nosplash -nostartupmovies -NoController -ResX= " + Context.Width + " -ResY= " + Context.Height;
   } else {
-    Context.StartArguments = "-windowed -AlwaysFocus -nosplash -nostartupmovies -nomouse" + " -ResX= " + Context.Width + " -ResY= " + Context.Height;
+    Context.StartArguments = "-windowed -AlwaysFocus -nosplash -nostartupmovies -ResX= " + Context.Width + " -ResY= " + Context.Height;
   }
+
+  var savePath = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\PandoraEngine.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+    new Nucleus.IniSaveInfo("SystemSettings", "ResX", Context.Width),
+    new Nucleus.IniSaveInfo("SystemSettings", "ResY", Context.Height),
+    new Nucleus.IniSaveInfo("SystemSettings", "Fullscreen", "False"),
+    new Nucleus.IniSaveInfo("SystemSettings", "AllowD3D10", "False")
+  ]);
+
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\PandoraGame\\Config\\DefaultEngine.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+    new Nucleus.IniSaveInfo("SystemSettings", "ResX", Context.Width),
+    new Nucleus.IniSaveInfo("SystemSettings", "ResY", Context.Height),
+    new Nucleus.IniSaveInfo("SystemSettings", "Fullscreen", "False"),
+    new Nucleus.IniSaveInfo("SystemSettings", "AllowD3D10", "False")
+  ]);
+
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Config\\BaseEngine.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+    new Nucleus.IniSaveInfo("SystemSettings", "ResX", Context.Width),
+    new Nucleus.IniSaveInfo("SystemSettings", "ResY", Context.Height),
+    new Nucleus.IniSaveInfo("SystemSettings", "Fullscreen", "False"),
+    new Nucleus.IniSaveInfo("SystemSettings", "AllowD3D10", "False")
+  ]);
+
 };
