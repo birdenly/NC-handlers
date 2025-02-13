@@ -1,11 +1,7 @@
 var answers1 = ["30", "60", "90", "120", "144", "0"];
 Game.AddOption("Select the FPS cap.", "0 is for unlimited FPS", "fps", answers1);
 
-Game.FileSymlinkCopyInstead = [
-"D3D12Core.dll",
-"tbb.dll",
-"tbbmalloc.dll",
-];
+Game.FileSymlinkCopyInstead = ["D3D12Core.dll", "tbb.dll", "tbbmalloc.dll"];
 Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt"];
 Game.DirSymlinkExclusions = ["Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv157\\Win64", "BET\\Binaries\\Win64"];
 
@@ -72,8 +68,8 @@ Game.SupportsMultipleKeyboardsAndMice = true;
 
 Game.ProtoInput.InjectStartup = false;
 Game.ProtoInput.InjectRuntime_RemoteLoadMethod = false;
-Game.ProtoInput.InjectRuntime_EasyHookMethod = false;
-Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = true;
+Game.ProtoInput.InjectRuntime_EasyHookMethod = true;
+Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = false;
 
 Game.LockInputAtStart = false;
 Game.LockInputSuspendsExplorer = true;
@@ -154,16 +150,13 @@ Game.ProtoInput.OnInputLocked = function() {
     ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseButtonFilterID);
     ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.KeyboardButtonFilterID);
 
-    
     ProtoInput.StartFocusMessageLoop(player.ProtoInputInstanceHandle, 50, true, true, true, true, true);
-		System.Threading.Thread.Sleep(1000);
+    System.Threading.Thread.Sleep(1000);
     ProtoInput.StopFocusMessageLoop(player.ProtoInputInstanceHandle);
 
     ProtoInput.SetDrawFakeCursor(player.ProtoInputInstanceHandle, true);
 
     //ProtoInput.StartFocusMessageLoop(player.ProtoInputInstanceHandle, 5000, true, true, true, true, true);
-
-    
   }
 };
 
@@ -171,7 +164,6 @@ Game.ProtoInput.OnInputUnlocked = function() {
   for (var i = 0; i < PlayerList.Count; i++) {
     var player = PlayerList[i];
 
-    
     if (Context.IsKeyboardPlayer) {
       ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetKeyStateHookID);
       ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetAsyncKeyStateHookID);
@@ -183,7 +175,7 @@ Game.ProtoInput.OnInputUnlocked = function() {
     ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetRawInputDataHookID);
     ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.RegisterRawInputHookID);
     ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.MessageFilterHookID);
-    
+
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.RawInputFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseMoveFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseActivateFilterID);
@@ -192,13 +184,12 @@ Game.ProtoInput.OnInputUnlocked = function() {
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseWheelFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseButtonFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.KeyboardButtonFilterID);
-    
+
     ProtoInput.SetDrawFakeCursor(player.ProtoInputInstanceHandle, false);
   }
 };
 
 Game.Play = function() {
-
   var FPS = Context.Options["fps"];
 
   var Args = (Context.Args = " -windowed -AlwaysFocus -ResX= " + Context.Width + " -ResY= " + Context.Height);
@@ -216,14 +207,12 @@ Game.Play = function() {
     new Nucleus.IniSaveInfo("/Script/BETGame.BETGameUserSettings", "PreferredFullscreenMode", 2),
     new Nucleus.IniSaveInfo("/Script/BETGame.BETGameUserSettings", "FrameRateLimit", FPS + ".000000"),
     new Nucleus.IniSaveInfo("/Script/BETGame.BETGameUserSettings", "MicrophoneVolume", "0.000000"),
-    new Nucleus.IniSaveInfo("/Script/BETGame.BETGameUserSettings", "bPushToTalkEnabled", "True"),
+    new Nucleus.IniSaveInfo("/Script/BETGame.BETGameUserSettings", "bPushToTalkEnabled", "True")
   ]);
 
   //thanks to zensuu
   var ngincfg = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\Windows\\Engine.ini";
-  Context.ModifySaveFile(ngincfg, ngincfg, Nucleus.SaveType.INI, [
-    new Nucleus.IniSaveInfo("/Script/Engine.LocalPlayer", "AspectRatioAxisConstraint", "AspectRatio_MaintainYFOV")
-  ]);
+  Context.ModifySaveFile(ngincfg, ngincfg, Nucleus.SaveType.INI, [new Nucleus.IniSaveInfo("/Script/Engine.LocalPlayer", "AspectRatioAxisConstraint", "AspectRatio_MaintainYFOV")]);
 
   if (Context.AspectRatioDecimal < 1.2) {
     Context.ModifySaveFile(ngincfg, ngincfg, Nucleus.SaveType.INI, [new Nucleus.IniSaveInfo("/Script/Engine.LocalPlayer", "AspectRatioAxisConstraint", "AspectRatio_MaintainXFOV")]);
