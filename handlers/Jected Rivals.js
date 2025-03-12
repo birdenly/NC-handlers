@@ -12,11 +12,9 @@ Game.ExecutableName = "JectedRivals-Win64-Shipping.exe";
 Game.SteamID = "1366850";
 Game.GUID = "Jected Rivals";
 Game.GameName = "Jected Rivals";
-Game.MaxPlayers = 4;
-Game.MaxPlayersOneMonitor = 4;
+Game.MaxPlayers = 18;
+Game.MaxPlayersOneMonitor = 18;
 Game.BinariesFolder = "JectedRivals\\Binaries\\Win64";
-Game.LauncherTitle = "";
-Game.HideTaskbar = true;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "JectedRivals";
 Game.Hook.DInputEnabled = false;
@@ -25,7 +23,7 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "Go into the menu > PLAY > CUSTOM > HOST MAP than create the match with the other players just join the match in the CUSTOM menu.\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked. ";
+  "IMPORTANT: Start the game once and change some settings before trying split screen\n\nGo into the menu > PLAY > CUSTOM > HOST MAP than create the match with the other players just join the match in the CUSTOM menu.\n\nIn vertical split, menus are weird but in-game looks good. While in horizontal split, the menus lookgs good but in-game looks weird\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 10;
 
@@ -201,7 +199,22 @@ Game.Play = function() {
     new Nucleus.IniSaveInfo("/Game/Settings/BP_GameUserSettings.BP_GameUserSettings_C", "FrameRateLimit", FPS + ".000000")
   ]);
 
-  var numPlayers = 0;
+  var savePath = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\WindowsNoEditor\\Settings.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+    new Nucleus.IniSaveInfo("Settings", "r.setres", Context.Width+"x"+Context.Height+"w"),
+    new Nucleus.IniSaveInfo("Settings", "t.MaxFps", FPS),
+    new Nucleus.IniSaveInfo("Settings", "r.FullScreenMode", 2),
+  ]);
+
+  if (Context.PlayerID == 0) {
+    Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+      new Nucleus.IniSaveInfo("Settings", "IngameMusicVolume", "0.700000")
+    ]);
+  }else{
+    Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+      new Nucleus.IniSaveInfo("Settings", "IngameMusicVolume", "0.000000"),
+    ]);
+  }
   
   var folder = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv151\\Win64\\steam_settings"
   System.IO.Directory.CreateDirectory(folder);
@@ -214,21 +227,4 @@ Game.Play = function() {
   ];
 
   Context.WriteTextFile(autoExec, lines);
-
-  for (var i = 0; i < PlayerList.Count; i++) {
-    var player = PlayerList[i];
-
-    if (player.IsXInput && player.ScreenIndex !== -1) {
-      numPlayers++;
-    }
-    player.ProtoController1 = Context.GamepadId;
-    player.ProtoController2 = Context.GamepadId;
-    player.ProtoController3 = Context.GamepadId;
-    player.ProtoController4 = Context.GamepadId;
-    player.ProtoController5 = Context.GamepadId;
-    player.ProtoController6 = Context.GamepadId;
-    player.ProtoController7 = Context.GamepadId;
-    player.ProtoController8 = Context.GamepadId;
-    player.ProtoController9 = Context.GamepadId;
-  }
 };
