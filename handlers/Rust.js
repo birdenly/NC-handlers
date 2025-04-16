@@ -1,8 +1,3 @@
-Hub.Handler.Version = 1; // Released at https://hub.splitscreen.me/ on Mon Feb 26 2024 06:10:40 GMT+0000 (Coordinated Universal Time).
-Hub.Handler.Id = "Mcrs6G2ePDFivMq3e";
-Hub.Maintainer.Name = "birden";
-Hub.Maintainer.Id = "rRycxSn253ZCjQy5C";
-
 Game.ExecutableContext = ["RustClient_Data"];
 
 var answers4 = ["30", "45", "60", "75", "90", "120"];
@@ -110,8 +105,6 @@ Game.Description =
 Game.KeepSymLinkOnExit = true;
 Game.PauseBetweenStarts = 10;
 
-Game.UseGoldberg = true;
-Game.GoldbergWriteSteamIDAndAccount = true;
 Game.SetWindowHook = true;
 
 //USS deprecated options:
@@ -232,13 +225,25 @@ Game.Play = function() {
     Context.ReplaceLinesInTextFile(txtPath, dict);
   }
 
-  var filePath = (Context.filePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\RustClient_Data\\Plugins\\x86_64\\steam_settings");
-  System.IO.Directory.CreateDirectory(filePath);
+  Context.CopyFolder(Context.ScriptFolder + "\\steam", Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\RustClient_Data\\Plugins\\x86_64");
 
-  var autoExec = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\RustClient_Data\\Plugins\\x86_64\\steam_settings\\DLC.txt";
-  var lines = ["1670430=	Rust Voice Props Pack", "1374000=Rust Secretlab Chair", "1353060=Rust Sunburn Pack", "1174370=Instrument Pack ", "494560=Rust - Early Access Ident"];
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\RustClient_Data\\Plugins\\x86_64\\steam_settings\\configs.user.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+  new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
+  new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
+  new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang),
+  ]);
+  
+  Context.CopyFolder(Context.ScriptFolder + "\\steam", Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\rust_dedicated");
 
-  Context.WriteTextFile(autoExec, lines);
+  Context.CopyFolder(Context.ScriptFolder + "\\steam", Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\rust_dedicated\\RustDedicated_Data\\Plugins\\x86_64");
+
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\rust_dedicated\\RustDedicated_Data\\Plugins\\x86_64\\steam_settings\\configs.user.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+  new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
+  new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
+  new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang),
+  ]);
 
   if (Context.PlayerID == 0) {
     var server = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\CopyPaste.bat";
