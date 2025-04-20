@@ -1,8 +1,3 @@
-Hub.Handler.Version = 3; // Released at https://hub.splitscreen.me/ on Sun Oct 22 2023 21:21:49 GMT+0000 (Coordinated Universal Time).
-Hub.Handler.Id = "LNzbgwdX2vuaS9fPa";
-Hub.Maintainer.Name = "birden";
-Hub.Maintainer.Id = "rRycxSn253ZCjQy5C";
-
 var answers1 = ["30", "45", "60", "75", "90", "105", "120", "144", "165", "200"];
 Game.AddOption("Select the FPS cap.", "", "fps", answers1);
 
@@ -22,7 +17,6 @@ Game.AddOption(
   answers3
 );
 
-Game.ExecutableContext = ["launcher.exe"];
 Game.FileSymlinkCopyInstead = [
   "launcher.vdf",
   "autoexec_client_dev.cfg",
@@ -113,7 +107,7 @@ Game.DirSymlinkCopyInstead = ["platform\\cfg"];
 
 Game.DirSymlinkExclusions = ["cfg", "bin", "platform"];
 
-Game.KillProcessesOnClose = ["F2 connect", "Names", 'cmd', 'JoyToKey']; 
+Game.KillProcessesOnClose = ["F2 connect", "Names", "cmd", "JoyToKey"];
 
 Game.DirSymlinkCopyInsteadIncludeSubFolders = true;
 
@@ -269,8 +263,6 @@ Game.ProtoInput.OnInputUnlocked = function() {
 };
 
 Game.Play = function() {
-
-      
   Context.RunAdditionalFiles([Context.ScriptFolder + "\\names.exe"], false, 10);
   Context.RunAdditionalFiles([Context.ScriptFolder + "\\JoyToKey.exe"], false, 10);
   Context.RunAdditionalFiles([Context.ScriptFolder + "\\F2 connect.exe"], false, 10);
@@ -350,8 +342,7 @@ Game.Play = function() {
     var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\platform\\cfg\\bind.cfg";
     var dict = [Context.FindLineNumberInTextFile(txtPath, "//// UTILITY          ////", Nucleus.SearchType.StartsWith) + '|net_setkey "rHWboeNIOa+UzGJHEHOdaA=="'];
     Context.ReplaceLinesInTextFile(txtPath, dict);
-  }else{
-
+  } else {
     var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\platform\\cfg\\game.cfg";
     var dict = [Context.FindLineNumberInTextFile(txtPath, "//////////////////////////", Nucleus.SearchType.StartsWith) + "|platform_user_id " + 1000 + Context.PlayerID];
     Context.ReplaceLinesInTextFile(txtPath, dict);
@@ -359,8 +350,6 @@ Game.Play = function() {
     var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\platform\\cfg\\bind.cfg";
     var dict = [Context.FindLineNumberInTextFile(txtPath, "//// UTILITY          ////", Nucleus.SearchType.StartsWith) + "|platform_user_id " + 1000 + Context.PlayerID];
     Context.ReplaceLinesInTextFile(txtPath, dict);
-
-
   }
   var server = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\CopyPaste.bat";
   var lines = ['echo|set /p=connect 127.0.0.1:37015;net_setkey "rHWboeNIOa+UzGJHEHOdaA=="|clip', "quit"];
