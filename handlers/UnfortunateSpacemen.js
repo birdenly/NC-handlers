@@ -1,9 +1,7 @@
 ﻿
-var answers1 = ["30","40","50","60","70","80","90","100","110","120"];
+var answers1 = ["30","60","90","120"];
 Game.AddOption("Select the FPS cap.", "", "fps", answers1);
 
-// Game.FileSymlinkCopyInstead = ["OpenImageDenoise.dll", "steam_appid.txt", "tbb.dll", "tbb12.dll","boost_thread-vc142-mt-x64-1_70.dll","boost_system-vc142-mt-x64-1_70.dll","boost_regex-vc142-mt-x64-1_70.dll","boost_python39-vc142-mt-x64-1_70.dll","boost_program_options-vc142-mt-x64-1_70.dll","boost_iostreams-vc142-mt-x64-1_70.dll","boost_chrono-vc142-mt-x64-1_70.dll","boost_atomic-vc142-mt-x64-1_70.dll","D3D12Core.dll"];
-Game.KillProcessesOnClose = ["JoyToKey","F2"]; 
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
@@ -15,7 +13,6 @@ Game.GameName = "Unfortunate Spacemen";
 Game.MaxPlayers = 16;
 Game.MaxPlayersOneMonitor = 16;
 Game.BinariesFolder = "UnfortunateSpacemen\\Binaries\\Win64";
-Game.HideTaskbar = true;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "UNFORTUNATE SPACEMEN";
 Game.Hook.DInputEnabled = false;
@@ -24,7 +21,7 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "IMPORTANT: start the main game once before playing in split screen and vertical split will have stuff cut off\n\nThe handler adds 'full controller support' while input isnt locked being the left trigger the left click of your mouse. You can press F2 to disable it/enable it.\n\nIn the main menu go into PLAY > create a lobby (DONT MAKE IT LAN) > wait for others to join with server browser.\n\nAfter all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked";
+  "IMPORTANT: start the main game once before playing in split screen and vertical split will have menus cut off\n\nIn the main menu go into PLAY > create a lobby (DONT MAKE IT LAN) > wait for others to join with server browser.\n\nAfter all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 10;
 
@@ -34,7 +31,7 @@ Game.RefreshWindowAfterStart = true;
 Game.SetWindowHook = true;
 
 Game.UseNucleusEnvironment = true;
-Game.UserProfileConfigPath = "AppData\\Local\\UnfortunateSpacemen\\Saved\\Config\\WindowsNoEditor";
+Game.UserProfileConfigPath = "AppData\\Local\\UnfortunateSpacemen\\Saved\\Config";
 Game.UserProfileSavePath = "AppData\\Local\\UnfortunateSpacemen\\Saved\\SaveGames";
 
 //USS deprecated options:
@@ -183,38 +180,20 @@ Game.ProtoInput.OnInputUnlocked = function() {
 
 Game.Play = function() {
 
-  // Context.RunAdditionalFiles([Context.ScriptFolder + "\\JoyToKey.exe"], false, 10);
-  // Context.RunAdditionalFiles([Context.ScriptFolder + "\\F2.exe"], false, 30);
-
   var FPS = Context.Options["fps"];
 
-  var Args = (Context.Args = " -windowed " + " -AlwaysFocus " + " -ResX= " + Context.Width + " -ResY= " + Context.Height);
+  Context.StartArguments = " -windowed -ResX= " + Context.Width + " -ResY= " + Context.Height;
 
-  Context.StartArguments = Args;
+  Context.CopyFolder(Context.ScriptFolder, Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
 
-  var filePath = Context.filePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\steam_settings";
-  System.IO.Directory.CreateDirectory(filePath);	
-
-  var autoExec = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\steam_settings\\DLC.txt";
-  var lines = [
-  "1349010=Unfortunate Spacemen - Death Proof Edition"
-  ]
-  Context.WriteTextFile(autoExec, lines);
-
-
-  if (!System.IO.File.Exists(Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\GameUserSettings.ini")) {
-
-    var savePath = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\GameUserSettings.ini";
-    var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "GameUserSettings.ini");
-    System.IO.File.Copy(savePkgOrigin, savePath, true);
-
-  }
-
-  var savePath = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\GameUserSettings.ini";
+  var savePath = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\WindowsNoEditor\\GameUserSettings.ini";
   Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "LastUserConfirmedDesiredScreenWidth", Context.Width),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "LastUserConfirmedDesiredScreenHeight", Context.Height),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "PreferredFullscreenMode", 2),
+    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "ResolutionSizeX", Context.Width),
+    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "ResolutionSizeY", Context.Height),
+    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "LastUserConfirmedResolutionSizeX", Context.Width),
+    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "LastUserConfirmedResolutionSizeY", Context.Height),
+    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "FullscreenMode", 2),
+    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "LastConfirmedFullscreenMode", 2),
     new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "FrameRateLimit", FPS + ".000000")
   ]);
 };
