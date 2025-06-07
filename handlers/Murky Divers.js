@@ -29,7 +29,7 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "IMPORTANT: Start the game once and change some settings before trying split screen, you can cap the FPS in the game settings.\n\nHost a lobby on one instance and join with others through the lobby browser.\n\nREAD: After all the instances have launched, resized and positioned correctly, alt+tab to the Nucleus Co-op screen than press the END key once to lock the input for all instances to have their own working cursor, keyboard and controllers. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+  "IMPORTANT: Start the game once and change the game to WINDOWED MODE before trying split screen, you can cap the FPS in the game settings.\n\nHost a lobby on one instance and join with others through the lobby browser.\n\nREAD: After all the instances have launched, resized and positioned correctly, alt+tab to the Nucleus Co-op screen than press the END key once to lock the input for all instances to have their own working cursor, keyboard and controllers. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 10;
 
@@ -192,9 +192,6 @@ Game.ProtoInput.OnInputUnlocked = function() {
 };
 
 Game.Play = function() {
-
-  var FPS = Context.Options["fps"];
-
   var Args = (Context.Args = " -windowed -AlwaysFocus -ResX= " + Context.Width + " -ResY= " + Context.Height);
 
   Context.StartArguments = Args;
