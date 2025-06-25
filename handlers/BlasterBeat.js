@@ -1,14 +1,11 @@
-
-var answers1 = ["60","120"];
+var answers1 = ["60", "120"];
 Game.AddOption("Select the FPS cap.", "", "fps", answers1);
 
-// Game.FileSymlinkCopyInstead = ["OpenImageDenoise.dll", "steam_appid.txt", "tbb.dll", "tbb12.dll","boost_thread-vc142-mt-x64-1_70.dll","boost_system-vc142-mt-x64-1_70.dll","boost_regex-vc142-mt-x64-1_70.dll","boost_python39-vc142-mt-x64-1_70.dll","boost_program_options-vc142-mt-x64-1_70.dll","boost_iostreams-vc142-mt-x64-1_70.dll","boost_chrono-vc142-mt-x64-1_70.dll","boost_atomic-vc142-mt-x64-1_70.dll","D3D12Core.dll"];
-Game.FileSymlinkExclusions = ["xinput1_3.dll"]
+Game.FileSymlinkExclusions = ["xinput1_4.dll"];
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
 Game.SymlinkFolders = false;
-Game.KeepSymLinkOnExit = true;
 Game.ExecutableName = "BlasterBeat-Win64-Shipping.exe";
 Game.SteamID = "2025320";
 Game.GUID = "BlasterBeat";
@@ -16,7 +13,6 @@ Game.GameName = "BlasterBeat";
 Game.MaxPlayers = 8;
 Game.MaxPlayersOneMonitor = 8;
 Game.BinariesFolder = "BlasterBeat\\Binaries\\Win64";
-Game.LauncherTitle = "";
 Game.HideTaskbar = true;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "BlasterBeat";
@@ -24,16 +20,16 @@ Game.Hook.DInputEnabled = false;
 Game.Hook.XInputEnabled = true;
 Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
-Game.XInputPlusDll = ["xinput1_3.dll"];
+Game.XInputPlusDll = ["xinput1_4.dll"];
 Game.Description =
-  "IMPORTANT: start the main game once before playing in split screen\n\nIn the main menu go into 'Create or find game' > create game > choose what you want > when the match is created on the right you can invite the other players. Other players can also join through the server browser.\n\nAfter all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked\n\nFOR WORKSHOP SONGS: Download the ones you want than go into the folder steamapps > workshop > content > 1575680 , in this folder copy all the songs you want than go into your nucleus coop folder > handlers > BlasterBeat and paste the folders you copied in there. To use them, create a custom tracks match and whn going to add a song check the SELF CREATED option and they will appear";
+  "IMPORTANT: start the main game once before playing in split screen. Highly reccomend to use keyboard/mouse while in the menus as they are a weird with controllers.\n\nIn the main menu go into 'Create or find game' > create game > choose what you want > when the match is created on the right you can invite the other players. Other players can also join through the server browser.\n\nAfter all the instances have launched, resized and positioned correctly, Click once on each screen, than press ctrl+h than press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked\n\nFOR WORKSHOP SONGS: Download the ones you want than go into the folder steamapps > workshop > content > 1575680 , in this folder copy all the songs you want than go into your nucleus coop folder > handlers > BlasterBeat and paste the folders you copied in there. To use them, create a custom tracks match and when going to add a song check the SELF CREATED option and they will appear (name only, no cover), this is buggy but works.";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 20;
 
 Game.UseGoldberg = true;
 
 Game.RefreshWindowAfterStart = true;
-Game.SetWindowHook = true;
+// Game.SetWindowHook = true;
 
 Game.UseNucleusEnvironment = true;
 Game.UserProfileConfigPath = "AppData\\Local\\BlasterBeat\\Saved\\Config";
@@ -150,16 +146,13 @@ Game.ProtoInput.OnInputLocked = function() {
     ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseButtonFilterID);
     ProtoInput.EnableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.KeyboardButtonFilterID);
 
-    
     ProtoInput.StartFocusMessageLoop(player.ProtoInputInstanceHandle, 50, true, true, true, true, true);
-		System.Threading.Thread.Sleep(1000);
+    System.Threading.Thread.Sleep(1000);
     ProtoInput.StopFocusMessageLoop(player.ProtoInputInstanceHandle);
 
     ProtoInput.SetDrawFakeCursor(player.ProtoInputInstanceHandle, true);
 
     //ProtoInput.StartFocusMessageLoop(player.ProtoInputInstanceHandle, 5000, true, true, true, true, true);
-
-    
   }
 };
 
@@ -167,7 +160,6 @@ Game.ProtoInput.OnInputUnlocked = function() {
   for (var i = 0; i < PlayerList.Count; i++) {
     var player = PlayerList[i];
 
-    
     if (Context.IsKeyboardPlayer) {
       ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetKeyStateHookID);
       ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetAsyncKeyStateHookID);
@@ -179,7 +171,7 @@ Game.ProtoInput.OnInputUnlocked = function() {
     ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetRawInputDataHookID);
     ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.RegisterRawInputHookID);
     ProtoInput.UninstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.MessageFilterHookID);
-    
+
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.RawInputFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseMoveFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseActivateFilterID);
@@ -188,13 +180,12 @@ Game.ProtoInput.OnInputUnlocked = function() {
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseWheelFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.MouseButtonFilterID);
     ProtoInput.DisableMessageFilter(player.ProtoInputInstanceHandle, ProtoInput.Values.KeyboardButtonFilterID);
-    
+
     ProtoInput.SetDrawFakeCursor(player.ProtoInputInstanceHandle, false);
   }
 };
 
 Game.Play = function() {
-  
   var FPS = Context.Options["fps"];
 
   var Args = (Context.Args = " -windowed " + " -AlwaysFocus " + " -ResX= " + Context.Width + " -ResY= " + Context.Height);
@@ -215,31 +206,10 @@ Game.Play = function() {
     new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "FrameRateLimit", FPS + ".000000")
   ]);
 
- 
-  var steamSettings = Context.GetFolder(Nucleus.Folder.InstancedGameFolder)+"\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv153\\Win64\\steam_settings"
+  var steamSettings = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv157\\Win64\\steam_settings";
   if (!System.IO.Directory.Exists(steamSettings)) {
-      System.IO.Directory.CreateDirectory(steamSettings);
-      System.IO.Directory.CreateDirectory(steamSettings + "\\mods");
+    System.IO.Directory.CreateDirectory(steamSettings);
+    System.IO.Directory.CreateDirectory(steamSettings + "\\mods");
   }
-  Context.CopyFolder(Context.ScriptFolder, Context.GetFolder(Nucleus.Folder.InstancedGameFolder)+"\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv153\\Win64\\steam_settings\\mods");
-
-
-  // var numPlayers = 0;
-
-  // for (var i = 0; i < PlayerList.Count; i++) {
-  //   var player = PlayerList[i];
-
-  //   if (player.IsXInput && player.ScreenIndex !== -1) {
-  //     numPlayers++;
-  //   }
-  //   player.ProtoController1 = Context.GamepadId;
-  //   player.ProtoController2 = Context.GamepadId;
-  //   player.ProtoController3 = Context.GamepadId;
-  //   player.ProtoController4 = Context.GamepadId;
-  //   player.ProtoController5 = Context.GamepadId;
-  //   player.ProtoController6 = Context.GamepadId;
-  //   player.ProtoController7 = Context.GamepadId;
-  //   player.ProtoController8 = Context.GamepadId;
-  //   player.ProtoController9 = Context.GamepadId;
-  // }
+  Context.CopyFolder(Context.ScriptFolder, Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv157\\Win64\\steam_settings\\mods");
 };
