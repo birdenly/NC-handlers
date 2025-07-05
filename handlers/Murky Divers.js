@@ -6,7 +6,7 @@ Game.FileSymlinkCopyInstead = [
 "tbbmalloc.dll",
 ];
 Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt","EOSSDK-Win64-Shipping.dll"];
-Game.DirSymlinkExclusions = ["MurkyDivers\\Plugins\\SteamCorePro\\Source\\ThirdParty\\SteamLibrary\\redistributable_bin\\win64", "MurkyDivers\\Binaries\\Win64","Engine\\Binaries\\Win64"];
+Game.DirSymlinkExclusions = ["MurkyDivers\\Plugins\\SteamIntea3aafa760efV4\\Source\\SteamSdk\\redistributable_bin\\win64", "MurkyDivers\\Binaries\\Win64","Engine\\Binaries\\Win64"];
 
 Game.HandlerInterval = 500;
 Game.SymlinkExe = false;
@@ -196,7 +196,14 @@ Game.Play = function() {
 
   Context.StartArguments = Args;
 
-  Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\MurkyDivers\\Plugins\\SteamCorePro\\Source\\ThirdParty\\SteamLibrary\\redistributable_bin\\win64");
+  Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\MurkyDivers\\Plugins\\SteamIntea3aafa760efV4\\Source\\SteamSdk\\redistributable_bin\\win64");
+
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\MurkyDivers\\Plugins\\SteamIntea3aafa760efV4\\Source\\SteamSdk\\redistributable_bin\\win64\\steam_settings\\configs.user.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+  new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
+  new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
+  new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang),
+  ]);
 
   var savePath = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\Windows\\GameUserSettings.ini";
   Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
