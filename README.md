@@ -7,6 +7,8 @@ Here are all the ones that got, or will, be [released officialy](https://hub.spl
 
 Some here wont be relased for some reasons, but do work.
 
+This repo is mostly a backup for all my work.
+
 ### Youtube playlist showcasing/tutorial of most of the released handlers
 
 [![Playlist](https://img.youtube.com/vi/4d33wK-omUs/0.jpg)](https://www.youtube.com/watch?v=4d33wK-omUs&list=PLFhk1l89TWLTsoiNsaHpt1qm6mvnWEnrH&index=1)
