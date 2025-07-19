@@ -14,15 +14,15 @@ Game.ExecutableName = "nzportable-sdl64.exe";
 Game.ExecutableToLaunch = "nzportable64.exe";
 Game.SteamID = "";
 Game.GUID = "Nazi Zombies portable";
-Game.MaxPlayers = 4;
-Game.MaxPlayersOneMonitor = 4;
+Game.MaxPlayers = 8;
+Game.MaxPlayersOneMonitor = 8;
 Game.BinariesFolder = "";
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "Nazi Zombies: Portable";
 Game.Hook.DInputEnabled = false;
-Game.Hook.XInputEnabled = true;
+Game.Hook.XInputEnabled = false;
 Game.Hook.XInputReroute = false;
-Game.XInputPlusDll = ["Xinput1_4.dll"];
+Game.XInputPlusDll = [];
 Game.Hook.CustomDllEnabled = false;
 Game.Description =
   "Tested with the win64 version of the game downloaded from here: https://github.com/nzp-team/nzportable/releases/tag/nightly\n\nIn the first instance make a cooperative game. After that click the prompt to launch the rest of the instances.\n\nAlt+tab to the keyboard/mouse screen if you have one, it will work properly when all screens do a soft restart.\n\nIn case one of the instances are in limbo after it joins a match, just restart the match.";
@@ -36,12 +36,24 @@ Game.PromptAfterFirstInstance = true;
 Game.RefreshWindowAfterStart = true;
 Game.FakeFocus = true;
 
+Game.ProtoInput.InjectStartup = false;
+Game.ProtoInput.InjectRuntime_RemoteLoadMethod = false;
+Game.ProtoInput.InjectRuntime_EasyHookMethod = true;
+Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = false;
+
+Game.LockInputAtStart = false;
+Game.LockInputSuspendsExplorer = true;
+Game.ProtoInput.FreezeExternalInputWhenInputNotLocked = true;
+
+Game.ProtoInput.XinputHook = true;
+Game.ProtoInput.UseOpenXinput = true;
+
 Game.Play = function() {
   var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\nzportable64.exe");
   var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "nzportable64.exe");
   System.IO.File.Copy(savePkgOrigin, savePath, true);
 
-  Game.ExecutableName = "nzportable64.exe";;
+  Game.ExecutableName = "nzportable64.exe";
 
   var FPS = Context.Options["fps"];
   var start = "";
@@ -60,9 +72,7 @@ Game.Play = function() {
   ];
   Context.ReplaceLinesInTextFile(cfgpath, dict);
 
-
   if (System.IO.File.Exists(Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\nzp\\user_settings.cfg")) {
-
     var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\nzp\\user_settings.cfg";
     var dict = [
       Context.FindLineNumberInTextFile(cfgpath, "cl_idlefps", Nucleus.SearchType.StartsWith) + '|cl_idlefps "' + FPS + '"',
@@ -76,7 +86,6 @@ Game.Play = function() {
       Context.FindLineNumberInTextFile(cfgpath, "seta vid_ultrawide_limiter", Nucleus.SearchType.StartsWith) + '|seta vid_ultrawide_limiter "0"'
     ];
     Context.ReplaceLinesInTextFile(cfgpath, dict);
-
   }
 
   if (Context.PlayerID != 0) {
