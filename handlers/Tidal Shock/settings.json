@@ -1,0 +1,33 @@
+{
+    "fullScreen": 1,
+    "resolution": {
+        "x": 1920,
+        "y": 540
+    },
+    "invertY": false,
+    "qualitySettings": 4,
+    "qualityVersion": 1,
+    "masterVolume": 1.0,
+    "musicVolume": 1.0,
+    "sfxVolume": 1.0,
+    "UIVolume": 1.0,
+    "mouseSensitivity": 0.0625,
+    "joystickSensitivity": 0.5,
+    "autoOrient": true,
+    "proHUD": false,
+    "debugHUD": false,
+    "controlsHUD": true,
+    "enableTutorial": true,
+    "reflections": true,
+    "dynamicFish": true,
+    "particles": true,
+    "vsync": false,
+    "ironSightMultiplier": 0.5,
+    "scopeMultiplier": 0.25,
+    "mouseOnlySledSensitivityMultiplier": 0.25,
+    "lastUsedSkin": 0,
+    "lastUsedSkinVariant": 0,
+    "lastUsedSledSkin": 0,
+    "lastUsedBlockerSkin": 0,
+    "antiAliasing": 2
+}
