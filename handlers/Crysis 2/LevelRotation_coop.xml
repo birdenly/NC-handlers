@@ -1,0 +1,9 @@
+<levelRotation name="TIA">
+<ServerInfo>
+<Variant name="Custom" minplayerlimit="1" >
+<Details motd="Have fun in split screen" />
+<Option setting="g_idlekicktime 2000" />
+</Variant>
+</ServerInfo>
+<level name="Wars/TerminalCoop" gameRules="Coop" />
+</levelRotation>

@@ -1,0 +1,29 @@
+<protect>
+	<add level="1" folder="%GAME_FOLDER%/Scripts/DataPatcher" recurse="1"/>
+	<add level="1" folder="%GAME_FOLDER%/Scripts/Entities/NanoSuit" recurse="1"/>
+	<add level="1" file="%GAME_FOLDER%/Scripts/Entities/actor/player.lua"/>
+	<add level="1" file="%GAME_FOLDER%/Scripts/Entities/actor/basicactor.lua"/>
+	<add level="1" file="%GAME_FOLDER%/Scripts/Entities/actor/parameters/player_params.xml"/>
+	<add level="1" file="%GAME_FOLDER%/Scripts/Network/entityscheduler.xml"/>
+	<add level="1" file="%GAME_FOLDER%/Scripts/utils/entityutils.lua"/>
+	<add level="1" file="%GAME_FOLDER%/Scripts/common.lua"/>
+	<add level="1" file="%GAME_FOLDER%/Scripts/Progression/Events.xml"/>
+	<add level="1" folder="%GAME_FOLDER%/Scripts/Entities/Items/Crysis2/Weapons/Humans" recurse="1"/>
+	<add level="1" folder="%GAME_FOLDER%/Scripts/Entities/Items/Crysis2/Accessories" recurse="1"/>
+	<add level="1" file="%GAME_FOLDER%/Scripts/Playlists/VariantsIndex.xml"/>
+	<add level="1" file="%GAME_FOLDER%/Scripts/Playlists/StandardVariants.xml"/>
+	<add level="1" file="%GAME_FOLDER%/Scripts/Utils/Math.lua"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_alien_vessel/Level.cfg"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_alien_vessel_small/Level.cfg"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_church/level.cfg"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_city_hall/level.cfg"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_cxp_liberty/level.cfg"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_cxp_liberty_mil/level.cfg"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_cxp_liberty_statue/level.cfg"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_downtown/level.cfg"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_lighthouse/level.cfg"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_pier/level.cfg"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_rooftop_gardens/level.cfg"/>
+	<add level="1" file="%GAME_FOLDER%/Levels/Wars/cw2_terminal/level.cfg"/>
+	<!-- <add level="1" allowClientAbsent="1" lateResolve="1" folder="%DLC_FOLDER%" recurse="1"/> -->
+</protect>

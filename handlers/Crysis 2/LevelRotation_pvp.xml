@@ -1,0 +1,40 @@
+<levelRotation name="Custom">
+<!-- name can be 'Custom' or one of the inbuilt ones - 'TIA', 'IA', 'ASSAULT', 'CTF', 'CRASH', 'EXTRACTION' -->
+	<ServerInfo>
+<Variant name="Custom">
+<!-- Can be: 'Standard', 'BeginnersPlayground', 'Pro', 'Solo', 'Vanilla', 'SingleLife', 'FastRounds' or 'Custom'  -->
+<Details motd="Welcome to the OpenSpy server" />
+<Option setting="g_scoreLimit 0" />
+<Option setting="gl_time 30.0" />
+<Option setting="g_timelimit 10" />
+<Option setting="g_gameRules_startTimerLength 1.0" />
+<Option setting="sv_ranked 1" />
+<Option setting="g_idlekicktime 2000" />
+</Variant>
+	</ServerInfo>
+	<level name="Wars/cw2_city_hall" gameRules="InstantAction" />
+	<level name="Wars/cw2_terminal" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_church" gameRules="InstantAction" />
+	<level name="Wars/cw2_collided_buildings" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_cxp_liberty_mil" gameRules="InstantAction" />
+	<level name="Wars/cw2_cxp_liberty_statue" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_downtown" gameRules="InstantAction" />
+	<level name="Wars/cw2_lighthouse" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_pier" gameRules="InstantAction" />
+	<level name="Wars/cw2_rooftop_gardens" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_rooftop_gardens" gameRules="CrashSite" />
+	<level name="Wars/cw2_alien_vessel" gameRules="InstantAction" />
+	<level name="Wars/cw2_alien_vessel_small" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_city_hall" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_terminal" gameRules="InstantAction" />
+	<level name="Wars/cw2_church" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_collided_buildings" gameRules="InstantAction" />
+	<level name="Wars/cw2_cxp_liberty_mil" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_cxp_liberty_statue" gameRules="InstantAction" />
+	<level name="Wars/cw2_downtown" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_lighthouse" gameRules="InstantAction" />
+	<level name="Wars/cw2_pier" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_rooftop_gardens" gameRules="InstantAction" />
+	<level name="Wars/cw2_alien_vessel" gameRules="TeamInstantAction" />
+	<level name="Wars/cw2_alien_vessel_small" gameRules="InstantAction" />
+</levelRotation>
