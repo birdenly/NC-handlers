@@ -1,8 +1,15 @@
-Game.ExecutableContext = ["Content Warning_Data"];
-Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt","Custom.dll", "dlllist.txt", "winmm.dll", "OnlineFix.ini",
-"OnlineFix64.dll",];
-Game.FileSymlinkCopyInstead = ["nvngx_dlss.dll", "NVUnityPlugin.dll", "UnityCrashHandler64.exe", "UnityPlayer.dll"];
-Game.UseGoldberg = true;
+Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt", 
+"Custom.dll",
+"dlllist.txt",
+"OnlineFix.ini",
+"OnlineFix64.dll",
+"SteamOverlay64.dll",
+"winmm.dll",
+];
+Game.FileSymlinkCopyInstead = [
+  "UnityPlayer.dll",
+  "globalgamemanagers"
+];
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
@@ -13,10 +20,9 @@ Game.GUID = "Content Warning";
 Game.GameName = "Content Warning";
 Game.MaxPlayers = 4;
 Game.MaxPlayersOneMonitor = 4;
-Game.LauncherTitle = "";
-Game.HideTaskbar = true;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "Content Warning";
+Game.HasDynamicWindowTitle = true;
 Game.ResetWindows = true;
 Game.Hook.DInputEnabled = false;
 Game.Hook.XInputEnabled = false;
@@ -24,18 +30,24 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "IMPORTANT: Set your main game into windowed, else you might have problems with resizing. Also the handler uses online-fix and requires internet connection also FULLY CLOSE STEAM BEFORE USING THE HANDLER, the online-fix site should pop up only on the first start.\n\nVertical split will cut off parts of the menu\n\nGo into 'JOIN RANDOM' in the menu to host a lobby with 1 players and do the same with others to join, also make voice chat press to talk to not hear your mic. or leave one player without push to talk to hear yourself in the recordings\n\nRecommended that you add custom resolutions to all your monitors from your AMD/Nvidia/Intel panel (for example if you are using a monitor resolution of 1920x1080 add custom resolutions like 1920x540, 960x1080, 960x540, etc.)\n\nDisable any overlays that are attaching to the game (discord,steam or any other)\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+  "IMPORTANT: For every instance that opens set the game into windowed. Also the handler uses online-fix which requires internet connection also FULLY CLOSE STEAM BEFORE USING THE HANDLER, the online-fix site should pop up only on the first start.\n\nVertical split will cut off parts of the menu\n\nGo into 'JOIN RANDOM' in the menu to host a lobby with 1 players and do the same with others to join, also make voice chat press to talk to not hear your mic. or leave one player without push to talk to hear yourself in the recordings\n\nRecommended that you add custom resolutions to all your monitors from your AMD/Nvidia/Intel panel (for example if you are using a monitor resolution of 1920x1080 add custom resolutions like 1920x540, 960x1080, 960x540, etc.)\n\nDisable any overlays that are attaching to the game (discord,steam or any other)\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenProcessGrab = 5;
-Game.PauseBetweenStarts = 10;
+Game.PauseBetweenStarts = 15;
 
 Game.SetWindowHookStart = true;
+Game.SetTopMostAtEnd = true;  
+Game.HideTaskbar = true;
 
-Game.BackupFiles = ["Custom.dll",
+Game.BackupFiles = [
+"Custom.dll",
 "dlllist.txt",
 "OnlineFix.ini",
 "OnlineFix64.dll",
+"SteamOverlay64.dll",
 "winmm.dll",
-]
+];
+
+Game.UserProfileSavePath = "AppData\\LocalLow\\Landfall Games";
 
 //USS deprecated options:
 
@@ -106,6 +118,12 @@ Game.ProtoInput.SendMouseWheelMessages = true;
 Game.ProtoInput.SendMouseButtonMessages = true;
 Game.ProtoInput.SendMouseMovementMessages = true;
 Game.ProtoInput.SendKeyboardButtonMessages = true;
+Game.ProtoInput.XinputHook = true;
+Game.ProtoInput.UseOpenXinput = true;
+Game.ProtoInput.UseDinputRedirection = false;
+Game.ProtoInput.DinputDeviceHook = false;
+Game.ProtoInput.DinputHookAlsoHooksGetDeviceState = false;
+Game.ProtoInput.MultipleProtoControllers = false;
 
 Game.ProtoInput.EnableFocusMessageLoop = true;
 Game.ProtoInput.FocusLoopIntervalMilliseconds = 5000;
@@ -171,20 +189,55 @@ Game.ProtoInput.OnInputUnlocked = function() {
   }
 };
 
-
 Game.Play = function() {
-  var Args = (Context.Args = " -screen-fullscreen 0 -popupwindow " + " -screen-width " + Context.Width + " -screen-height " + Context.Height);
 
-  Context.StartArguments = Args;
-
+  Context.StartArguments = " -screen-fullscreen 0 -popupwindow " + " -screen-width " + Context.Width + " -screen-height " + Context.Height;
 
   if (!System.IO.File.Exists(Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Custom.dll")) {
-    Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
+    Context.CopyFolder(Context.ScriptFolder + "\\OF", Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
+  }
+  
+  Context.CopyFolder(Context.ScriptFolder + "\\Steam", Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
+
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Content Warning_Data\\Plugins\\x86_64\\steam_settings\\configs.user.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+  new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
+  new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
+  new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang),
+  ]);
+  
+  var fillPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Content Warning_Data\\globalgamemanagers";
+
+  var base = Context.Nickname;
+  var og_Path = "Content Warning";
+  // Create newPath by rearranging characters from base
+  var newPath = og_Path.substring(0, og_Path.length - 3) + base.charAt(0) + base.charAt(base.length - 1) + base.length;
+
+  // Ensure newPath is at least as long as og_Path
+  if (newPath.length < og_Path.length) {
+    while (newPath.length < og_Path.length) {
+      newPath += base.charAt(base.length - 1);
+    }
+  } else if (og_Path.length < newPath.length) {
+    // Ensure og_Path is at least 3 characters long
+    newPath = newPath.substring(0, og_Path.length);
   }
 
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Landfall Games\\Content Warning", "Screenmanager Fullscreen mode_h3630240806", 3, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Landfall Games\\Content Warning", "Screenmanager Resolution Height_h2627697771", Context.Height, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Landfall Games\\Content Warning", "Screenmanager Resolution Width_h182942802", Context.Width, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Landfall Games\\Content Warning", "Screenmanager Resolution Use Native_h1405027254", 0, Nucleus.RegType.DWord);
+  Context.PatchFile(fillPath, fillPath, og_Path, newPath);
 
+  var dllPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\UnityPlayer.dll";
+
+  var searchPattern = "57 00 69 00 6E 00 64 00 6F 00 77 00 73 00 2E 00 47 00 61 00 6D 00 69 00 6E 00 67 00 2E 00 49 00 6E 00 70 00 75 00 74 00 2E 00 47 00 61 00 6D 00 65 00 70 00 61 00 64";
+  var patchPattern = "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
+
+  Context.PatchFileFindPattern(dllPath, dllPath, searchPattern, patchPattern, true);
+
+
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Landfall Games\\"+newPath, "Screenmanager Fullscreen mode_h3630240806", 0, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Landfall Games\\"+newPath, "Screenmanager Resolution Width_h182942802", Context.Width, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Landfall Games\\"+newPath, "Screenmanager Resolution Height_h2627697771", Context.Height, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Landfall Games\\"+newPath, "Screenmanager Resolution Use Native_h1405027254", 0, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Landfall Games\\"+newPath, "FullscreenIndex_h1443451652", 3, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Landfall Games\\"+newPath, "ScreenResolutionHeight_h1396454488", Context.Height, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Landfall Games\\"+newPath, "ScreenResolutionWidth_h2904889217", Context.Width, Nucleus.RegType.DWord);
 };

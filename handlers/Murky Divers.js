@@ -1,12 +1,6 @@
-Game.FileSymlinkCopyInstead = [
-"D3D12Core.dll",
-"OpenImageDenoise.dll",
-"tbb.dll",
-"tbb12.dll",
-"tbbmalloc.dll",
-];
-Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt","EOSSDK-Win64-Shipping.dll"];
-Game.DirSymlinkExclusions = ["MurkyDivers\\Plugins\\SteamIntea3aafa760efV4\\Source\\SteamSdk\\redistributable_bin\\win64", "MurkyDivers\\Binaries\\Win64","Engine\\Binaries\\Win64"];
+Game.FileSymlinkCopyInstead = ["D3D12Core.dll", "OpenImageDenoise.dll", "tbb.dll", "tbb12.dll", "tbbmalloc.dll"];
+Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt", "EOSSDK-Win64-Shipping.dll"];
+Game.DirSymlinkExclusions = ["MurkyDivers\\Plugins\\SteamIntea3aafa760efV4\\Source\\SteamSdk\\redistributable_bin\\win64", "MurkyDivers\\Binaries\\Win64", "Engine\\Binaries\\Win64"];
 
 Game.HandlerInterval = 500;
 Game.SymlinkExe = false;
@@ -32,8 +26,6 @@ Game.Description =
   "IMPORTANT: Start the game once and change the game to WINDOWED MODE before trying split screen, you can cap the FPS in the game settings.\n\nHost a lobby on one instance and join with others through the lobby browser.\n\nREAD: After all the instances have launched, resized and positioned correctly, alt+tab to the Nucleus Co-op screen than press the END key once to lock the input for all instances to have their own working cursor, keyboard and controllers. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 10;
-
-Game.UseGoldberg = true;
 
 Game.RefreshWindowAfterStart = true;
 Game.SetWindowHookStart = true;
@@ -132,7 +124,6 @@ Game.ProtoInput.OnInputLocked = function() {
   for (var i = 0; i < PlayerList.Count; i++) {
     var player = PlayerList[i];
 
-    
     ProtoInput.StartFocusMessageLoop(player.ProtoInputInstanceHandle, 50, true, true, true, true, true);
 
     System.Threading.Thread.Sleep(1000);
@@ -196,14 +187,23 @@ Game.Play = function() {
 
   Context.StartArguments = Args;
 
-  Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\MurkyDivers\\Plugins\\SteamIntea3aafa760efV4\\Source\\SteamSdk\\redistributable_bin\\win64");
+  Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
 
-  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\MurkyDivers\\Plugins\\SteamIntea3aafa760efV4\\Source\\SteamSdk\\redistributable_bin\\win64\\steam_settings\\configs.user.ini";
+  var savePath =
+  Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\MurkyDivers\\Plugins\\SteamIntea3aafa760efV4\\Source\\SteamSdk\\redistributable_bin\\win64\\steam_settings\\configs.user.ini";
   Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
-  new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
-  new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
-  new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang),
+    new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
+    new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
+    new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang)
   ]);
+
+  var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\MurkyDivers\\Binaries\\Win64\\nepice_settings\\NemirtingasEpicEmu.json";
+  var dict = [
+    Context.FindLineNumberInTextFile(txtPath, '      "EpicId":', Nucleus.SearchType.StartsWith) + '|      "EpicId": "831ec62c44424917a0fb315de2b5dc1' + Context.PlayerID + '",',
+    Context.FindLineNumberInTextFile(txtPath, '      "Language":', Nucleus.SearchType.StartsWith) + '|      "Language": "' + Context.EpicLang + '",',
+    Context.FindLineNumberInTextFile(txtPath, '      "UserName":', Nucleus.SearchType.StartsWith) + '|      "UserName": "' + Context.Nickname + '"'
+  ];
+  Context.ReplaceLinesInTextFile(txtPath, dict);
 
   var savePath = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\Windows\\GameUserSettings.ini";
   Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
@@ -216,25 +216,18 @@ Game.Play = function() {
     new Nucleus.IniSaveInfo("/Script/MurkyDiversGame.LyraSettingsLocal", "PreferredFullscreenMode", 2),
     new Nucleus.IniSaveInfo("/Script/MurkyDiversGame.LyraSettingsLocal", "VoiceChatVolume", "0.000000"),
     new Nucleus.IniSaveInfo("/Script/MurkyDiversGame.LyraSettingsLocal", "bShouldAutoRecordReplays", "False"),
-    new Nucleus.IniSaveInfo("/Script/MurkyDiversGame.LyraSettingsLocal", "NumberOfReplaysToKeep", "0"),
+    new Nucleus.IniSaveInfo("/Script/MurkyDiversGame.LyraSettingsLocal", "NumberOfReplaysToKeep", "0")
   ]);
 
-  
   if (Context.PlayerID != 0) {
-    Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
-      new Nucleus.IniSaveInfo("/Script/MurkyDiversGame.LyraSettingsLocal", "MusicVolume", 0.000000),
-    ]);
-  }else{
-    Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
-      new Nucleus.IniSaveInfo("/Script/MurkyDiversGame.LyraSettingsLocal", "MusicVolume", 0.800000),
-    ]);
+    Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [new Nucleus.IniSaveInfo("/Script/MurkyDiversGame.LyraSettingsLocal", "MusicVolume", 0.0)]);
+  } else {
+    Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [new Nucleus.IniSaveInfo("/Script/MurkyDiversGame.LyraSettingsLocal", "MusicVolume", 0.8)]);
   }
 
   //thanks to zensuu
   var ngincfg = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\Windows\\Engine.ini";
-  Context.ModifySaveFile(ngincfg, ngincfg, Nucleus.SaveType.INI, [
-    new Nucleus.IniSaveInfo("/Script/Engine.LocalPlayer", "AspectRatioAxisConstraint", "AspectRatio_MaintainYFOV")
-  ]);
+  Context.ModifySaveFile(ngincfg, ngincfg, Nucleus.SaveType.INI, [new Nucleus.IniSaveInfo("/Script/Engine.LocalPlayer", "AspectRatioAxisConstraint", "AspectRatio_MaintainYFOV")]);
 
   if (Context.AspectRatioDecimal < 1.2) {
     Context.ModifySaveFile(ngincfg, ngincfg, Nucleus.SaveType.INI, [new Nucleus.IniSaveInfo("/Script/Engine.LocalPlayer", "AspectRatioAxisConstraint", "AspectRatio_MaintainXFOV")]);
