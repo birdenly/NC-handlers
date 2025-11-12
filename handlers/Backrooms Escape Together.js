@@ -2,21 +2,20 @@ var answers1 = ["30", "60", "90", "120", "144", "0"];
 Game.AddOption("Select the FPS cap.", "0 is for unlimited FPS", "fps", answers1);
 
 Game.FileSymlinkCopyInstead = ["D3D12Core.dll", "tbb.dll", "tbbmalloc.dll"];
-Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt"];
+Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt", "EOSSDK-Win64-Shipping.dll"];
 Game.DirSymlinkExclusions = ["Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv157\\Win64", "BET\\Binaries\\Win64"];
 
 Game.HandlerInterval = 500;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
 Game.SymlinkFolders = true;
-Game.ExecutableName = "BETGame-Win64-Shipping.exe";
+Game.ExecutableName = "BETGameSteam-Win64-Shipping.exe";
 Game.SteamID = "2141730";
 Game.GUID = "Backrooms Escape Together";
 Game.GameName = "Backrooms Escape Together";
 Game.MaxPlayers = 6;
 Game.MaxPlayersOneMonitor = 6;
 Game.BinariesFolder = "BET\\Binaries\\Win64";
-Game.LauncherTitle = "";
 Game.HideTaskbar = true;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "Backrooms: Escape Together";
@@ -26,11 +25,11 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = ["xinput1_4.dll"];
 Game.Description =
-  "IMPORTANT: Start the game once and change some settings before trying split screen. Menus in vertical split arent good, but in-game is fine\n\nHost a lobby (DONT MAKE IT PRIVATE) on one instance and join with others through the lobby browser.\n\nIn case the mouse/cursor disappiers, unlock and lock input again.\n\nREAD: After all the instances have launched, resized and positioned correctly, alt+tab to the Nucleus Co-op screen than press the END key once to lock the input for all instances to have their own working cursor, keyboard and controllers. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+  "IMPORTANT: Start the game once and change some settings before trying split screen. Menus in vertical split arent good, but in-game is fine\n\nHost a lobby (DONT MAKE IT PRIVATE) on one instance and join with others through the lobby browser.\n\nIn case the mouse/cursor disappiers, unlock and lock input again. or if the controllers doesnt seem to work on a menu, unlock the input and use your mouse on the menu the controller should go back to working.\n\nREAD: After all the instances have launched, resized and positioned correctly, alt+tab to the Nucleus Co-op screen than press the END key once to lock the input for all instances to have their own working cursor, keyboard and controllers. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 10;
 
-Game.UseGoldberg = true;
+Game.CreateSteamAppIdByExe = true;
 
 Game.RefreshWindowAfterStart = true;
 Game.SetWindowHookStart = true;
@@ -192,9 +191,26 @@ Game.ProtoInput.OnInputUnlocked = function() {
 Game.Play = function() {
   var FPS = Context.Options["fps"];
 
-  var Args = (Context.Args = " -windowed -AlwaysFocus -ResX= " + Context.Width + " -ResY= " + Context.Height);
+  var Args = (Context.Args = " -windowed -ResX= " + Context.Width + " -ResY= " + Context.Height);
 
   Context.StartArguments = Args;
+
+  Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
+
+  var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\BET\\Binaries\\Win64\\nepice_settings\\NemirtingasEpicEmu.json";
+  var dict = [
+    Context.FindLineNumberInTextFile(txtPath, '      "EpicId":', Nucleus.SearchType.StartsWith) + '|      "EpicId": "831ec62c44424917a0fb315de2b5dc1' + Context.PlayerID + '",',
+    Context.FindLineNumberInTextFile(txtPath, '      "Language":', Nucleus.SearchType.StartsWith) + '|      "Language": "' + Context.EpicLang + '",',
+    Context.FindLineNumberInTextFile(txtPath, '      "UserName":', Nucleus.SearchType.StartsWith) + '|      "UserName": "' + Context.Nickname + '"'
+  ];
+  Context.ReplaceLinesInTextFile(txtPath, dict);
+
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv157\\Win64\\steam_settings\\configs.user.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+    new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
+    new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
+    new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang)
+  ]);
 
   var savePath = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\Windows\\GameUserSettings.ini";
   Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
@@ -210,30 +226,10 @@ Game.Play = function() {
     new Nucleus.IniSaveInfo("/Script/BETGame.BETGameUserSettings", "bPushToTalkEnabled", "True")
   ]);
 
-  //thanks to zensuu
   var ngincfg = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\Windows\\Engine.ini";
   Context.ModifySaveFile(ngincfg, ngincfg, Nucleus.SaveType.INI, [new Nucleus.IniSaveInfo("/Script/Engine.LocalPlayer", "AspectRatioAxisConstraint", "AspectRatio_MaintainYFOV")]);
 
   if (Context.AspectRatioDecimal < 1.2) {
     Context.ModifySaveFile(ngincfg, ngincfg, Nucleus.SaveType.INI, [new Nucleus.IniSaveInfo("/Script/Engine.LocalPlayer", "AspectRatioAxisConstraint", "AspectRatio_MaintainXFOV")]);
-  }
-
-  var numPlayers = 0;
-
-  for (var i = 0; i < PlayerList.Count; i++) {
-    var player = PlayerList[i];
-
-    if (player.IsXInput && player.ScreenIndex !== -1) {
-      numPlayers++;
-    }
-    player.ProtoController1 = Context.GamepadId;
-    player.ProtoController2 = Context.GamepadId;
-    player.ProtoController3 = Context.GamepadId;
-    player.ProtoController4 = Context.GamepadId;
-    player.ProtoController5 = Context.GamepadId;
-    player.ProtoController6 = Context.GamepadId;
-    player.ProtoController7 = Context.GamepadId;
-    player.ProtoController8 = Context.GamepadId;
-    player.ProtoController9 = Context.GamepadId;
   }
 };
