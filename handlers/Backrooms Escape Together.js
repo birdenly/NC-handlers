@@ -3,7 +3,7 @@ Game.AddOption("Select the FPS cap.", "0 is for unlimited FPS", "fps", answers1)
 
 Game.FileSymlinkCopyInstead = ["D3D12Core.dll", "tbb.dll", "tbbmalloc.dll"];
 Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt", "EOSSDK-Win64-Shipping.dll"];
-Game.DirSymlinkExclusions = ["Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv157\\Win64", "BET\\Binaries\\Win64"];
+Game.DirSymlinkExclusions = ["Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv161\\Win64", "BET\\Binaries\\Win64"];
 
 Game.HandlerInterval = 500;
 Game.SymlinkExe = false;
@@ -205,7 +205,7 @@ Game.Play = function() {
   ];
   Context.ReplaceLinesInTextFile(txtPath, dict);
 
-  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv157\\Win64\\steam_settings\\configs.user.ini";
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv161\\Win64\\steam_settings\\configs.user.ini";
   Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
     new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
     new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),

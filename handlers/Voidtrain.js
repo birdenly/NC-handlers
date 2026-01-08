@@ -1,9 +1,7 @@
-Game.ExecutableContext = ["RedpointEOS"];
-
 var answers1 = ["30", "60", "90", "120", "144", "0"];
 Game.AddOption("Select the FPS cap.", "0 is for unlimited FPS", "fps", answers1);
 
-Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt","EOSSDK-Win64-Shipping.dll"];
+Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt", "EOSSDK-Win64-Shipping.dll"];
 
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
@@ -13,10 +11,9 @@ Game.ExecutableName = "VoidTrain-Win64-Shipping.exe";
 Game.SteamID = "1159690";
 Game.GUID = "Voidtrain";
 Game.GameName = "Voidtrain";
-Game.MaxPlayers = 2;
-Game.MaxPlayersOneMonitor = 2;
+Game.MaxPlayers = 4;
+Game.MaxPlayersOneMonitor = 4;
 Game.BinariesFolder = "VoidTrain\\Binaries\\Win64";
-Game.HideTaskbar = true;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "VoidTrain";
 Game.Hook.DInputEnabled = false;
@@ -25,18 +22,12 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "IMPORTANT: handler needs internect connection and has a max of 2 players. Complete the tutorial, go into the menu > session and make the game public, press shift+tab and invite the other player and join in. For keyboard/mouse, if the cursor is visable and the camera doesnt move, just press 'esc' to open the menu click something there and close it, it should fix. If you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+  "Complete the tutorial, go into the menu > session and make the game public, use the Find game in the menu to join.\n\nFor keyboard/mouse, if the cursor is visable and the camera doesnt move, just press 'esc' to open the menu click something there and close it, it should fix. If you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 20;
 
 Game.RefreshWindowAfterStart = true;
 Game.SetWindowHookStart = true;
-
-Game.UseGoldberg = true;
-Game.GoldbergExperimental = true;
-
-Game.UseNemirtingasEpicEmu = true;
-Game.EpicEmuArgs = true;
 
 Game.UseNucleusEnvironment = true;
 Game.UserProfileConfigPath = "AppData\\Local\\VoidTrain\\Saved\\Config";
@@ -187,9 +178,26 @@ Game.ProtoInput.OnInputUnlocked = function() {
 };
 
 Game.Play = function() {
-  var Args = (Context.Args = " -windowed " + " -AlwaysFocus " + " -ResX= " + Context.Width + " -ResY= " + Context.Height);
 
-  Context.StartArguments = Args;
+  Context.StartArguments = " -windowed -AlwaysFocus -ResX= " + Context.Width + " -ResY= " + Context.Height;
+  
+  Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
+
+  Context.Wait(1500);
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv151\\Win64\\steam_settings\\configs.user.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+  new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
+  new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
+  new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang),
+  ]);
+
+  var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\VoidTrain\\Binaries\\Win64\\nepice_settings\\NemirtingasEpicEmu.json";
+  var dict = [
+    Context.FindLineNumberInTextFile(txtPath, '      "EpicId":', Nucleus.SearchType.StartsWith) + '|      "EpicId": "831ec62c44424917a0fb315de2b5dc1' + Context.PlayerID + '",',
+    Context.FindLineNumberInTextFile(txtPath, '      "Language":', Nucleus.SearchType.StartsWith) + '|      "Language": "' + Context.EpicLang + '",',
+    Context.FindLineNumberInTextFile(txtPath, '      "UserName":', Nucleus.SearchType.StartsWith) + '|      "UserName": "' + Context.Nickname + '"'
+  ];
+  Context.ReplaceLinesInTextFile(txtPath, dict);
 
   var FPS = Context.Options["fps"];
 
@@ -202,7 +210,8 @@ Game.Play = function() {
     new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "FullscreenMode", 2),
     new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "LastConfirmedFullscreenMode", 2),
     new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "PreferredFullscreenMode", 2),
-    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "FrameRateLimit", FPS + ".000000")
+    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "FrameRateLimit", FPS + ".000000"),
+    new Nucleus.IniSaveInfo("/Script/Engine.GameUserSettings", "bIsCrossplayEnabled", "False"),
   ]);
 
   if (Context.PlayerID == 0) {
