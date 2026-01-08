@@ -1,0 +1,42 @@
+{
+  "EOSEmu": {
+    "Achievements": {
+      "OnlineDatabase": ""
+    },
+    "Application": {
+      "AppId": "SmallandSurviveTheWilds",
+      "DisableCrashDump": false,
+      "DisableOnlineNetworking": false,
+      "LogLevel": "off",
+      "SavePath": "appdata"
+    },
+    "Ecom": {
+      "UnlockDlcs": true
+    },
+    "Plugins": {
+      "Overlay": {
+        "DelayDetection": "5s",
+        "Enabled": false
+      }
+    },
+    "User": {
+      "EpicId": "8b0b8358ed063c3f064fc56ccefaa16b",
+      "Language": "en",
+      "ProductUserId": "0002ae2446582526ada9f83ff347d975",
+      "UserName": "DefaultName"
+    }
+  },
+  "Network": {
+    "IceServers": [],
+    "Plugins": {
+      "Broadcast": {
+        "EnableLog": false,
+        "Enabled": true
+      },
+      "WebSocket": {
+        "EnableLog": false,
+        "SignalingServers": []
+      }
+    }
+  }
+}
