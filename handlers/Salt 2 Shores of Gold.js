@@ -23,7 +23,7 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "BEFORE EXITING ALL PLAYERS NEED TO SAVE IN THE MENU.\n\nUse the invite code to join or simply invite\n\nIf you get a path is too long error in the start, you will need to remove the game from nucleus and try to reduce the path (copy/paste the game to the root of any drive) and add it again using the new path.\n\nPress END to balance FPS/give focus to all instances.\n\nRecommended that you add custom resolutions to all your monitors from your AMD/Nvidia/Intel panel (for example if you are using a monitor resolution of 1920x1080 add custom resolutions like 1920x540, 960x1080, 960x540, etc.)";
+  "BEFORE EXITING BOTH NEED TO SAVE IN THE MENU.\n\nUse the invite code to join or simply invite\n\nIf you get a path is too long error in the start, you will need to remove the game from nucleus and try to reduce the path (copy/paste the game to the root of any drive) and add it again using the new path.\n\nPress END to balance FPS/give focus to all instances.\n\nRecommended that you add custom resolutions to all your monitors from your AMD/Nvidia/Intel panel (for example if you are using a monitor resolution of 1920x1080 add custom resolutions like 1920x540, 960x1080, 960x540, etc.)";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 10;
 
@@ -33,7 +33,7 @@ Game.RefreshWindowAfterStart = true;
 
 Game.UseNucleusEnvironment = true;
 Game.UserProfileSavePath = "AppData\\Roaming\\GSE Saves\\1574900";
-Game.UserProfileSavePath = "AppData\\LocalLow\\Lavaboots";
+Game.UserProfileConfigPath = "AppData\\LocalLow\\Lavaboots";
 
 Game.ProtoInput.InjectStartup = false;
 Game.ProtoInput.InjectRuntime_RemoteLoadMethod = false;
