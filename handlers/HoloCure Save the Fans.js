@@ -32,6 +32,7 @@ Game.UserProfileSavePath = "AppData\\Local\\HoloCure";
 Game.UserProfileSavePathNoCopy = true;
 Game.SetWindowHook = true;
 Game.RefreshWindowAfterStart = true; 
+Game.ForceProcessPick = true;	
 
 Game.Play = function() {
   if (Context.IsKeyboardPlayer) {
