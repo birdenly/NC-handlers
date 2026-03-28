@@ -113,6 +113,13 @@ Game.Play = function() {
 
   Context.StartArguments = Args;
 
+  var dllPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\UnityPlayer.dll";
+
+  var searchPattern = "57 00 69 00 6E 00 64 00 6F 00 77 00 73 00 2E 00 47 00 61 00 6D 00 69 00 6E 00 67 00 2E 00 49 00 6E 00 70 00 75 00 74 00 2E 00 47 00 61 00 6D 00 65 00 70 00 61 00 64";
+  var patchPattern = "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
+
+  Context.PatchFileFindPattern(dllPath, dllPath, searchPattern, patchPattern, true);
+
   
   var txtPath1 = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Preferences\\LocalPrefs.json";
   var dict1 = [
