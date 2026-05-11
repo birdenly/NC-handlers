@@ -1,0 +1,42 @@
+{
+  "EOSEmu": {
+    "Achievements": {
+      "OnlineDatabase": ""
+    },
+    "Application": {
+      "AppId": "MurkyDivers",
+      "DisableCrashDump": false,
+      "DisableOnlineNetworking": false,
+      "LogLevel": "off",
+      "SavePath": "appdata"
+    },
+    "Ecom": {
+      "UnlockDlcs": true
+    },
+    "Plugins": {
+      "Overlay": {
+        "DelayDetection": "5s",
+        "Enabled": false
+      }
+    },
+    "User": {
+      "EpicId": "ff7705d5fc0c05249e66886259301a01",
+      "Language": "en",
+      "ProductUserId": "0002a9c89c27e02fad8430681b296138",
+      "UserName": "DefaultName"
+    }
+  },
+  "Network": {
+    "IceServers": [],
+    "Plugins": {
+      "Broadcast": {
+        "EnableLog": false,
+        "Enabled": true
+      },
+      "WebSocket": {
+        "EnableLog": false,
+        "SignalingServers": []
+      }
+    }
+  }
+}
