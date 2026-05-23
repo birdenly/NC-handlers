@@ -1,8 +1,20 @@
 {
+    "common": {
+        "console_imgui": false,
+        "suppress_starting_messageboxes": false,
+        "discord_rpc": true,
+        "watermark_main_checksum": true,
+        "watermark_main_flash_hashes": true,
+        "watermark_main": true,
+        "watermark_main_mods": true
+    },
     "gsc": {
+        "dev_blocks": false,
         "hashes": true,
-        "dev_funcs": false,
-        "error_stack_dump": false
+        "show_script_usages": false
+    },
+    "logging": {
+        "mode": 3
     },
     "dvars": {
         "aim_autoaim_enabled": 1,
@@ -11,16 +23,30 @@
         "aim_target_closest_first": 0
     },
     "demonware": {
+        "prevent_dw_disconnect": false,
         "ipv4": "127.0.0.1"
     },
-    "lua": {
-        "info": false,
-        "error": false,
-        "allow_unsafe_function": false
+    "game": {
+        "fov_hook": false,
+        "alt_movement": false
     },
     "identity": {
-        "xuid": 1,
-        "name": "birden"
+        "xuid": 2133394750,
+        "name": "birden",
+        "instance_name_2": "player2",
+        "instance_name_3": "player3",
+        "instance_name_4": "player4",
+        "instance_name_5": "player5",
+        "instance_name_6": "player6",
+        "instance_name_7": "player7",
+        "instance_name_8": "player8",
+        "instance_xuid_2": 2133394751,
+        "instance_xuid_3": 2133394752,
+        "instance_xuid_4": 2133394753,
+        "instance_xuid_5": 2133394754,
+        "instance_xuid_6": 2133394755,
+        "instance_xuid_7": 2133394756,
+        "instance_xuid_8": 2133394757
     },
     "unlock": {
         "all": false,

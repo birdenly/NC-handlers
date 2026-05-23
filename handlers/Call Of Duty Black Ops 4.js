@@ -2,20 +2,25 @@ var answers1 = ["READ"];
 Game.AddOption("THE LOBBY IS NOT JOINABLE PROBLEM: Open your browser and type 'localhost:8080' and manually disband the lobby. or sometimes just try again.", "", "grph", answers1);
 var answers5 = ["No","Yes"];
 Game.AddOption("Enable music only in the first instance?", "Select 'No' to use the previous or default settings", "Mus", answers5);
-var answers2 = ["No", "Yes"];
-Game.AddOption("Unlock all classes and weapons/skins", "", "unlock", answers2);
 var answers3 = ["-","30", "40", "45", "50", "60", "70", "80", "90", "100", "110", "120"];
 Game.AddOption("Select the FPS Cap the game will use", "Select '-' to use the previous or default settings.", "FPS", answers3);
 var answers4 = ["-", "Low", "Medium", "High","Extra"];
 Game.AddOption("Select your preferred graphic settings", "Select '-' to use the previous or default settings.", "img", answers4)  
 var answers6 = ["-","60", "65","70","75","80","85", "90","95","100","105","110","115","120"];
 Game.AddOption("Select the FOV.", "Select '-' to use the previous or default settings.", "fov", answers6);
+var answers7 = [];
+Game.AddOption("Server IP", "LEAVE IT BLANK TO CONNECT TO A LOCAL SERVER. If you want to connect to another server, type its IP. This is an experimental feature, if you have problems with servers outside of local servers, you wont get help.", "ip", answers7);
+var answers8 = ["Old", "New"];
+Game.AddOption("Which local server to run?", "Old has been tested alot and has been in use for the handler for years.(the one showed here: https://www.youtube.com/watch?v=J3MApSs5cWQ )\n\nYou can get the new server from: https://shield-client.gitbook.io/shield-documentation/server-setup/server-setup (newer client related stuff will work, mods, etc) extract it on the same place as the old server and keep the folder name as DWServer-New (name of the Zip). On the new server you need to use the friend system to play together. For FAQ use: https://shield-client.gitbook.io/shield-documentation/launcher-guide/things-to-know\n\nIf you need to update the client in split screen, replace the files 'discord_game_sdk.dll' and 'XInput9_1_0.dll' inside the handlers folder for the new ones, if something breaks, nothing i can help.", "server", answers8);
 
-Game.KillMutex = ["shield_mutex"];
+// Game.KillMutex = ["shield_mutex"];
 Game.FileSymlinkExclusions = [
   "project-bo4.json",
   "BlackOps4.start",
   "d3d11.dll",
+  "support.ff",
+  "XInput9_1_0.dll",
+  "discord_game_sdk.dll",
   "UMPDC.dll",
   "project-bo4_updater.bat",
   "project-bo4.exe",
@@ -124,9 +129,6 @@ Game.ProtoInput.OnInputUnlocked = function()
     }
 }
 Game.Play = function() {
-  const s = [String.fromCharCode(49, 50, 55),String.fromCharCode(48),String.fromCharCode(48),String.fromCharCode(49)];
-  const d = String.fromCharCode(46);
-  const u = s.join(d);
 
   Context.RunAdditionalFiles([Context.ScriptFolder + "\\mini.exe"], false, 10);
 
@@ -146,9 +148,16 @@ Game.Play = function() {
   Context.CopyFolder(Context.ScriptFolder + "\\LPC", LPC);
   Context.Wait(2000);
 
-  var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\d3d11.dll");
-  var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "d3d11.dll");
+
+  var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\XInput9_1_0.dll");
+  var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "XInput9_1_0.dll");
   System.IO.File.Copy(savePkgOrigin, savePath, true);
+
+
+  var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\discord_game_sdk.dll");
+  var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "discord_game_sdk.dll");
+  System.IO.File.Copy(savePkgOrigin, savePath, true);
+
 
 
   if (!System.IO.File.Exists(Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\project-bo4.json")){
@@ -403,35 +412,37 @@ Game.Play = function() {
 
   var cfgpath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\project-bo4.json";
 
-  Context.RunAdditionalFiles(["1|" + Game.Folder + "\\DW SERVER\\server.exe"], false, 10, false, false);
+  if (Context.PlayerID == 0) {
+    var dictID = [
+      // Context.FindLineNumberInTextFile(cfgpath, '        "xuid":', Nucleus.SearchType.StartsWith) + '|        "xuid": 232339475' + Context.PlayerID + ',',
+      Context.FindLineNumberInTextFile(cfgpath, '        "name":', Nucleus.SearchType.StartsWith) + '|        "name": "' + Context.Nickname + '",', 
+    ];
+  }else{
+      var dictID = [
+      Context.FindLineNumberInTextFile(cfgpath, '        "instance_name_'+(Context.PlayerID+1)+'":', Nucleus.SearchType.StartsWith) + '|        "instance_name_'+(Context.PlayerID+1)+'": "' + Context.Nickname + '",' 
+    ];
+  }
 
-  var dictID = [
-    Context.FindLineNumberInTextFile(cfgpath, '        "xuid":', Nucleus.SearchType.StartsWith) + '|        "xuid": 232339475' + Context.PlayerID + ',', 
-  ];
+  let connectIP = "127.0.0.1"
+  if (Context.Options['ip'] != ""){
+    connectIP = Context.Options['ip']
+  }else{
+
+    if (Context.Options['server'] == "Old"){
+      Context.RunAdditionalFiles(["1|" + Game.Folder + "\\DW SERVER\\server.exe"], false, 10, false, false); 
+    }else{
+      Context.RunAdditionalFiles(["1|" + Game.Folder + "\\DWServer-New\\DWServer.exe"], false, 10, false, false);
+    }
+
+  }
   var dict = [
-    Context.FindLineNumberInTextFile(cfgpath, '        "ipv4":', Nucleus.SearchType.StartsWith) + '|        "ipv4": "' + u + '"',
-    Context.FindLineNumberInTextFile(cfgpath, '        "name":', Nucleus.SearchType.StartsWith) + '|        "name": "' + Context.Nickname + '"',
+    Context.FindLineNumberInTextFile(cfgpath, '        "ipv4":', Nucleus.SearchType.StartsWith) + '|        "ipv4": "' + connectIP + '"',
   ];
 
   Context.ReplaceLinesInTextFile(cfgpath, dict);
   Context.ReplaceLinesInTextFile(cfgpath, dictID);
 
-  var UNLOCK = Context.Options["unlock"];
-  if (UNLOCK  == "Yes") {
-    var all = Context.FindLineNumberInTextFile(cfgpath, '    "unlock": {', Nucleus.SearchType.StartsWith);
-    Context.ReplaceLinesInTextFile(cfgpath, [
-      (all+1)+ '|        "all": true,',
-      (all+2)+ '|        "attachments": true,',
-      (all+3)+ '|        "attachmentslot": true,',
-      (all+4)+ '|        "backgrounds": true,',
-      (all+5)+ '|        "challenges": true,',
-      (all+6)+ '|        "classes": true,',
-      (all+7)+ '|        "emblems": true,',
-      (all+8)+ '|        "itemoptions": true,',
-      (all+9)+ '|        "items": true,',
-      (all+10)+ '|        "zm_loot": true',
-    ]);
-  }
+  Context.Wait(2000);
 
   var numPlayers = 0;
 
