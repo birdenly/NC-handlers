@@ -1,0 +1,29 @@
+{
+  "EOSEmu": {
+    "Achievements": {
+      "OnlineDatabase": ""
+    },
+    "Application": {
+      "AppId": "InvalidAppId",
+      "DisableCrashDump": false,
+      "DisableOnlineNetworking": false,
+      "LogLevel": "off",
+      "SavePath": "appdata"
+    },
+    "Ecom": {
+      "UnlockDlcs": true
+    },
+    "Plugins": {
+      "Overlay": {
+        "DelayDetection": "5s",
+        "Enabled": false
+      }
+    },
+    "User": {
+      "EpicId": "a52bd988d10fe11a45d655fbb47cc225",
+      "Language": "en",
+      "ProductUserId": "0002a9239671b5fbb0660e77680e5228",
+      "UserName": "DefaultN221ame2"
+    }
+  }
+}
