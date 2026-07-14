@@ -1,4 +1,3 @@
-SteamOverlay64.dll
 OnlineFix64.dll
 MonoBleedingEdge\EmbedRuntime\mono-2.0-bdwgc.dll
 Content Warning_Data\Managed\Assembly-CSharp.net.org
