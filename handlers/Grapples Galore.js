@@ -1,22 +1,21 @@
-Game.ExecutableContext = ["Grapples Galore_Data"];
+
 Game.FileSymlinkExclusions = [
   "steam_api64.dll",
   "steam_appid.txt"
 ];
-Game.FileSymlinkCopyInstead = ["nvngx_dlss.dll", "NVUnityPlugin.dll", "UnityCrashHandler64.exe", "UnityPlayer.dll","globalgamemanagers"];
-Game.NeedsSteamEmulation = false;
+Game.FileSymlinkCopyInstead = ["globalgamemanagers"];
+
 Game.UseGoldberg = true;
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
 Game.SymlinkFolders = false;
-Game.KeepSymLinkOnExit = false;
 Game.ExecutableName = "Grapples Galore.exe";
 Game.SteamID = "2239140";
 Game.GUID = "Grapples Galore";
 Game.GameName = "Grapples Galore";
-Game.MaxPlayers = 4;
-Game.MaxPlayersOneMonitor = 4;
+Game.MaxPlayers = 8;
+Game.MaxPlayersOneMonitor = 8;
 Game.HideTaskbar = true;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "Grapples Galore";
@@ -27,13 +26,12 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "IMPORTANT: Set your main game into windowed, else you might have problems with resizing.\n\nHost a public lobby and join in with others\n\nRecommended that you add custom resolutions to all your monitors from your AMD/Nvidia/Intel panel (for example if you are using a monitor resolution of 1920x1080 add custom resolutions like 1920x540, 960x1080, 960x540, etc.)\n\nDisable any overlays that are attaching to the game (discord,steam or any other)\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+  "IMPORTANT: Set your main game into windowed, else you might have problems with resizing.\n\nHost a public lobby and join in with others\n\nRecommended that you add custom resolutions to all your monitors from your AMD/Nvidia/Intel panel (for example if you are using a monitor resolution of 1920x1080 add custom resolutions like 1920x540, 960x1080, 960x540, etc.)\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 10;
 
 // Game.SetWindowHookStart = true;
-Game.UseNucleusEnvironment = true;
-Game.UserProfileSavePath = "AppData\\LocalLow\\Zoteling\\Grapples Galore";
+Game.UserProfileSavePath = "AppData\\LocalLow\\Zotelinge";
 
 //USS deprecated options:
 
@@ -174,6 +172,20 @@ Game.Play = function() {
 
   Context.StartArguments = Args;
 
+  if(!System.IO.Directory.Exists(Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Grapples Galore_Data\\Plugins\\x86_64\\steam_settings")){
+    var filePath = Context.filePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Grapples Galore_Data\\Plugins\\x86_64\\steam_settings";
+    System.IO.Directory.CreateDirectory(filePath);
+  }
+
+  var autoExec = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Grapples Galore_Data\\Plugins\\x86_64\\steam_settings\\DLC.txt";
+  var lines = [
+    "3394970=Grapples Galore - Hat Pack 2",
+    "3394960=Grapples Galore - Cosmetics Pack 3",
+    "2889730=Grapples Galore - Hat Pack 1",
+    "2889720=Grapples Galore - Cosmetics Pack 2",
+    "2618870=Grapples Galore - Cosmetics Pack 1"
+  ];
+
   var fillPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Grapples Galore_Data\\globalgamemanagers";
 
   var base = Context.Nickname;
@@ -193,14 +205,13 @@ Game.Play = function() {
   }
   Context.PatchFile(fillPath, fillPath, og_Path, newPath);
 
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath+"", "Screenmanager Fullscreen mode_h3630240806", 3, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath+"", "Screenmanager Resolution Height_h2627697771", Context.Height, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath+"", "Screenmanager Resolution Width_h182942802", Context.Width, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath+"", "Screenmanager Resolution Window Height_h1684712807", Context.Height, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath+"", "Screenmanager Resolution Window Width_h2524650974", Context.Width, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath+"", "prefResolutionX_h911147666", Context.Height, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath+"", "prefResolutionY_h911147667", Context.Width, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath+"", "Screenmanager Resolution Use Native_h1405027254", 0, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath+"", "FIRSTTIMEOPENING_h1123269598", 0, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath, "Screenmanager Fullscreen mode_h3630240806", 3, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath, "Screenmanager Resolution Height_h2627697771", Context.Height, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath, "Screenmanager Resolution Width_h182942802", Context.Width, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath, "Screenmanager Resolution Window Height_h1684712807", Context.Height, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath, "Screenmanager Resolution Window Width_h2524650974", Context.Width, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath, "prefResolutionX_h911147666", Context.Width, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath, "prefResolutionY_h911147667", Context.Height, Nucleus.RegType.DWord);
+  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\Zoteling\\"+newPath, "Screenmanager Resolution Use Native_h1405027254", 0, Nucleus.RegType.DWord);
 
 };
