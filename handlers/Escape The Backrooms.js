@@ -4,7 +4,7 @@ Game.AddOption("Select the FPS cap.", "", "fps", answers1);
 Game.ExecutableContext = ["OpenImageDenoise.dll"];
 
 Game.FileSymlinkCopyInstead = ["tbb12.dll", "OpenImageDenoise.dll"];
-Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt"];
+Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt","EOSSDK-Win64-Shipping.dll"];
 Game.DirSymlinkExclusions = ["Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv151\\Win64", "EscapeTheBackrooms\\Binaries\\Win64"];
 
 Game.HandlerInterval = 100;
@@ -27,8 +27,8 @@ Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
   "IMPORTANT: start your main game once and change some settings. Also some prompts/menus dont work with controller, so use your mouse.\n\nStart a game, DONT make it private and join in with others.\n\nAfter all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard (if the CONTROLLER instances stop responding unlock input click on them, they will work again then press END to lock input again). You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
-Game.PauseBetweenProcessGrab = 10;
-Game.PauseBetweenStarts = 15;
+Game.PauseEscapeTheBackroomsweenProcessGrab = 10;
+Game.PauseEscapeTheBackroomsweenStarts = 15;
 Game.RefreshWindowAfterStart = true;
 
 
@@ -190,6 +190,23 @@ Game.Play = function() {
   var Args = (Context.Args = " -windowed " + " -AlwaysFocus " + " -ResX= " + Context.Width + " -ResY= " + Context.Height);
 
   Context.StartArguments = Args;
+
+  Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
+
+  var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\EscapeTheBackrooms\\Binaries\\Win64\\nepice_settings\\NemirtingasEpicEmu.json";
+  var dict = [
+    Context.FindLineNumberInTextFile(txtPath, '      "EpicId":', Nucleus.SearchType.StartsWith) + '|      "EpicId": "831ec62c44424917a0fb315de2b5dc1' + Context.PlayerID + '",',
+    Context.FindLineNumberInTextFile(txtPath, '      "Language":', Nucleus.SearchType.StartsWith) + '|      "Language": "' + Context.EpicLang + '",',
+    Context.FindLineNumberInTextFile(txtPath, '      "UserName":', Nucleus.SearchType.StartsWith) + '|      "UserName": "' + Context.Nickname + '"'
+  ];
+  Context.ReplaceLinesInTextFile(txtPath, dict);
+
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv151\\Win64\\steam_settings\\configs.user.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+    new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
+    new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
+    new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang)
+  ]);
 
   var FPS = Context.Options["fps"];
 
