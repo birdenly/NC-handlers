@@ -1,15 +1,11 @@
-var answers1 = ["30", "45", "60", "75", "90", "105", "120", "144", "165", "200"];
-Game.AddOption("Select the FPS cap.", "", "fps", answers1);
+Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt"];
+Game.DirSymlinkExclusions = ["Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv151\\Win64", "Pandemic\\Binaries\\Win64"];
+Game.DirExclusions = ["Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv151\\Win64"];
 
-Game.ExecutableContext = ["Pandemic.pdb"];
-
-Game.FileSymlinkCopyInstead = ["embree.2.14.0.dll", "imgui.ini", "OpenImageDenoise.dll", "steam_appid.txt", "tbb.dll", "tbb12.dll", "tbbmalloc.dll", "Pandemic.pdb"];
-Game.FileSymlinkExclusions = ["IntroSplash.mp4", "siezurewarning.mp4"];
-
-Game.HandlerInterval = 100;
+Game.HandlerInterval = 500;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
-Game.SymlinkFolders = false;
+Game.SymlinkFolders = true;
 Game.ExecutableName = "Pandemic.exe";
 Game.SteamID = "872670";
 Game.GUID = "SCP5K";
@@ -17,7 +13,6 @@ Game.GameName = "SCP: 5K";
 Game.MaxPlayers = 12;
 Game.MaxPlayersOneMonitor = 12;
 Game.BinariesFolder = "Pandemic\\Binaries\\Win64";
-Game.LauncherTitle = "";
 Game.HideTaskbar = true;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "SCP: 5K";
@@ -27,14 +22,11 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "IMPORTANT: You need to have started the game and changed any graphics settings once before using this handler.\n\nThe game menu doesnt really support controllers so use your mouse.\n\nGo into private match and start a match in one instance, when in-game open the menu > host game > make the lobby public > host game at the bottom > confirm. On all other players go into server browser > enable P2P at the bottom > join server\n\nIf you have a keyboard/mouse player: After all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked. Add custom resolutions in your AMD/Nvidia/Intel panel (For example for a 1920x1080 monitor add: 960x1080, 960x540, 1920x540 etc.) so the game can see them and use them.";
+  "IMPORTANT: You need to have started the game and changed any graphics settings once before using this handler.\n\nThe game menu doesnt really support controllers so use your mouse.\n\nGo into private match and start a match in one instance, when in-game open the menu > host game > make the lobby public > host game at the bottom > confirm. On all other players go into server browser > enable P2P at the bottom > join server. OR use the invite button, all players should auto join.\n\nIf you have a keyboard/mouse player: After all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked. Add custom resolutions in your AMD/Nvidia/Intel panel (For example for a 1920x1080 monitor add: 960x1080, 960x540, 1920x540 etc.) so the game can see them and use them.";
 Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 10;
 
-Game.UseGoldberg = true;
-
 Game.RefreshWindowAfterStart = true;
-Game.SetWindowHookStart = true;
 Game.UseNucleusEnvironment = true;
 Game.UserProfileConfigPath = "AppData\\Local\\Pandemic";
 
@@ -67,8 +59,8 @@ Game.SupportsMultipleKeyboardsAndMice = true;
 
 Game.ProtoInput.InjectStartup = true;
 Game.ProtoInput.InjectRuntime_RemoteLoadMethod = false;
-Game.ProtoInput.InjectRuntime_EasyHookMethod = false;
-Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = true;
+Game.ProtoInput.InjectRuntime_EasyHookMethod = true;
+Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = false;
 
 Game.LockInputAtStart = false;
 Game.LockInputSuspendsExplorer = true;
@@ -81,13 +73,13 @@ Game.ProtoInput.RenameNamedPipes = [];
 
 Game.ProtoInput.RegisterRawInputHook = false;
 Game.ProtoInput.GetRawInputDataHook = false;
-Game.ProtoInput.MessageFilterHook = true;
+Game.ProtoInput.MessageFilterHook = false;
 Game.ProtoInput.GetCursorPosHook = false;
 Game.ProtoInput.SetCursorPosHook = false;
 Game.ProtoInput.GetKeyStateHook = false;
 Game.ProtoInput.GetAsyncKeyStateHook = false;
 Game.ProtoInput.GetKeyboardStateHook = false;
-Game.ProtoInput.CursorVisibilityHook = true;
+Game.ProtoInput.CursorVisibilityHook = false;
 Game.ProtoInput.FocusHooks = true;
 Game.ProtoInput.ClipCursorHook = true;
 Game.ProtoInput.DrawFakeCursor = false;
@@ -116,17 +108,17 @@ Game.ProtoInput.DinputHookAlsoHooksGetDeviceState = false;
 Game.ProtoInput.MultipleProtoControllers = false;
 
 Game.ProtoInput.EnableFocusMessageLoop = true;
-Game.ProtoInput.FocusLoopIntervalMilliseconds = 5000;
+Game.ProtoInput.FocusLoopIntervalMilliseconds = 100000;
 Game.ProtoInput.FocusLoop_WM_ACTIVATE = true;
-// Game.ProtoInput.FocusLoop_WM_ACTIVATEAPP = false;
-// Game.ProtoInput.FocusLoop_WM_NCACTIVATE = false;
-// Game.ProtoInput.FocusLoop_WM_SETFOCUS = false;
-// Game.ProtoInput.FocusLoop_WM_MOUSEACTIVATE = false;
-Game.ProtoInput.BlockedMessages = [0x0008]; // Blocks WM_KILLFOCUS, WM_MOUSEHOVER and WM_MOUSELEAVE
 
 Game.ProtoInput.OnInputLocked = function() {
   for (var i = 0; i < PlayerList.Count; i++) {
     var player = PlayerList[i];
+
+    ProtoInput.StartFocusMessageLoop(player.ProtoInputInstanceHandle, 50, true, false, false, true, true);
+    System.Threading.Thread.Sleep(500);
+    ProtoInput.StopFocusMessageLoop(player.ProtoInputInstanceHandle);
+
 
     ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.GetCursorPosHookID);
     ProtoInput.InstallHook(player.ProtoInputInstanceHandle, ProtoInput.Values.SetCursorPosHookID);
@@ -182,12 +174,21 @@ Game.ProtoInput.OnInputUnlocked = function() {
   }
 };
 
+
 Game.Play = function() {
-  var Args = (Context.Args = " -windowed -AlwaysFocus -ResX= " + Context.Width + " -ResY= " + Context.Height);
 
-  Context.StartArguments = Args;
+  Context.StartArguments = " -windowed -ResX=" + Context.Width + " -ResY=" + Context.Height;
 
-  var FPS = Context.Options["fps"];
+  Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
+
+  Context.Wait(3000);
+
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv151\\Win64\\steam_settings\\configs.user.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+  new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
+  new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
+  new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang),
+  ]);
 
   var savePath = Context.EnvironmentPlayer + Context.UserProfileConfigPath + "\\Saved\\Config\\WindowsNoEditor\\GameUserSettings.ini";
   Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
@@ -199,8 +200,7 @@ Game.Play = function() {
     new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "WindowPosY", Context.PosY),
     new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "FullscreenMode", 2),
     new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "LastConfirmedFullscreenMode", 2),
-    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "PreferredFullscreenMode", 2),
-    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "FrameRateLimit", FPS + ".000000")
+    new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "PreferredFullscreenMode", 2)
   ]);
 
   if (Context.PlayerID == 0) {
@@ -212,4 +212,5 @@ Game.Play = function() {
       new Nucleus.IniSaveInfo("/Script/GameUtilities.PandemicGameUserSettings", "MusicVolume", "0.000000"),
     ]);
   }
+
 };
