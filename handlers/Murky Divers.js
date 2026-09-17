@@ -1,12 +1,12 @@
 Game.FileSymlinkCopyInstead = ["D3D12Core.dll", "OpenImageDenoise.dll", "tbb.dll", "tbb12.dll", "tbbmalloc.dll"];
 Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt", "EOSSDK-Win64-Shipping.dll"];
-Game.DirSymlinkExclusions = ["MurkyDivers\\Plugins\\SteamIntea3aafa760efV4\\Source\\SteamSdk\\redistributable_bin\\win64", "MurkyDivers\\Binaries\\Win64", "Engine\\Binaries\\Win64"];
+Game.DirSymlinkExclusions = ["Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv157\\Win64", "MurkyDivers\\Binaries\\Win64\\RedpointEOS",];
 
 Game.HandlerInterval = 500;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
 Game.SymlinkFolders = true;
-Game.ExecutableName = "MurkyDiversGame-Win64-Shipping.exe";
+Game.ExecutableName = "MurkyDiversGameSteam-Win64-Shipping.exe";
 Game.SteamID = "2963880";
 Game.GUID = "Murky Divers";
 Game.GameName = "Murky Divers";
@@ -23,8 +23,8 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "IMPORTANT: Start the game once and change the game to WINDOWED MODE before trying split screen, you can cap the FPS in the game settings.\n\nHost a lobby on one instance and join with others through the lobby browser.\n\nREAD: After all the instances have launched, resized and positioned correctly, alt+tab to the Nucleus Co-op screen than press the END key once to lock the input for all instances to have their own working cursor, keyboard and controllers. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
-Game.PauseBetweenProcessGrab = 5;
+  "IMPORTANT: Start the game once and change the game to WINDOWED MODE before trying split screen, you can cap the FPS in the game settings.\nUse your mouse for main menus, controllers are buggy on it.\n\nHost a lobby on one instance and join with others through the lobby browser.\n\nREAD: After all the instances have launched, resized and positioned correctly, alt+tab to the Nucleus Co-op screen than press the END key once to lock the input for all instances to have their own working cursor, keyboard and controllers. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+Game.PauseBetweenProcessGrab = 15;
 Game.PauseBetweenStarts = 10;
 
 Game.RefreshWindowAfterStart = true;
@@ -63,8 +63,8 @@ Game.SupportsMultipleKeyboardsAndMice = true;
 
 Game.ProtoInput.InjectStartup = true;
 Game.ProtoInput.InjectRuntime_RemoteLoadMethod = false;
-Game.ProtoInput.InjectRuntime_EasyHookMethod = false;
-Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = true;
+Game.ProtoInput.InjectRuntime_EasyHookMethod = true;
+Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = false;
 
 Game.LockInputAtStart = false;
 Game.LockInputSuspendsExplorer = true;
@@ -84,7 +84,7 @@ Game.ProtoInput.GetKeyStateHook = false;
 Game.ProtoInput.GetAsyncKeyStateHook = false;
 Game.ProtoInput.GetKeyboardStateHook = false;
 Game.ProtoInput.CursorVisibilityHook = true;
-Game.ProtoInput.FocusHooks = true;
+Game.ProtoInput.FocusHooks = false;
 Game.ProtoInput.ClipCursorHook = true;
 Game.ProtoInput.DrawFakeCursor = false;
 Game.ProtoInput.ClipCursorHookCreatesFakeClip = true;
@@ -183,14 +183,14 @@ Game.ProtoInput.OnInputUnlocked = function() {
 };
 
 Game.Play = function() {
-  var Args = (Context.Args = " -windowed -AlwaysFocus -ResX= " + Context.Width + " -ResY= " + Context.Height);
+  var Args = (Context.Args = " -windowed -ResX= " + Context.Width + " -ResY= " + Context.Height);
 
   Context.StartArguments = Args;
 
   Context.CopyScriptFolder(Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
 
   var savePath =
-  Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\MurkyDivers\\Plugins\\SteamIntea3aafa760efV4\\Source\\SteamSdk\\redistributable_bin\\win64\\steam_settings\\configs.user.ini";
+  Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv157\\Win64\\steam_settings\\configs.user.ini";
   Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
     new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
     new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
@@ -231,24 +231,5 @@ Game.Play = function() {
 
   if (Context.AspectRatioDecimal < 1.2) {
     Context.ModifySaveFile(ngincfg, ngincfg, Nucleus.SaveType.INI, [new Nucleus.IniSaveInfo("/Script/Engine.LocalPlayer", "AspectRatioAxisConstraint", "AspectRatio_MaintainXFOV")]);
-  }
-
-  var numPlayers = 0;
-
-  for (var i = 0; i < PlayerList.Count; i++) {
-    var player = PlayerList[i];
-
-    if (player.IsXInput && player.ScreenIndex !== -1) {
-      numPlayers++;
-    }
-    player.ProtoController1 = Context.GamepadId;
-    player.ProtoController2 = Context.GamepadId;
-    player.ProtoController3 = Context.GamepadId;
-    player.ProtoController4 = Context.GamepadId;
-    player.ProtoController5 = Context.GamepadId;
-    player.ProtoController6 = Context.GamepadId;
-    player.ProtoController7 = Context.GamepadId;
-    player.ProtoController8 = Context.GamepadId;
-    player.ProtoController9 = Context.GamepadId;
   }
 };

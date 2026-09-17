@@ -3,7 +3,7 @@ Game.KillMutex = ["UnrealEngine4"];
 var answers1 = ["30", "60", "90", "120", "144", "0"];
 Game.AddOption("Select the FPS cap.", "0 is for unlimited FPS", "fps", answers1);
 
-Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt"];
+Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt", "EOSSDK-Win64-Shipping.dll"];
 Game.DirSymlinkExclusions = ["Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv153\\Win64", "LOTF2\\Binaries\\Win64\\RedpointEOS", "LOTF2\\Binaries\\Win64"];
 
 Game.HandlerInterval = 500;
@@ -25,7 +25,7 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = ["xinput1_3.dll","xinput1_4.dll","xinput9_1_0.dll"];
 Game.Description =
-  "IMPORTANT: FRIENDS PASS DOESNT WORK, DO NOT TRY RUNNING THIS HANDLER WITH IT.\n\nReduce your graphics in the main game before using the handler, also recommend muting the music of the second instance.\n\nTo join each other finish the tutorial section and reach the altar, interact with it and go into multiplayer and invite the other player\n\nIf you want your main save file in split screen right click the game in nucleus and click 'open userProfile save path', now just copy paste your main save file into there\n\nAfter all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor/keyboard/controller. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+  "Showcase/Tutorial: https://www.youtube.com/watch?v=8vGfOwht7m8&t=1s\n\nReduce your graphics in the main game before using the handler, also recommend muting the music of the second instance.\n\nTo join each other finish the tutorial section and reach the altar, interact with it and go into multiplayer and Host a shared progression lobby then search with the second in the same mode. It will take a moment to find/join\n\nIf you want your main save file in split screen right click the game in nucleus and click 'open userProfile save path', now just copy paste your main save file into there\n\nAfter all the instances have launched, resized and positioned correctly, Click once on each screen then press the END key once to lock the input for all instances to have their own working cursor/keyboard/controller. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenProcessGrab = 12;
 Game.PauseBetweenStarts = 20;
 
