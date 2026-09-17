@@ -2,6 +2,9 @@ var answers1 = ["30", "60", "90", "120", "144", "165", "200"];
 Game.AddOption("Select the FPS cap.", "", "fps", answers1);
 
 Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt"];
+Game.FileSymlinkCopyInstead = [
+  "UnityPlayer.dll"
+];
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
@@ -19,7 +22,7 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.BlockRawInput = false;
 Game.Description =
-  "IMPORTANT: Start your main game once and make it windowed before trying split screen, also choose an UI Scale that will be good for split screen\n\nDISABLE ALL OVERLAYS THAT YOU HAVE BEFORE PLAYING, IT MAY CAUSE PROBLEMS.\n\nThe game doesnt scale well with horizontal split, so avoid using that\n\nBefore locking input, press the + icon to invite a friend, a overlay will appear, invite the other players than alt+tab to their screens to accept\n\nWhile input is unlocked, if you change UI Scale, the resolution will bug out so press CTRL+T twice and it will go back to normal and main the UI Scale you set.\n\nrecommended that you add custom resolutions to all your monitors from your AMD/Nvidia/Intel panel (for example if you are using a monitor resolution of 1920x1080 add custom resolutions like 1920x540, 960x1080, 960x540, etc.)\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+  "IMPORTANT: Start your main game once and make it windowed before trying split screen, also choose an UI Scale that will be good for split screen\n\nThe game doesnt scale well with horizontal split, so avoid using that\n\nPress the + icon to invite, it will automatically invite everyone/accept the invite.\n\nWhile input is unlocked, if you change UI Scale, the resolution will bug out so press CTRL+T twice and it will go back to normal and main the UI Scale you set.\n\nrecommended that you add custom resolutions to all your monitors from your AMD/Nvidia/Intel panel (for example if you are using a monitor resolution of 1920x1080 add custom resolutions like 1920x540, 960x1080, 960x540, etc.)\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenStarts = 10;
 Game.PauseBetweenProcessGrab = 15;
 
@@ -97,8 +100,8 @@ Game.ProtoInput.SendMouseWheelMessages = true;
 Game.ProtoInput.SendMouseButtonMessages = true;
 Game.ProtoInput.SendMouseMovementMessages = true;
 Game.ProtoInput.SendKeyboardButtonMessages = true;
-Game.ProtoInput.XinputHook = false;
-Game.ProtoInput.UseOpenXinput = false;
+Game.ProtoInput.XinputHook = true;
+Game.ProtoInput.UseOpenXinput = true;
 Game.ProtoInput.UseDinputRedirection = false;
 Game.ProtoInput.DinputDeviceHook = false;
 Game.ProtoInput.DinputHookAlsoHooksGetDeviceState = false;
@@ -172,9 +175,7 @@ Game.Play = function() {
 
   var FPS = Context.Options["fps"];
 
-  var Args = (Context.Args = " -screen-fullscreen 0  -screen-width " + Context.Width + " -screen-height " + Context.Height);
-
-  Context.StartArguments = Args;
+  Context.StartArguments = " -screen-fullscreen 0  -screen-width " + Context.Width + " -screen-height " + Context.Height;
 
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\TVGS\\Schedule I", "Screenmanager Fullscreen mode_h3630240806", 3, Nucleus.RegType.DWord);
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\TVGS\\Schedule I", "Screenmanager Resolution Height_h2627697771", Context.Height, Nucleus.RegType.DWord);
@@ -184,7 +185,11 @@ Game.Play = function() {
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\TVGS\\Schedule I", "Screenmanager Fullscreen mode Default_h401710285", 3, Nucleus.RegType.DWord);
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\TVGS\\Schedule I", "TargetFPS_h3654170385", FPS, Nucleus.RegType.DWord);
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\TVGS\\Schedule I", "InviteHintShown_h3754459834", 1, Nucleus.RegType.DWord);
-  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\TVGS\\Schedule I", "VSync_h223806132", 0, Nucleus.RegType.DWord);
+
+  var dllPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\UnityPlayer.dll";
+  var searchPattern = "57 00 69 00 6E 00 64 00 6F 00 77 00 73 00 2E 00 47 00 61 00 6D 00 69 00 6E 00 67 00 2E 00 49 00 6E 00 70 00 75 00 74 00 2E 00 47 00 61 00 6D 00 65 00 70 00 61 00 64";
+  var patchPattern = "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00";
+  Context.PatchFileFindPattern(dllPath, dllPath, searchPattern, patchPattern, true);
 
   Context.CopyFolder(Context.ScriptFolder, Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Schedule I_Data\\Plugins\\x86_64");
 
