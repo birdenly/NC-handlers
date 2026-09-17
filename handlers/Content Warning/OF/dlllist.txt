@@ -3,3 +3,4 @@ MonoBleedingEdge\EmbedRuntime\mono-2.0-bdwgc.dll
 Content Warning_Data\Managed\Assembly-CSharp.net.org
 Content Warning_Data\Managed\PhotonRealtime.net.org
 Custom.net
+inputmessagetranslator.dll

@@ -30,22 +30,13 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "IMPORTANT: For every instance that opens set the game into windowed. Also the handler uses online-fix which requires internet connection also FULLY CLOSE STEAM BEFORE USING THE HANDLER, the online-fix site should pop up only on the first start. Thanks to them for the bypass\n\nVertical split will cut off parts of the menu\n\nGo into 'JOIN RANDOM' in the menu to host a lobby with 1 players and do the same with others to join, also make voice chat press to talk to not hear your mic. or leave one player without push to talk to hear yourself in the recordings\n\nRecommended that you add custom resolutions to all your monitors from your AMD/Nvidia/Intel panel (for example if you are using a monitor resolution of 1920x1080 add custom resolutions like 1920x540, 960x1080, 960x540, etc.)\n\nDisable any overlays that are attaching to the game (discord,steam or any other)\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
-Game.PauseBetweenProcessGrab = 5;
+  "Tutorial: https://www.youtube.com/watch?v=KGpkinzD560\n\nIMPORTANT: For every instance that opens set the game into windowed. Also the handler uses online-fix which requires internet connection also FULLY CLOSE STEAM BEFORE USING THE HANDLER, the online-fix site should pop up only on the first start. Thanks to them for the bypass\n\nVertical split will cut off parts of the menu\n\nGo into 'PLAY WITH FRIENDS' in the menu to host a lobby, then go to the INVITE FRIENDS pannel and just press E on it, all players will join automatically.\n\nRecommended that you add custom resolutions to all your monitors from your AMD/Nvidia/Intel panel (for example if you are using a monitor resolution of 1920x1080 add custom resolutions like 1920x540, 960x1080, 960x540, etc.)\n\nDisable any overlays that are attaching to the game (discord,steam or any other)\n\nIf you use keyboards and mice after all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor and keyboard. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+Game.PauseBetweenProcessGrab = 15;
 Game.PauseBetweenStarts = 15;
-
+Game.KeepSymLinkOnExit = true; 
 Game.SetWindowHookStart = true;
 Game.SetTopMostAtEnd = true;  
 Game.HideTaskbar = true;
-
-Game.BackupFiles = [
-"Custom.dll",
-"dlllist.txt",
-"OnlineFix.ini",
-"OnlineFix64.dll",
-"SteamOverlay64.dll",
-"winmm.dll",
-];
 
 Game.UserProfileSavePath = "AppData\\LocalLow\\Landfall Games";
 

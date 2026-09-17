@@ -2,7 +2,7 @@ var answers1 = ["1.0", "0.8", "0.9", "1.1", "1.2"];
 Game.AddOption("UI scale", "Changes the Scale of the UI. Defult is 1", "scale", answers1);
 
 Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt"];
-Game.DirSymlinkExclusions = ["FarFarWest\\Plugins\\SteamCore\\Source\\ThirdParty\\SteamLibrary\\redistributable_bin\\win64", "FarFarWest\\Binaries\\Win64"];
+Game.DirSymlinkExclusions = ["Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv157\\Win64", "FarFarWest\\Binaries\\Win64"];
 Game.HandlerInterval = 500;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
@@ -22,7 +22,7 @@ Game.Hook.XInputReroute = false;
 Game.Hook.CustomDllEnabled = false;
 Game.XInputPlusDll = [];
 Game.Description =
-  "Tutorial: https://www.youtube.com/watch?v=PluTjYHdPco\n\nIMPORTANT: start your game once before trying split screen. And you NEED internet connection, else the game will crash on start.\n\nMake a public lobby and join in with others. for some reason the controller cant 'click' the join button, so use your mouse for it.\n\nAfter all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor, keyboard, controller and FOCUS. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
+  "Tutorial: https://www.youtube.com/watch?v=PluTjYHdPco\n\nIMPORTANT: start your game once before trying split screen. And you NEED internet connection, else the game will crash on start. (after LAN was added there was no test to see if this was fixed).\n\nMake a public lobby and join in with others (you can also use LAN option). for some reason the controller cant 'click' the join button, so use your mouse for it.\n\nAfter all the instances have launched, resized and positioned correctly, press the END key once to lock the input for all instances to have their own working cursor, keyboard, controller and FOCUS. You need to left click each mouse to make the emulated cursors appear after locking the input. Press the END key again to unlock the input when you finish playing. You can also use CTRL+Q to close Nucleus and all its instances when the input is unlocked.";
 Game.PauseBetweenProcessGrab = 10;
 Game.PauseBetweenStarts = 10;
 
@@ -194,7 +194,7 @@ Game.Play = function() {
 
   Context.Wait(1500);
 
-  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\FarFarWest\\Plugins\\SteamCore\\Source\\ThirdParty\\SteamLibrary\\redistributable_bin\\win64\\steam_settings\\configs.user.ini";
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\Engine\\Binaries\\ThirdParty\\Steamworks\\Steamv157\\Win64\\steam_settings\\configs.user.ini";
   Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
   new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
   new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
