@@ -1,21 +1,4 @@
-var answers1 = [
-  "60",
-  "30",
-  "45",
-  "75",
-  "90",
-  "120"
-];
-Game.AddOption(
-  "Select the FPS cap.",
-  '',
-  "fps",
-  answers1
-);
-
-Game.FileSymlinkExclusions = [
-  "steam_api64.dll"
-];
+Game.FileSymlinkExclusions = ["steam_api64.dll"];
 Game.FileSymlinkCopyInstead = ["UnityPlayer.dll"];
 Game.UseGoldberg = true;
 Game.HandlerInterval = 100;
@@ -25,8 +8,8 @@ Game.ExecutableName = "STRAFTAT.exe";
 Game.SteamID = "2386720";
 Game.GUID = "STRAFTAT";
 Game.GameName = "STRAFTAT";
-Game.MaxPlayers = 2;
-Game.MaxPlayersOneMonitor = 2;
+Game.MaxPlayers = 4;
+Game.MaxPlayersOneMonitor = 4;
 Game.Hook.ForceFocus = false;
 Game.Hook.ForceFocusWindowName = "STRAFTAT";
 Game.Hook.DInputEnabled = false;
@@ -40,8 +23,8 @@ Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 10;
 Game.HideTaskbar = true;
 
-Game.SetWindowHookStart = true;
-Game.RefreshWindowAfterStart = true; 
+Game.SetWindowHook = true;
+Game.RefreshWindowAfterStart = true;
 // Game.UseNucleusEnvironment = true;
 Game.UserProfileSavePath = "AppData\\LocalLow\\LemaitreBros\\STRAFTAT";
 
@@ -72,9 +55,9 @@ Game.DrawFakeMouseCursor = false;
 
 Game.SupportsMultipleKeyboardsAndMice = true;
 
-Game.ProtoInput.InjectStartup = false;
+Game.ProtoInput.InjectStartup = true;
 Game.ProtoInput.InjectRuntime_RemoteLoadMethod = false;
-Game.ProtoInput.InjectRuntime_EasyHookMethod = true;
+Game.ProtoInput.InjectRuntime_EasyHookMethod = false;
 Game.ProtoInput.InjectRuntime_EasyHookStealthMethod = false;
 
 Game.LockInputAtStart = false;
@@ -187,29 +170,9 @@ Game.ProtoInput.OnInputUnlocked = function() {
 
 Game.Play = function() {
 
-  var FPS = Context.Options["fps"];
+  // var Args = (Context.Args = " -screen-fullscreen 0 -popupwindow " + " -screen-width " + Context.Width + " -screen-height " + Context.Height);
 
-  var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\dxgi.dll");
-  var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "dxgi.dll");
-  System.IO.File.Copy(savePkgOrigin, savePath, true);
-
-  var savePath = (Context.SavePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\dxgi.ini");
-  var savePkgOrigin = System.IO.Path.Combine(Game.Folder, "dxgi.ini");
-  System.IO.File.Copy(savePkgOrigin, savePath, true);
-
-  var txtPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\dxgi.ini";
-   Context.ReplaceLinesInTextFile(
-   txtPath,
-   [
-   Context.FindLineNumberInTextFile(txtPath, "OverrideRes=", Nucleus.SearchType.StartsWith) + "|OverrideRes=" + Context.Width + "x" + Context.Height,
-   Context.FindLineNumberInTextFile(txtPath, "TargetFPS=", Nucleus.SearchType.StartsWith) + "|TargetFPS=" + FPS,
-   Context.FindLineNumberInTextFile(txtPath, "BackgroundFPS=", Nucleus.SearchType.StartsWith) + "|BackgroundFPS=" + FPS,
-   
-   ]);
-
-  var Args = (Context.Args = " -screen-fullscreen 0 -popupwindow " + " -screen-width " + Context.Width + " -screen-height " + Context.Height);
-
-  Context.StartArguments = Args;
+  // Context.StartArguments = Args;
 
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\LemaitreBros\\STRAFTAT", "Screenmanager Fullscreen mode_h3630240806", 3, Nucleus.RegType.DWord);
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\LemaitreBros\\STRAFTAT", "Screenmanager Resolution Height_h2627697771", Context.Height, Nucleus.RegType.DWord);
