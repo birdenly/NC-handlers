@@ -1,6 +1,5 @@
 Game.FileSymlinkExclusions = ["steam_api64.dll"];
 Game.FileSymlinkCopyInstead = ["UnityPlayer.dll"];
-Game.UseGoldberg = true;
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
@@ -25,7 +24,6 @@ Game.HideTaskbar = true;
 
 Game.SetWindowHook = true;
 Game.RefreshWindowAfterStart = true;
-// Game.UseNucleusEnvironment = true;
 Game.UserProfileSavePath = "AppData\\LocalLow\\LemaitreBros\\STRAFTAT";
 
 //USS deprecated options:
@@ -170,9 +168,15 @@ Game.ProtoInput.OnInputUnlocked = function() {
 
 Game.Play = function() {
 
-  // var Args = (Context.Args = " -screen-fullscreen 0 -popupwindow " + " -screen-width " + Context.Width + " -screen-height " + Context.Height);
+  
+  Context.CopyFolder(Context.ScriptFolder, Context.GetFolder(Nucleus.Folder.InstancedGameFolder)+"\\STRAFTAT_Data\\Plugins\\x86_64");
 
-  // Context.StartArguments = Args;
+  var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\STRAFTAT_Data\\Plugins\\x86_64\\steam_settings\\configs.user.ini";
+  Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
+    new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
+    new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
+    new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang)
+  ]);
 
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\LemaitreBros\\STRAFTAT", "Screenmanager Fullscreen mode_h3630240806", 3, Nucleus.RegType.DWord);
   Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\LemaitreBros\\STRAFTAT", "Screenmanager Resolution Height_h2627697771", Context.Height, Nucleus.RegType.DWord);
