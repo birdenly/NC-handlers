@@ -1,9 +1,5 @@
-Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt"
-];
-Game.FileSymlinkCopyInstead = [
-  "UnityPlayer.dll",
-  "globalgamemanagers"
-];
+Game.FileSymlinkExclusions = ["steam_api64.dll", "steam_appid.txt"];
+Game.FileSymlinkCopyInstead = ["UnityPlayer.dll"];
 Game.HandlerInterval = 100;
 Game.SymlinkExe = false;
 Game.SymlinkGame = true;
@@ -29,7 +25,7 @@ Game.PauseBetweenProcessGrab = 5;
 Game.PauseBetweenStarts = 10;
 
 Game.HideTaskbar = true;
-Game.SetTopMostAtEnd = true;  
+Game.SetTopMostAtEnd = true;
 // Game.RefreshWindowAfterStart = true;
 Game.SetWindowHookStart = true;
 
@@ -176,36 +172,16 @@ Game.ProtoInput.OnInputUnlocked = function() {
 };
 
 Game.Play = function() {
-
   Context.StartArguments = " -screen-fullscreen 0 -screen-width " + Context.Width + " -screen-height " + Context.Height;
 
   Context.CopyFolder(Context.ScriptFolder, Context.GetFolder(Nucleus.Folder.InstancedGameFolder));
 
   var savePath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\CheeseRolling_Data\\Plugins\\x86_64\\steam_settings\\configs.user.ini";
   Context.ModifySaveFile(savePath, savePath, Nucleus.SaveType.INI, [
-  new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
-  new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
-  new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang),
+    new Nucleus.IniSaveInfo("user::general", "account_name", Context.Nickname),
+    new Nucleus.IniSaveInfo("user::general", "account_steamid", Context.PlayerSteamID),
+    new Nucleus.IniSaveInfo("user::general", "language", Context.SteamLang)
   ]);
-  
-  var fillPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\CheeseRolling_Data\\globalgamemanagers";
-
-  var base = Context.Nickname;
-  var og_Path = "CheeseRolling";
-  // Create newPath by rearranging characters from base
-  var newPath = og_Path.substring(0, og_Path.length - 3) + base.charAt(0) + base.charAt(base.length - 1) + base.length;
-
-  // Ensure newPath is at least as long as og_Path
-  if (newPath.length < og_Path.length) {
-    while (newPath.length < og_Path.length) {
-      newPath += base.charAt(base.length - 1);
-    }
-  } else if (og_Path.length < newPath.length) {
-    // Ensure og_Path is at least 3 characters long
-    newPath = newPath.substring(0, og_Path.length);
-  }
-
-  Context.PatchFile(fillPath, fillPath, og_Path, newPath);
 
   var dllPath = Context.GetFolder(Nucleus.Folder.InstancedGameFolder) + "\\UnityPlayer.dll";
 
@@ -214,27 +190,19 @@ Game.Play = function() {
 
   Context.PatchFileFindPattern(dllPath, dllPath, searchPattern, patchPattern, true);
 
-  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\"+newPath, "Screenmanager Fullscreen mode_h3630240806", 0, Nucleus.RegType.DWord);
-  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\"+newPath, "Screenmanager Fullscreen mode Default_h401710285", 0, Nucleus.RegType.DWord);
-  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\"+newPath, "Screenmanager Resolution Width_h182942802", Context.Width, Nucleus.RegType.DWord);
-  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\"+newPath, "Screenmanager Resolution Height_h2627697771", Context.Height, Nucleus.RegType.DWord);
-  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\"+newPath, "Screenmanager Resolution Use Native_h1405027254", 0, Nucleus.RegType.DWord);
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\CheeseRolling", "Screenmanager Fullscreen mode_h3630240806", 0, Nucleus.RegType.DWord);
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\CheeseRolling", "Screenmanager Fullscreen mode Default_h401710285", 0, Nucleus.RegType.DWord);
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\CheeseRolling", "Screenmanager Resolution Width_h182942802", Context.Width, Nucleus.RegType.DWord);
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\CheeseRolling", "Screenmanager Resolution Height_h2627697771", Context.Height, Nucleus.RegType.DWord);
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\CheeseRolling", "Screenmanager Resolution Use Native_h1405027254", 0, Nucleus.RegType.DWord);
 
-  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\"+newPath, "Screenmanager Resolution Width Default_h680557497", Context.Width, Nucleus.RegType.DWord);
-  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\"+newPath, "Screenmanager Resolution Height Default_h1380706816", Context.Height, Nucleus.RegType.DWord);
-  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\"+newPath, "Screenmanager Resolution Window Width_h2524650974", Context.Width, Nucleus.RegType.DWord);
-  Context.EditRegKeyNoBackup("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\"+newPath, "Screenmanager Resolution Window Height_h1684712807", Context.Height, Nucleus.RegType.DWord);
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\CheeseRolling", "Screenmanager Resolution Width Default_h680557497", Context.Width, Nucleus.RegType.DWord);
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\CheeseRolling", "Screenmanager Resolution Height Default_h1380706816", Context.Height, Nucleus.RegType.DWord);
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\CheeseRolling", "Screenmanager Resolution Window Width_h2524650974", Context.Width, Nucleus.RegType.DWord);
+  Context.EditRegKey("HKEY_CURRENT_USER", "SOFTWARE\\The Interviewed\\CheeseRolling", "Screenmanager Resolution Window Height_h1684712807", Context.Height, Nucleus.RegType.DWord);
 
-  System.IO.Directory.CreateDirectory(Context.NucleusUserRoot + "\\" + Context.UserProfileSavePath + "\\" +newPath);
-  var settingsPath = Context.NucleusUserRoot + "\\" + Context.UserProfileSavePath + "\\" +newPath+"\\settings.json";
-  var mainsavePath = Context.NucleusUserRoot + "\\" + Context.UserProfileSavePath + "\\CheeseRolling\\settings.json";
-  System.IO.File.Copy(mainsavePath, settingsPath, true);
-  Context.ReplacePartialLinesInTextFile(
-    settingsPath,
-    [
-      '1|"WindowMode":\\d+|"WindowMode":2'
-    ]
-  );
+  var settingsPath = Context.NucleusUserRoot + "\\" + Context.UserProfileSavePath + "\\CheeseRolling\\settings.json";
+  Context.ReplacePartialLinesInTextFile(settingsPath, ['1|"WindowMode":\\d+|"WindowMode":2']);
 
   var numPlayers = 0;
 
