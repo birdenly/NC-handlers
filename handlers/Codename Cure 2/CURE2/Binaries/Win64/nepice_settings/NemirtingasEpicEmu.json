@@ -1,0 +1,30 @@
+{
+  "EOSEmu": {
+    "Achievements": {
+      "OnlineDatabase": ""
+    },
+    "Application": {
+      "AppId": "CURE2",
+      "DisableCrashDump": false,
+      "DisableOnlineNetworking": false,
+      "LogLevel": "off",
+      "SavePath": "appdata"
+    },
+    "Ecom": {
+      "UnlockDlcs": true
+    },
+    "Plugins": {
+      "Overlay": {
+        "DelayDetection": "5s",
+        "Enabled": false
+      }
+    },
+    "User": {
+      "EnableVoiceChat": false,
+      "EpicId": "cdc8ba031d86e971e20fc28960380a19",
+      "Language": "en",
+      "ProductUserId": "0002aca75d432b79c9ac150633f09214",
+      "UserName": "DefaultName"
+    }
+  }
+}
