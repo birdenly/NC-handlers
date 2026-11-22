@@ -1,0 +1,29 @@
+{
+  "EOSEmu": {
+    "Achievements": {
+      "OnlineDatabase": ""
+    },
+    "Application": {
+      "AppId": "TombRaider123Remastered",
+      "DisableOnlineNetworking": false,
+      "LogLevel": "off",
+      "SavePath": "appdata"
+    },
+    "Ecom": {
+      "UnlockDlcs": true
+    },
+    "Plugins": {
+      "Overlay": {
+        "DelayDetection": "5s",
+        "Enabled": false
+      }
+    },
+    "User": {
+      "EnableVoiceChat": false,
+      "EpicId": "c8988abd9b8ee6267273de72ee79ed22",
+      "Language": "en",
+      "ProductUserId": "0002a3cab1d147bdd13b4581c96a3dae",
+      "UserName": "DefaultName"
+    }
+  }
+}
